@@ -84,7 +84,7 @@ export default function AdminLayout() {
         <div className="p-3 border-t border-border">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-2.5 w-full rounded-lg text-sm font-medium text-text-secondary hover:text-error hover:bg-error/10 transition-all duration-300"
+            className="flex items-center justify-center gap-3 px-4 py-2.5 w-full rounded-lg text-sm font-medium text-text-secondary hover:text-error hover:bg-error/10 transition-all duration-300"
           >
             <LogOut size={18} />
             Logout
@@ -96,7 +96,7 @@ export default function AdminLayout() {
         <header className="h-16 glass border-b border-border flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden p-2 text-text-secondary hover:text-text transition-colors"
+            className="lg:hidden flex items-center justify-center p-2 text-text-secondary hover:text-text transition-colors"
           >
             <Menu size={20} />
           </button>
@@ -115,7 +115,7 @@ export default function AdminLayout() {
             </div>
             <button
               onClick={handleLogout}
-              className="p-2 text-text-secondary hover:text-error transition-colors duration-300"
+              className="flex items-center justify-center p-2 text-text-secondary hover:text-error transition-colors duration-300"
               title="Logout"
             >
               <LogOut size={18} />

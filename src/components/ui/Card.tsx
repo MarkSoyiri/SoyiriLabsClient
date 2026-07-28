@@ -24,7 +24,7 @@ export function Card({
       whileHover={hover ? { y: -6 } : undefined}
       onClick={onClick}
       className={cn(
-        'glass rounded-2xl p-6 transition-colors duration-300',
+        'glass rounded-2xl p-6 transition-colors duration-300 min-w-0 overflow-hidden',
         hover && 'glass-hover cursor-pointer',
         glow && 'glow',
         border && 'gradient-border',

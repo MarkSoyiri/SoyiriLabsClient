@@ -18,6 +18,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string
 }
 
+const loaderSizes: Record<ButtonSize, string> = {
+  sm: 'h-3.5 w-3.5',
+  md: 'h-4 w-4',
+  lg: 'h-5 w-5',
+}
+
 export function Button({
   variant = 'primary',
   size = 'md',
@@ -47,7 +53,7 @@ export function Button({
   }
 
   const baseStyles =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer overflow-hidden group'
+    'relative inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-secondary disabled:pointer-events-none disabled:opacity-50 cursor-pointer overflow-hidden group'
 
   const variantStyles: Record<ButtonVariant, string> = {
     primary:
@@ -71,7 +77,7 @@ export function Button({
 
   const content = (
     <>
-      {loading && <Loader2 className="h-4 w-4 animate-spin shrink-0" />}
+      {loading && <Loader2 className={cn('animate-spin shrink-0', loaderSizes[size])} />}
       <span className={cn(loading && 'opacity-70')}>{children}</span>
       {variant === 'primary' && !loading && (
         <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-accent to-purple-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-50" />

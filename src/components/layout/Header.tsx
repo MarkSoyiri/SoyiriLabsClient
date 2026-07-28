@@ -83,7 +83,7 @@ export default function Header() {
             to="/contact"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full bg-accent text-white hover:bg-accent-dark transition-colors duration-300 glow-sm"
+            className="hidden md:inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full bg-accent text-white hover:bg-accent-dark transition-colors duration-300 glow-sm"
           >
             Get a Quote
           </Link>
@@ -129,7 +129,7 @@ export default function Header() {
               <Link
                 to="/contact"
                 onClick={() => setIsMobileOpen(false)}
-                className="mt-4 py-3 px-6 text-center text-sm font-medium rounded-full bg-accent text-white hover:bg-accent-dark transition-colors duration-300"
+                className="mt-4 py-3 px-6 flex items-center justify-center text-center text-sm font-medium rounded-full bg-accent text-white hover:bg-accent-dark transition-colors duration-300"
               >
                 Get a Quote
               </Link>

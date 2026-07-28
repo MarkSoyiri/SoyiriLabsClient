@@ -14,7 +14,7 @@ export default function NotFound() {
 
       <FloatingElements count={3} />
 
-      <section className="relative flex min-h-[calc(100vh-80px)] items-center justify-center px-4">
+      <section className="relative flex min-h-[calc(100vh-80px)] items-center justify-center px-4 overflow-hidden">
         <div className="text-center">
           <motion.h1
             initial={{ opacity: 0, y: 40, scale: 0.9 }}

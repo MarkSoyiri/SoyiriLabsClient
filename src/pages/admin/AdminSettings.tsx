@@ -162,7 +162,7 @@ export default function AdminSettings() {
         <p className="text-sm text-text-secondary mt-1">Manage your site content and company information</p>
       </div>
 
-      <div className="flex gap-2 mb-6 border-b border-border pb-4">
+      <div className="flex gap-2 flex-wrap mb-6 border-b border-border pb-4">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -209,8 +209,8 @@ export default function AdminSettings() {
             </div>
             <div className="space-y-4">
               {homepage.stats?.map((stat, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <input value={stat.label} onChange={(e) => updateStat(i, 'label', e.target.value)} placeholder="Label" className="flex-1 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <div key={i} className="flex items-center gap-3 flex-wrap">
+                  <input value={stat.label} onChange={(e) => updateStat(i, 'label', e.target.value)} placeholder="Label" className="flex-1 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[120px]" />
                   <input type="number" value={stat.value} onChange={(e) => updateStat(i, 'value', Number(e.target.value))} placeholder="Value" className="w-24 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
                   <input value={stat.suffix || ''} onChange={(e) => updateStat(i, 'suffix', e.target.value)} placeholder="suffix" className="w-20 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
                   <button onClick={() => removeStat(i)} className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
@@ -276,7 +276,7 @@ export default function AdminSettings() {
                   <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setLogoFile(f); setLogoPreview(URL.createObjectURL(f)) } }} className="hidden" />
                 </label>
                 {(logoPreview || company.logo) && (
-                  <img src={logoPreview || getImageUrl(company.logo)} alt="Logo" className="mt-2 h-16 object-contain rounded-xl bg-glass-light p-2" />
+                  <img src={logoPreview || getImageUrl(company.logo)} alt="Logo" className="mt-2 h-16 max-w-full object-contain rounded-xl bg-glass-light p-2" />
                 )}
               </div>
               <div>
@@ -326,9 +326,9 @@ export default function AdminSettings() {
                     </button>
                   </div>
                   <div className="grid gap-3 md:grid-cols-3">
-                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
                   </div>
                 </div>
               ))}
@@ -344,10 +344,10 @@ export default function AdminSettings() {
             </div>
             <div className="space-y-4">
               {company.socialLinks?.map((link, i) => (
-                <div key={i} className="flex items-center gap-3">
+                <div key={i} className="flex items-center gap-3 flex-wrap">
                   <Link2 className="h-4 w-4 text-text-muted shrink-0" />
-                  <input value={link.platform} onChange={(e) => updateSocial(i, 'platform', e.target.value)} placeholder="Platform (e.g. Twitter)" className="flex-[2] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                  <input value={link.url} onChange={(e) => updateSocial(i, 'url', e.target.value)} placeholder="URL" className="flex-[3] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                  <input value={link.platform} onChange={(e) => updateSocial(i, 'platform', e.target.value)} placeholder="Platform (e.g. Twitter)" className="flex-[2] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[120px]" />
+                  <input value={link.url} onChange={(e) => updateSocial(i, 'url', e.target.value)} placeholder="URL" className="flex-[3] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[160px]" />
                   <input value={link.icon} onChange={(e) => updateSocial(i, 'icon', e.target.value)} placeholder="Icon" className="w-20 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
                   <button onClick={() => removeSocial(i)} className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
                     <X className="h-4 w-4" />

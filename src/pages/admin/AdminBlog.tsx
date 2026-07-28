@@ -232,7 +232,7 @@ export default function AdminBlog() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed inset-4 md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl w-full z-50 overflow-auto max-h-[calc(100vh-80px)] rounded-2xl"
+              className="fixed inset-4 md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl z-50 overflow-auto max-h-[calc(100vh-80px)] rounded-2xl"
             >
               <Card className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">

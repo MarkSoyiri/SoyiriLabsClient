@@ -381,7 +381,7 @@ export default function About() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Button href="/contact" size="lg">
                   Start a Project
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-5 w-5 shrink-0" />
                 </Button>
                 <Button href="/services" variant="secondary" size="lg">
                   Explore Services

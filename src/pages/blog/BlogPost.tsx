@@ -342,7 +342,7 @@ export default function BlogPost() {
 
       <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
         <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5', gradient)} />
-        <div className="container-premium section-padding pt-0 pb-0">
+        <div className="container-premium px-4">
           <Reveal>
             <Link to="/blog" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
               <ArrowLeft className="h-4 w-4" />

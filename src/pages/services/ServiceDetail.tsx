@@ -441,7 +441,7 @@ export default function ServiceDetail() {
         </p>
         <Button href="/services" variant="primary">
           View All Services
-          <ArrowRight className="h-5 w-5" />
+          <ArrowRight className="h-4 w-4 shrink-0" />
         </Button>
       </section>
     )

@@ -125,7 +125,7 @@ function AccordionItem({
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-xs font-bold text-accent">
             {String(index + 1).padStart(2, '0')}
           </span>
-          <span className="text-base font-medium text-text md:text-lg">{item.question}</span>
+            <span className="text-base font-medium text-text md:text-lg min-w-0">{item.question}</span>
         </span>
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}

@@ -138,7 +138,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="p-2.5 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors duration-300 shrink-0"
+                  className="flex items-center justify-center p-2.5 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors duration-300 shrink-0"
                 >
                   <ArrowRight size={16} />
                 </button>

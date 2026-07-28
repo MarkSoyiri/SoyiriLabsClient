@@ -555,7 +555,7 @@ function TestimonialsSection() {
               <GlowCard>
                 <Card className="group h-full">
                   <Quote className="mb-4 h-8 w-8 text-accent/30" />
-                  <p className="mb-6 text-sm leading-relaxed text-text-secondary italic">
+                  <p className="mb-6 text-sm leading-relaxed text-text-secondary italic line-clamp-4">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="mb-4 flex gap-1">

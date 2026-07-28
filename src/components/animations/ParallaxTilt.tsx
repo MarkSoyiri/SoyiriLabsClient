@@ -41,7 +41,7 @@ export default function ParallaxTilt({
   return (
     <motion.div
       ref={ref}
-      className={cn('relative', className)}
+      className={cn('relative overflow-hidden', className)}
       style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}

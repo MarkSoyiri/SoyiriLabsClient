@@ -174,10 +174,10 @@ export default function Blog() {
       </Helmet>
 
       <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
-        <div className="container-premium section-padding pt-0">
+        <div className="container-premium px-4">
           <SectionHeading
             label="Our Blog"
-            title="Insights & Stories"
+            title="Insights &amp; Articles"
             description="Thoughts on technology, design, and building digital products that make a difference."
           />
         </div>

@@ -227,7 +227,7 @@ export default function Services() {
                       {service.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-2 text-sm text-text-muted">
                           <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" />
-                          {feature}
+                          <span className="min-w-0">{feature}</span>
                         </li>
                       ))}
                     </ul>
