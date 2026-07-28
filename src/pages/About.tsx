@@ -84,37 +84,37 @@ const reasons = [
 
 const timeline = [
   {
-    year: '2020',
+    year: '2025',
     title: 'The Beginning',
     description:
       'Soyiri Labs was founded with a vision to bridge the gap between businesses and cutting-edge digital solutions.',
   },
   {
-    year: '2021',
+    year: '2026',
     title: 'First Major Milestone',
     description:
       'Launched our first enterprise platform, growing the team to 15 members and establishing our development methodology.',
   },
   {
-    year: '2022',
+    year: '2027',
     title: 'Expansion & Growth',
     description:
       'Expanded services to include UI/UX design and SEO optimization. Partnered with 20+ businesses across Africa and Europe.',
   },
   {
-    year: '2023',
+    year: '2028',
     title: 'Industry Recognition',
     description:
       'Named among top digital agencies. Launched our proprietary framework and opened a second office location.',
   },
   {
-    year: '2024',
+    year: '2029',
     title: 'Global Reach',
     description:
       'Served clients in 12+ countries. Crossed 50 completed projects and built partnerships with leading technology providers.',
   },
   {
-    year: '2025',
+    year: '2030',
     title: 'Innovation Hub',
     description:
       'Launched our innovation lab focused on AI-driven solutions, expanding our team to 40+ talented professionals worldwide.',
@@ -345,8 +345,8 @@ export default function About() {
                   }`}
                 >
                   <div
-                    className={`absolute left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-primary md:left-auto ${
-                      i % 2 === 0 ? 'md:right-[-7px]' : 'md:left-[-7px]'
+                    className={`absolute left-[26px] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-primary md:left-auto ${
+                      i % 2 === 0 ? 'md:right-[-6px]' : 'md:left-[-6px]'
                     }`}
                   />
                   <span className="mb-2 inline-block text-sm font-semibold text-accent-light">
