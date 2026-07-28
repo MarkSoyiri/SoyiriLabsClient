@@ -318,7 +318,7 @@ export default function Blog() {
                                 </div>
                                 <div className="flex items-center gap-2 text-accent text-sm font-medium">
                                   <span>Read Article</span>
-                                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
                                 </div>
                               </div>
                             </div>

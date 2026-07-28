@@ -86,7 +86,7 @@ export default function AdminLayout() {
             onClick={handleLogout}
             className="flex items-center justify-center gap-3 px-4 py-2.5 w-full rounded-lg text-sm font-medium text-text-secondary hover:text-error hover:bg-error/10 transition-all duration-300"
           >
-            <LogOut size={18} />
+            <LogOut size={18} className="shrink-0" />
             Logout
           </button>
         </div>

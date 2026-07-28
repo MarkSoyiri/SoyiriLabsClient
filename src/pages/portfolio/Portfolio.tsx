@@ -293,7 +293,7 @@ export default function Portfolio() {
                   className="shrink-0"
                   onClick={() => setShowFilters(!showFilters)}
                 >
-                  <Filter className="h-4 w-4" />
+                  <Filter className="h-4 w-4 shrink-0" />
                   Filters
                 </Button>
               </div>

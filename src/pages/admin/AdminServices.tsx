@@ -161,7 +161,7 @@ export default function AdminServices() {
           <h1 className="text-2xl font-bold text-text">Services</h1>
           <p className="text-sm text-text-secondary mt-1">Manage your service offerings</p>
         </div>
-        <Button onClick={openCreate}><Plus className="h-4 w-4" /> Add Service</Button>
+        <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Service</Button>
       </div>
 
       {loading ? (
@@ -171,7 +171,7 @@ export default function AdminServices() {
       ) : services.length === 0 ? (
         <Card className="text-center py-12">
           <p className="text-text-muted mb-4">No services yet</p>
-          <Button onClick={openCreate}><Plus className="h-4 w-4" /> Add Service</Button>
+          <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Service</Button>
         </Card>
       ) : (
         <div className="space-y-3">

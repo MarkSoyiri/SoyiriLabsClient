@@ -279,7 +279,7 @@ function HeroSection() {
             <Reveal delay={0.6} className="flex flex-wrap items-center justify-center gap-4">
               <Button href="/portfolio" size="lg">
                 View Our Work
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="h-5 w-5 shrink-0" />
               </Button>
               <Button href="/contact" variant="secondary" size="lg">
                 Get in Touch
@@ -346,7 +346,7 @@ function ServicesSection() {
         <Reveal className="mt-12 text-center">
           <Button href="/services" variant="secondary">
             View All Services
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Button>
         </Reveal>
       </div>
@@ -400,7 +400,7 @@ function FeaturedProjectsSection() {
         <Reveal className="mt-12 text-center">
           <Button href="/portfolio">
             View All Projects
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Button>
         </Reveal>
       </div>
@@ -631,7 +631,7 @@ function CTASection() {
               </p>
               <Button href="/contact" size="lg">
                 Start Your Project
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="h-5 w-5 shrink-0" />
               </Button>
             </div>
           </Card>

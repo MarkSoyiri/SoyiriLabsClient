@@ -174,7 +174,7 @@ export default function AdminSettings() {
                 : 'text-text-secondary hover:text-text hover:bg-glass-light border border-transparent',
             )}
           >
-            <tab.icon className="h-4 w-4" />
+            <tab.icon className="h-4 w-4 shrink-0" />
             {tab.label}
           </button>
         ))}
@@ -204,7 +204,7 @@ export default function AdminSettings() {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Stats</h2>
               <Button variant="secondary" size="sm" onClick={addStat}>
-                <Plus className="h-3.5 w-3.5" /> Add Stat
+                <Plus className="h-4 w-4 shrink-0" /> Add Stat
               </Button>
             </div>
             <div className="space-y-4">
@@ -241,7 +241,7 @@ export default function AdminSettings() {
 
           <div className="flex justify-end">
             <Button onClick={handleSaveHomepage} loading={saving}>
-              <Save className="h-4 w-4" /> Save Homepage
+              <Save className="h-4 w-4 shrink-0" /> Save Homepage
             </Button>
           </div>
         </motion.div>
@@ -313,7 +313,7 @@ export default function AdminSettings() {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Values</h2>
               <Button variant="secondary" size="sm" onClick={addValue}>
-                <Plus className="h-3.5 w-3.5" /> Add Value
+                <Plus className="h-4 w-4 shrink-0" /> Add Value
               </Button>
             </div>
             <div className="space-y-4">
@@ -339,7 +339,7 @@ export default function AdminSettings() {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Social Links</h2>
               <Button variant="secondary" size="sm" onClick={addSocial}>
-                <Plus className="h-3.5 w-3.5" /> Add Link
+                <Plus className="h-4 w-4 shrink-0" /> Add Link
               </Button>
             </div>
             <div className="space-y-4">
@@ -377,7 +377,7 @@ export default function AdminSettings() {
 
           <div className="flex justify-end">
             <Button onClick={handleSaveCompany} loading={saving}>
-              <Save className="h-4 w-4" /> Save Company Info
+              <Save className="h-4 w-4 shrink-0" /> Save Company Info
             </Button>
           </div>
         </motion.div>

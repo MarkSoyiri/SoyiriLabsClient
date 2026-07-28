@@ -163,7 +163,7 @@ export default function AdminBlog() {
               className="w-48 h-10 pl-9 pr-3 rounded-xl bg-glass-light border border-border text-text text-sm placeholder:text-text-muted focus:outline-none focus:border-accent/50"
             />
           </div>
-          <Button onClick={openCreate}><Plus className="h-4 w-4" /> New Post</Button>
+          <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> New Post</Button>
         </div>
       </div>
 
@@ -174,7 +174,7 @@ export default function AdminBlog() {
       ) : filtered.length === 0 ? (
         <Card className="text-center py-12">
           <p className="text-text-muted mb-4">{search ? 'No posts match your search' : 'No posts yet'}</p>
-          {!search && <Button onClick={openCreate}><Plus className="h-4 w-4" /> New Post</Button>}
+          {!search && <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> New Post</Button>}
         </Card>
       ) : (
         <div className="space-y-3">

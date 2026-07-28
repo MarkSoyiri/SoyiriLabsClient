@@ -209,7 +209,7 @@ export default function AdminProjects() {
             />
           </div>
           <Button onClick={openCreate}>
-            <Plus className="h-4 w-4" /> Add Project
+            <Plus className="h-4 w-4 shrink-0" /> Add Project
           </Button>
         </div>
       </div>
@@ -228,7 +228,7 @@ export default function AdminProjects() {
       ) : filtered.length === 0 ? (
         <Card className="text-center py-12">
           <p className="text-text-muted mb-4">{search ? 'No projects match your search' : 'No projects yet'}</p>
-          {!search && <Button onClick={openCreate}><Plus className="h-4 w-4" /> Add Project</Button>}
+          {!search && <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Project</Button>}
         </Card>
       ) : (
         <div className="space-y-3">

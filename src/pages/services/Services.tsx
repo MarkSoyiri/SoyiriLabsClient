@@ -233,7 +233,7 @@ export default function Services() {
                     </ul>
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-accent-light transition-all duration-300 group-hover:gap-3">
                       Learn More
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   </Card>
                 </Link>
@@ -260,7 +260,7 @@ export default function Services() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Button href="/contact" size="lg">
                   Get a Free Consultation
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-5 w-5 shrink-0" />
                 </Button>
                 <Button href="/portfolio" variant="secondary" size="lg">
                   View Our Work

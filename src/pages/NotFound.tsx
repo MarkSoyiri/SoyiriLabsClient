@@ -45,7 +45,7 @@ export default function NotFound() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Button href="/" size="lg">
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-5 w-5 shrink-0" />
                 Go Home
               </Button>
             </motion.div>

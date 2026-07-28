@@ -143,7 +143,7 @@ export default function AdminTestimonials() {
           <h1 className="text-2xl font-bold text-text">Testimonials</h1>
           <p className="text-sm text-text-secondary mt-1">Manage client testimonials</p>
         </div>
-        <Button onClick={openCreate}><Plus className="h-4 w-4" /> Add Testimonial</Button>
+        <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Testimonial</Button>
       </div>
 
       {loading ? (
@@ -153,7 +153,7 @@ export default function AdminTestimonials() {
       ) : testimonials.length === 0 ? (
         <Card className="text-center py-12">
           <p className="text-text-muted mb-4">No testimonials yet</p>
-          <Button onClick={openCreate}><Plus className="h-4 w-4" /> Add Testimonial</Button>
+          <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Testimonial</Button>
         </Card>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -116,7 +116,7 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-text">Recent Messages</h2>
                 <Link to="/admin/messages" className="text-sm text-accent hover:text-accent-light transition-colors flex items-center gap-1">
-                  View all <ArrowRight className="h-3.5 w-3.5" />
+                  View all <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                 </Link>
               </div>
               {loading ? (

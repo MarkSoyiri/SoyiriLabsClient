@@ -469,7 +469,7 @@ export default function ServiceDetail() {
               to="/services"
               className="mb-6 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-accent-light"
             >
-              <ArrowRight className="h-4 w-4 rotate-180" />
+              <ArrowRight className="h-4 w-4 shrink-0 rotate-180" />
               Back to Services
             </Link>
           </Reveal>
@@ -625,7 +625,7 @@ export default function ServiceDetail() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Button href="/contact" size="lg">
                   Start Your Project
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-5 w-5 shrink-0" />
                 </Button>
                 <Button href="/portfolio" variant="secondary" size="lg">
                   See Our Work

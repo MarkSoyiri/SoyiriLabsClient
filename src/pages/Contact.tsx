@@ -215,7 +215,7 @@ export default function Contact() {
                   </div>
 
                   <Button type="submit" loading={isSubmitting} className="w-full">
-                    <Send className="h-4 w-4" />
+                    <Send className="h-4 w-4 shrink-0" />
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>

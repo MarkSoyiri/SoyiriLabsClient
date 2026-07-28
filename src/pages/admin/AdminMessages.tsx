@@ -180,7 +180,7 @@ export default function AdminMessages() {
                                 size="sm"
                                 onClick={(e) => { e.stopPropagation(); handleMarkRead(msg._id) }}
                               >
-                                <MailOpen className="h-3.5 w-3.5" />
+                                <MailOpen className="h-4 w-4 shrink-0" />
                                 Mark as Read
                               </Button>
                             )}
@@ -191,7 +191,7 @@ export default function AdminMessages() {
                               disabled={deleting === msg._id}
                               className="text-error hover:text-error hover:bg-error/10"
                             >
-                              <Trash2 className={cn('h-3.5 w-3.5', deleting === msg._id && 'animate-spin')} />
+                              <Trash2 className={cn('h-4 w-4 shrink-0', deleting === msg._id && 'animate-spin')} />
                               Delete
                             </Button>
                           </div>

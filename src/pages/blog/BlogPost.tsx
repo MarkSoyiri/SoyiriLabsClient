@@ -319,7 +319,7 @@ export default function BlogPost() {
         <h2 className="text-2xl font-bold text-text mb-2">Post Not Found</h2>
         <p className="text-text-secondary mb-6">{error || 'The article you\'re looking for doesn\'t exist.'}</p>
         <Button variant="primary" href="/blog">
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4 shrink-0" />
           Back to Blog
         </Button>
       </div>
@@ -345,7 +345,7 @@ export default function BlogPost() {
         <div className="container-premium px-4">
           <Reveal>
             <Link to="/blog" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4 shrink-0" />
               <span className="text-sm font-medium">Back to Blog</span>
             </Link>
           </Reveal>
@@ -450,7 +450,7 @@ export default function BlogPost() {
             <Reveal>
               <div className="text-center">
                 <Button variant="secondary" size="lg" href="/blog">
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-5 w-5 shrink-0" />
                   Back to Blog
                 </Button>
               </div>

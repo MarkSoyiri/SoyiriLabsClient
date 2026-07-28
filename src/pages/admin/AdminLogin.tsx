@@ -106,7 +106,7 @@ export default function AdminLogin() {
               </div>
 
               <Button type="submit" loading={loading} className="w-full">
-                <LogIn className="h-4 w-4" />
+                <LogIn className="h-4 w-4 shrink-0" />
                 Sign In
               </Button>
             </form>

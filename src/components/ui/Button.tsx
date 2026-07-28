@@ -68,6 +68,12 @@ export function Button({
     lg: 'h-12 px-8 text-lg gap-2.5',
   }
 
+  const iconSizes: Record<ButtonSize, string> = {
+    sm: 'h-4 w-4',
+    md: 'h-4 w-4',
+    lg: 'h-5 w-5',
+  }
+
   const sharedProps = {
     style: { x, y } as const,
     onMouseMove: handleMouseMove,
@@ -75,10 +81,16 @@ export function Button({
     className: cn(baseStyles, variantStyles[variant], sizeStyles[size], className),
   }
 
+  const gapStyles: Record<ButtonSize, string> = {
+    sm: 'gap-1.5',
+    md: 'gap-2',
+    lg: 'gap-2.5',
+  }
+
   const content = (
     <>
       {loading && <Loader2 className={cn('animate-spin shrink-0', loaderSizes[size])} />}
-      <span className={cn(loading && 'opacity-70')}>{children}</span>
+      <span className={cn('inline-flex items-center whitespace-nowrap', gapStyles[size], loading && 'opacity-70')}>{children}</span>
       {variant === 'primary' && !loading && (
         <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-accent to-purple-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-50" />
       )}

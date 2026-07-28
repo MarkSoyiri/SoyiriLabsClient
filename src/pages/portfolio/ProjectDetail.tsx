@@ -260,7 +260,7 @@ export default function ProjectDetail() {
         <h2 className="text-2xl font-bold text-text mb-2">Project Not Found</h2>
         <p className="text-text-secondary mb-6">{error || 'The project you\'re looking for doesn\'t exist.'}</p>
         <Button variant="primary" href="/portfolio">
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4 shrink-0" />
           Back to Portfolio
         </Button>
       </div>
@@ -281,7 +281,7 @@ export default function ProjectDetail() {
         <div className="container-premium section-padding pt-0 pb-0">
           <Reveal>
             <Link to="/portfolio" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4 shrink-0" />
               <span className="text-sm font-medium">Back to Portfolio</span>
             </Link>
           </Reveal>
@@ -340,13 +340,13 @@ export default function ProjectDetail() {
                 <div className="flex gap-3">
                   {project.liveUrl && (
                     <Button variant="primary" size="sm" href={project.liveUrl} className="flex-1">
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="h-4 w-4 shrink-0" />
                       Live Site
                     </Button>
                   )}
                   {project.githubUrl && (
                     <Button variant="secondary" size="sm" href={project.githubUrl} className="flex-1">
-                      <Code2 className="h-4 w-4" />
+                      <Code2 className="h-4 w-4 shrink-0" />
                       Source
                     </Button>
                   )}
@@ -455,12 +455,12 @@ export default function ProjectDetail() {
               <div className="flex justify-center gap-4">
                 {project.liveUrl && (
                   <Button variant="primary" size="lg" href={project.liveUrl}>
-                    <ExternalLink className="h-5 w-5" />
+                    <ExternalLink className="h-5 w-5 shrink-0" />
                     Visit Live Site
                   </Button>
                 )}
                 <Button variant="secondary" size="lg" href="/portfolio">
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-5 w-5 shrink-0" />
                   Back to Portfolio
                 </Button>
               </div>
