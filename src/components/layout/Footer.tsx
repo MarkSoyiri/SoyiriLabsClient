@@ -120,7 +120,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="glass rounded-xl p-6 space-y-4">
+            <div className="glass rounded-xl p-6 space-y-4 overflow-hidden min-w-0">
               <h4 className="text-sm font-semibold text-text">
                 Stay Updated
               </h4>
@@ -134,7 +134,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2.5 text-sm rounded-lg bg-glass-light border border-border text-text placeholder-text-muted focus:outline-none focus:border-accent/50 transition-colors duration-300"
+                  className="flex-1 min-w-0 px-4 py-2.5 text-sm rounded-lg bg-glass-light border border-border text-text placeholder-text-muted focus:outline-none focus:border-accent/50 transition-colors duration-300"
                 />
                 <button
                   type="submit"
