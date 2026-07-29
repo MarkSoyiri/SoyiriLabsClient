@@ -387,14 +387,14 @@ export default function ProjectDetail() {
             )}
 
             <Reveal>
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 {project.liveUrl && (
-                  <Button variant="primary" size="lg" href={project.liveUrl}>
+                  <Button variant="primary" size="lg" href={project.liveUrl} className="text-sm md:text-lg">
                     <ExternalLink className="h-5 w-5 shrink-0" />
                     Visit Live Site
                   </Button>
                 )}
-                <Button variant="secondary" size="lg" href="/portfolio">
+                <Button variant="secondary" size="lg" href="/portfolio" className="text-sm md:text-lg">
                   <ArrowLeft className="h-5 w-5 shrink-0" />
                   Back to Portfolio
                 </Button>
