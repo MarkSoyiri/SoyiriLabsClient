@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Outlet, NavLink, useNavigate, Link, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard,
   FolderKanban,
@@ -29,6 +29,11 @@ const sidebarLinks = [
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   const handleLogout = () => {
     localStorage.removeItem('token')

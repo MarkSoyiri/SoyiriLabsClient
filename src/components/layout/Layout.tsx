@@ -1,16 +1,25 @@
-import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Header from './Header'
 import Footer from './Footer'
 
 export default function Layout() {
+  const { pathname } = useLocation()
+  const lenisRef = useRef<Lenis | null>(null)
+
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true })
+  }, [pathname])
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+
+    lenisRef.current = lenis
 
     function raf(time: number) {
       lenis.raf(time)
