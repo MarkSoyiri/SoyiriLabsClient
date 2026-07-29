@@ -200,7 +200,7 @@ export default function ProjectDetail() {
         <meta name="description" content={project.seoDescription || project.description} />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
+      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-20">
         <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5 pointer-events-none', gradient)} />
         <div className="container-premium section-padding pt-0 pb-0">
           <Reveal>

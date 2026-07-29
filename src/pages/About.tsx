@@ -132,7 +132,7 @@ export default function About() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pb-20 pt-32 md:pb-32 md:pt-40">
+      <section className="relative overflow-hidden pb-20 pt-24 md:pb-32 md:pt-40">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
           <div className="absolute right-0 top-1/3 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-[100px]" />

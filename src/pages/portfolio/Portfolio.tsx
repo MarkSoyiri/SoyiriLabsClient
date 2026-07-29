@@ -166,7 +166,7 @@ export default function Portfolio() {
         <meta name="description" content="Explore our portfolio of innovative projects spanning fintech, healthcare, e-commerce, and more." />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
+      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-20">
         <div className="container-premium px-4">
           <SectionHeading
             label="Our Work"
