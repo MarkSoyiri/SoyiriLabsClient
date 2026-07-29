@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, ExternalLink, Code2, Calendar, Building2, Lightbulb, Target, Trophy } from 'lucide-react'
@@ -145,6 +145,7 @@ function ProjectSkeleton() {
 }
 
 export default function ProjectDetail() {
+  const navigate = useNavigate()
   const { slug } = useParams<{ slug: string }>()
   const [project, setProject] = useState<Project | null>(null)
   const [related, setRelated] = useState<Project[]>([])
@@ -204,10 +205,10 @@ export default function ProjectDetail() {
         <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5', gradient)} />
         <div className="container-premium section-padding pt-0 pb-0">
           <Reveal>
-            <Link to="/portfolio" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
+            <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
               <ArrowLeft className="h-4 w-4 shrink-0" />
               <span className="text-sm font-medium">Back to Portfolio</span>
-            </Link>
+            </button>
           </Reveal>
           <div className="grid lg:grid-cols-3 gap-10 items-start">
             <div className="lg:col-span-2">
