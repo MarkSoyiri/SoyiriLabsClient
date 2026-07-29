@@ -13,183 +13,50 @@ import { projectsApi } from '@/lib/api'
 import { cn, formatDate } from '@/lib/utils'
 import type { Project } from '@/types'
 
+import zestyThumb from '@/assets/zesty-cave-1.png'
+import zestyGallery1 from '@/assets/zesty-cave-1.png'
+import zestyGallery2 from '@/assets/zesty-cave-2.png'
+import zestyGallery3 from '@/assets/zesty-cave-3.png'
+import zestyGallery4 from '@/assets/zesty-cave-4.png'
+
 const DEMO_PROJECTS: Project[] = [
   {
     _id: '1',
-    title: 'Nexus Finance Platform',
-    slug: 'nexus-finance-platform',
-    description: 'A comprehensive financial analytics dashboard with real-time data visualization and AI-powered insights for enterprise clients.',
-    clientName: 'Nexus Financial Group',
-    industry: 'Fintech',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'TensorFlow', 'Redis'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/nexus',
-    githubUrl: 'https://github.com/example/nexus',
+    title: 'Zesty Cave',
+    slug: 'zesty-cave',
+    description: 'A modern online food ordering platform built for restaurants. Customers can browse menus, place orders, make secure payments, and track orders in real time. Includes a powerful admin dashboard for managing products, categories, customers, orders, payments, and business operations.',
+    clientName: 'Zesty Cave',
+    industry: 'Restaurant / E-Commerce',
+    technologies: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    thumbnail: zestyThumb,
+    gallery: [zestyGallery1, zestyGallery2, zestyGallery3, zestyGallery4],
+    liveUrl: 'https://react-shop-project-bootstrap.vercel.app/',
     featured: true,
-    completionYear: 2024,
-    servicesProvided: ['Web Development', 'UI/UX Design', 'Cloud Infrastructure'],
-    colorTheme: '#6366f1',
+    completionYear: 2025,
+    servicesProvided: ['Web Development', 'E-Commerce', 'Admin Dashboard'],
+    colorTheme: '#e11d48',
     status: 'completed',
-    challenges: 'Handling massive real-time data streams while maintaining sub-second query performance across millions of transactions. The existing legacy system could not scale beyond 100K transactions per day and had frequent outages during peak trading hours.',
-    solution: 'We designed and implemented a microservices architecture using event-driven data processing. The system leverages Apache Kafka for real-time event streaming, Redis for caching, and PostgreSQL with read replicas for persistence. A custom-built dashboard with WebSocket connections provides real-time updates to users.',
-    results: 'Achieved 99.9% uptime with 40% reduction in query latency. The platform now processes over 10M transactions daily with seamless horizontal scaling. Client reported a 60% increase in user engagement and 35% reduction in operational costs.',
-    createdAt: '2024-01-15T00:00:00Z',
-    updatedAt: '2024-06-01T00:00:00Z',
+    createdAt: '2025-01-01T00:00:00Z',
+    updatedAt: '2025-06-01T00:00:00Z',
   },
   {
     _id: '2',
-    title: 'MediConnect Telehealth',
-    slug: 'mediconnect-telehealth',
-    description: 'End-to-end telemedicine platform connecting patients with healthcare providers through virtual consultations.',
-    clientName: 'MediConnect Health',
-    industry: 'Healthcare',
-    technologies: ['Next.js', 'WebRTC', 'MongoDB', 'AWS', 'Socket.io'],
+    title: 'HydroMonitor',
+    slug: 'hydromonitor',
+    description: 'A complete smart water monitoring and billing platform designed for property managers and institutions. Provides real-time monitoring from ESP32 devices, tenant management, billing, analytics, leak detection, alerts, and administrative tools through a modern responsive dashboard.',
+    clientName: 'HydroMonitor',
+    industry: 'IoT / Smart Water Management',
+    technologies: ['React', 'Express.js', 'Node.js', 'MongoDB', 'ESP32', 'Firebase'],
     thumbnail: '',
     gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/mediconnect',
+    liveUrl: 'https://example.com/hydromonitor',
     featured: true,
-    completionYear: 2024,
-    servicesProvided: ['Full-Stack Development', 'UI/UX Design', 'DevOps'],
-    colorTheme: '#06b6d4',
+    completionYear: 2025,
+    servicesProvided: ['Web Development', 'IoT Development', 'Dashboard Design'],
+    colorTheme: '#0891b2',
     status: 'completed',
-    challenges: 'Ensuring HIPAA compliance while delivering low-latency video consultations across varying network conditions. The application needed to support multiple concurrent sessions with screen sharing, file transfer, and real-time chat.',
-    solution: 'Built on WebRTC with adaptive bitrate streaming and end-to-end encryption. Deployed on HIPAA-compliant AWS infrastructure with auto-scaling groups. Implemented a fallback system for low-bandwidth scenarios using audio-only mode.',
-    results: 'Enabled 50,000+ virtual consultations in the first quarter with 98% patient satisfaction rating. Reduced no-show rates by 40% and average wait times by 60%.',
-    createdAt: '2024-02-20T00:00:00Z',
-    updatedAt: '2024-07-15T00:00:00Z',
-  },
-  {
-    _id: '3',
-    title: 'EcoTrack Sustainability',
-    slug: 'ecotrack-sustainability',
-    description: 'Enterprise sustainability management platform for tracking, analyzing, and reporting carbon emissions.',
-    clientName: 'GreenFuture Corp',
-    industry: 'Sustainability',
-    technologies: ['React', 'Python', 'FastAPI', 'TimescaleDB', 'GraphQL'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/ecotrack',
-    featured: false,
-    completionYear: 2023,
-    servicesProvided: ['Web Development', 'Data Engineering'],
-    colorTheme: '#22c55e',
-    status: 'completed',
-    challenges: 'Integrating diverse data sources with varying formats and ensuring accurate carbon accounting per international standards.',
-    solution: 'Developed a flexible ETL pipeline with automated data validation and a comprehensive calculation engine using Python.',
-    results: 'Reduced reporting time by 80% and helped clients identify 25% reduction opportunities in carbon emissions.',
-    createdAt: '2023-08-10T00:00:00Z',
-    updatedAt: '2024-01-20T00:00:00Z',
-  },
-  {
-    _id: '4',
-    title: 'StyleAI Fashion Retail',
-    slug: 'styleai-fashion-retail',
-    description: 'AI-powered fashion recommendation engine with virtual try-on capabilities for e-commerce.',
-    clientName: 'StyleAI Inc.',
-    industry: 'E-commerce',
-    technologies: ['Next.js', 'Python', 'PyTorch', 'Elasticsearch', 'Redis', 'AWS SageMaker'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/styleai',
-    featured: true,
-    completionYear: 2024,
-    servicesProvided: ['AI/ML Development', 'Web Development', 'Mobile App'],
-    colorTheme: '#ec4899',
-    status: 'completed',
-    challenges: 'Building accurate recommendation models with cold-start problem and delivering real-time personalization at scale.',
-    solution: 'Implemented hybrid collaborative filtering with deep learning embeddings and real-time inference pipeline.',
-    results: 'Increased average order value by 35% and improved conversion rate by 28% within three months of deployment.',
-    createdAt: '2024-03-05T00:00:00Z',
-    updatedAt: '2024-08-01T00:00:00Z',
-  },
-  {
-    _id: '5',
-    title: 'BlockVote DA Platform',
-    slug: 'blockvote-da-platform',
-    description: 'Decentralized voting platform for organizational governance using blockchain technology.',
-    clientName: 'BlockVote DAO',
-    industry: 'Blockchain',
-    technologies: ['Solidity', 'React', 'Hardhat', 'IPFS', 'The Graph', 'TypeScript'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/blockvote',
-    featured: false,
-    completionYear: 2023,
-    servicesProvided: ['Smart Contract Development', 'DApp Development', 'Security Audit'],
-    colorTheme: '#f59e0b',
-    status: 'completed',
-    challenges: 'Ensuring vote integrity and privacy while maintaining transparency and scalability on the Ethereum network.',
-    solution: 'Designed zk-SNARKs based voting contracts with gas-optimized aggregation and IPFS-backed proposal storage.',
-    results: 'Processed 100,000+ secure votes across 500 organizations with zero security incidents.',
-    createdAt: '2023-06-15T00:00:00Z',
-    updatedAt: '2023-12-10T00:00:00Z',
-  },
-  {
-    _id: '6',
-    title: 'UrbanFlow Smart City',
-    slug: 'urbanflow-smart-city',
-    description: 'IoT-powered smart city management platform for traffic optimization and urban planning.',
-    clientName: 'UrbanFlow Municipality',
-    industry: 'Smart City',
-    technologies: ['React', 'Node.js', 'InfluxDB', 'MQTT', 'Kubernetes', 'Go'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/urbanflow',
-    featured: true,
-    completionYear: 2024,
-    servicesProvided: ['IoT Development', 'Full-Stack Development', 'Data Analytics'],
-    colorTheme: '#8b5cf6',
-    status: 'in-progress',
-    challenges: 'Integrating heterogeneous IoT devices with different protocols while processing millions of sensor data points in real time.',
-    solution: 'Built a unified ingestion layer with protocol adapters and a stream processing pipeline using Kafka and Flink.',
-    results: 'Reduced traffic congestion by 22% and optimized waste collection routes saving 30% in operational costs.',
-    createdAt: '2024-04-01T00:00:00Z',
-    updatedAt: '2024-09-01T00:00:00Z',
-  },
-  {
-    _id: '7',
-    title: 'LearnPath LMS',
-    slug: 'learnpath-lms',
-    description: 'Modern learning management system with adaptive learning paths and AI-driven content recommendations.',
-    clientName: 'EduTech Global',
-    industry: 'Education',
-    technologies: ['Next.js', 'Python', 'Django', 'PostgreSQL', 'Docker'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/learnpath',
-    featured: false,
-    completionYear: 2023,
-    servicesProvided: ['Web Development', 'UI/UX Design', 'Cloud Migration'],
-    colorTheme: '#3b82f6',
-    status: 'completed',
-    challenges: 'Creating personalized learning paths for diverse student populations while maintaining content quality and engagement.',
-    solution: 'Developed an adaptive learning engine using Bayesian Knowledge Tracing with real-time progress analytics.',
-    results: 'Improved student completion rates by 45% and achieved 4.8/5 average user satisfaction rating.',
-    createdAt: '2023-04-20T00:00:00Z',
-    updatedAt: '2023-10-15T00:00:00Z',
-  },
-  {
-    _id: '8',
-    title: 'StreamPulse Analytics',
-    slug: 'streampulse-analytics',
-    description: 'Real-time streaming data analytics platform for media companies with audience insights.',
-    clientName: 'MediaPulse Networks',
-    industry: 'Media',
-    technologies: ['React', 'Apache Flink', 'Kafka', 'Elasticsearch', 'Kubernetes'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/streampulse',
-    featured: false,
-    completionYear: 2024,
-    servicesProvided: ['Data Engineering', 'Web Development', 'DevOps'],
-    colorTheme: '#ef4444',
-    status: 'maintenance',
-    challenges: 'Processing terabytes of streaming data daily while providing sub-second query capabilities for live dashboards.',
-    solution: 'Architected a lambda architecture combining real-time Flink processing with batch analytics on data lakes.',
-    results: 'Enabled real-time audience insights for 200+ media channels processing 5TB of data daily.',
-    createdAt: '2024-01-10T00:00:00Z',
-    updatedAt: '2024-08-20T00:00:00Z',
+    createdAt: '2025-02-01T00:00:00Z',
+    updatedAt: '2025-06-01T00:00:00Z',
   },
 ]
 
@@ -202,6 +69,8 @@ const gradientMap: Record<string, string> = {
   'Smart City': 'from-violet-500 to-indigo-600',
   Education: 'from-blue-500 to-cyan-600',
   Media: 'from-red-500 to-pink-600',
+  'Restaurant / E-Commerce': 'from-rose-500 to-red-600',
+  'IoT / Smart Water Management': 'from-cyan-600 to-blue-700',
 }
 
 function ProjectSkeleton() {
@@ -363,14 +232,25 @@ export default function ProjectDetail() {
             {project.gallery.map((img, i) => (
               <Reveal key={i} delay={i * 0.05}>
                 <div className={cn(
-                  'relative h-56 rounded-2xl bg-gradient-to-br overflow-hidden group cursor-pointer',
-                  gradient,
+                  'relative h-56 rounded-2xl overflow-hidden group cursor-pointer',
+                  !img && 'bg-gradient-to-br',
+                  !img && gradient,
                   i === 0 && 'md:col-span-2 md:row-span-2 h-72 md:h-80',
                 )}>
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white/20 text-8xl font-black tracking-tight select-none">{i + 1}</span>
-                  </div>
+                  {img ? (
+                    <img
+                      src={img}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-white/20 text-8xl font-black tracking-tight select-none">{i + 1}</span>
+                      </div>
+                    </>
+                  )}
                   <div className="absolute bottom-4 left-4 glass rounded-lg px-3 py-1.5">
                     <span className="text-xs text-text">Screenshot {i + 1}</span>
                   </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import {
@@ -24,11 +25,14 @@ import { Card } from '@/components/ui/Card'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { GlassDivider } from '@/components/ui/GlassDivider'
+import { Skeleton } from '@/components/ui/Skeleton'
 import Reveal from '@/components/animations/Reveal'
 import ParallaxTilt from '@/components/animations/ParallaxTilt'
 import GlowCard from '@/components/animations/GlowCard'
 import FloatingElements from '@/components/animations/FloatingElements'
+import { projectsApi } from '@/lib/api'
 import { cn } from '@/lib/utils'
+import type { Project } from '@/types'
 
 const services = [
   {
@@ -63,29 +67,7 @@ const services = [
   },
 ] as const
 
-const projects = [
-  {
-    initials: 'NS',
-    name: 'Nexus SaaS Platform',
-    description: 'A comprehensive SaaS dashboard with real-time analytics, team collaboration, and AI-powered insights.',
-    tags: ['React', 'Node.js', 'MongoDB', 'WebSockets'],
-    gradient: 'from-blue-600 to-indigo-600',
-  },
-  {
-    initials: 'SF',
-    name: 'ShopFlow E-Commerce',
-    description: 'High-performance e-commerce platform with headless CMS, instant search, and seamless checkout.',
-    tags: ['Next.js', 'Tailwind', 'Stripe', 'Vercel'],
-    gradient: 'from-purple-600 to-pink-600',
-  },
-  {
-    initials: 'DA',
-    name: 'DataViz Analytics',
-    description: 'Interactive data visualization platform transforming complex datasets into actionable insights.',
-    tags: ['D3.js', 'TypeScript', 'Python', 'AWS'],
-    gradient: 'from-emerald-600 to-teal-600',
-  },
-] as const
+
 
 const whyValues = [
   {
@@ -354,7 +336,33 @@ function ServicesSection() {
   )
 }
 
+const gradients = [
+  'from-blue-600 to-indigo-600',
+  'from-purple-600 to-pink-600',
+  'from-emerald-600 to-teal-600',
+  'from-orange-600 to-red-600',
+  'from-cyan-600 to-blue-600',
+  'from-rose-600 to-purple-600',
+] as const
+
 function FeaturedProjectsSection() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const res = await projectsApi.getFeatured()
+        setProjects(res.data.data)
+      } catch {
+        setProjects([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchFeatured()
+  }, [])
+
   return (
     <section id="work" className="section-padding relative">
       <div className="container-premium">
@@ -367,34 +375,60 @@ function FeaturedProjectsSection() {
         </Reveal>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <Reveal key={project.name} delay={i * 0.15}>
-              <GlowCard>
-                <Card hover className="group h-full overflow-hidden p-0">
-                  <div className={cn('flex h-52 items-center justify-center bg-gradient-to-br', project.gradient)}>
-                    <span className="text-5xl font-bold tracking-tight text-white/30">{project.initials}</span>
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="glass rounded-2xl overflow-hidden">
+                <Skeleton className="h-52 rounded-none" />
+                <div className="p-6 space-y-3">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-2/3" />
+                  <div className="flex gap-2 pt-2">
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-6 w-20 rounded-full" />
+                    <Skeleton className="h-6 w-14 rounded-full" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="mb-2 text-xl font-semibold text-text">{project.name}</h3>
-                    <p className="mb-4 text-sm leading-relaxed text-text-secondary">{project.description}</p>
-                    <div className="mb-5 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-lg bg-glass-light px-2.5 py-1 text-xs font-medium text-text-secondary"
-                        >
-                          {tag}
+                </div>
+              </div>
+            ))
+          ) : projects.length === 0 ? null : (
+            projects.map((project, i) => (
+              <Reveal key={project._id} delay={i * 0.15}>
+                <Link to={`/portfolio/${project.slug}`} className="block group">
+                  <GlowCard>
+                    <Card hover className="h-full overflow-hidden p-0">
+                      <div className={cn('flex h-52 items-center justify-center bg-gradient-to-br', gradients[i % gradients.length])}>
+                        <span className="text-6xl font-black tracking-tight text-white/30 select-none">
+                          {project.title.charAt(0)}
                         </span>
-                      ))}
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-300 group-hover:text-accent-light">
-                      View Project <ExternalLink className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </Card>
-              </GlowCard>
-            </Reveal>
-          ))}
+                      </div>
+                      <div className="p-6">
+                        <h3 className="mb-2 text-xl font-semibold text-text group-hover:text-accent transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="mb-4 text-sm leading-relaxed text-text-secondary line-clamp-2">
+                          {project.description}
+                        </p>
+                        <div className="mb-5 flex flex-wrap gap-2">
+                          {project.technologies.slice(0, 4).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-lg bg-glass-light px-2.5 py-1 text-xs font-medium text-text-secondary"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-300 group-hover:text-accent-light">
+                          View Project <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                        </span>
+                      </div>
+                    </Card>
+                  </GlowCard>
+                </Link>
+              </Reveal>
+            ))
+          )}
         </div>
 
         <Reveal className="mt-12 text-center">

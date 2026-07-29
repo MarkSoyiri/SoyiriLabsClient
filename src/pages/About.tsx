@@ -60,64 +60,46 @@ const reasons = [
     icon: Code,
     title: 'Expert Team',
     description:
-      'Our developers, designers, and strategists bring years of experience across diverse industries and technologies.',
+      'Our developers and designers bring years of experience across diverse industries and technologies.',
   },
   {
     icon: Rocket,
     title: 'Proven Track Record',
     description:
-      'We have delivered 50+ successful projects with measurable results, helping businesses grow and transform digitally.',
+      'We have delivered 50+ successful projects with measurable results that help businesses grow.',
   },
   {
     icon: Clock,
     title: 'Timely Delivery',
     description:
-      'We respect your time. Our agile methodology ensures projects are delivered on schedule without compromising quality.',
+      'Projects delivered on schedule without compromising quality, every time.',
   },
   {
     icon: BarChart3,
     title: 'Results-Driven Approach',
     description:
-      'Every decision we make is guided by data and focused on delivering tangible business outcomes for our clients.',
+      'Data-driven decisions focused on delivering tangible business outcomes for our clients.',
   },
 ]
 
 const timeline = [
   {
     year: '2025',
-    title: 'The Beginning',
+    title: 'AI-Powered Solutions',
     description:
-      'Soyiri Labs was founded with a vision to bridge the gap between businesses and cutting-edge digital solutions.',
+      'Launching AI-driven platforms that automate workflows and deliver intelligent insights for businesses of all sizes.',
   },
   {
     year: '2026',
-    title: 'First Major Milestone',
+    title: 'Global Expansion',
     description:
-      'Launched our first enterprise platform, growing the team to 15 members and establishing our development methodology.',
+      'Expanding operations into new markets across North America and Asia, with a focus on enterprise-level partnerships.',
   },
   {
     year: '2027',
-    title: 'Expansion & Growth',
+    title: 'Industry Leadership',
     description:
-      'Expanded services to include UI/UX design and SEO optimization. Partnered with 20+ businesses across Africa and Europe.',
-  },
-  {
-    year: '2028',
-    title: 'Industry Recognition',
-    description:
-      'Named among top digital agencies. Launched our proprietary framework and opened a second office location.',
-  },
-  {
-    year: '2029',
-    title: 'Global Reach',
-    description:
-      'Served clients in 12+ countries. Crossed 50 completed projects and built partnerships with leading technology providers.',
-  },
-  {
-    year: '2030',
-    title: 'Innovation Hub',
-    description:
-      'Launched our innovation lab focused on AI-driven solutions, expanding our team to 40+ talented professionals worldwide.',
+      'Becoming a recognized leader in digital innovation, shaping industry standards and driving technological advancement.',
   },
 ]
 
@@ -307,7 +289,7 @@ export default function About() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {reasons.map((reason, i) => (
               <Reveal key={reason.title} delay={i * 0.1}>
-                <Card hover border className="flex items-start gap-5 p-6 md:p-8">
+                <Card hover border className="flex items-start gap-5 p-6 md:p-8 h-full">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/10">
                     <reason.icon className="h-7 w-7 text-accent-light" />
                   </div>
@@ -334,26 +316,16 @@ export default function About() {
             align="center"
           />
           <div className="relative mx-auto mt-16 max-w-3xl">
-            <div className="absolute left-8 top-0 h-full w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent md:left-1/2 md:-translate-x-px" />
+            <div className="absolute left-[22px] top-0 h-full w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent" />
             {timeline.map((item, i) => (
               <Reveal key={item.year} delay={i * 0.1}>
-                <div
-                  className={`relative mb-12 pl-20 last:mb-0 md:w-1/2 md:pl-0 ${
-                    i % 2 === 0
-                      ? 'md:pr-12 md:text-right'
-                      : 'md:ml-auto md:pl-12'
-                  }`}
-                >
-                  <div
-                    className={`absolute left-[26px] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-primary md:left-auto ${
-                      i % 2 === 0 ? 'md:right-[-6px]' : 'md:left-[-6px]'
-                    }`}
-                  />
-                  <span className="mb-2 inline-block text-sm font-semibold text-accent-light">
-                    {item.year}
-                  </span>
-                  <h3 className="mb-2 text-xl font-bold text-text">{item.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">{item.description}</p>
+                <div className="relative flex mb-12 last:mb-0 pl-[16px]">
+                  <div className="h-3 w-3 rounded-full border-2 border-accent bg-primary shrink-0 z-10 mt-1.5 mr-8" />
+                  <div className="flex-1 min-w-0 pb-4">
+                    <span className="mb-2 inline-block text-sm font-semibold text-accent-light">{item.year}</span>
+                    <h3 className="mb-2 text-xl font-bold text-text">{item.title}</h3>
+                    <p className="text-text-secondary leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
