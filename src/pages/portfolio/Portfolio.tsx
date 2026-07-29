@@ -352,7 +352,7 @@ export default function Portfolio() {
                                   {project.title.charAt(0)}
                                 </span>
                               )}
-                              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                               <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                                 <div className="glass-light rounded-full p-2">
                                   <ArrowUpRight className="h-4 w-4 text-accent" />

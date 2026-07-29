@@ -341,7 +341,7 @@ export default function BlogPost() {
       </Helmet>
 
       <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
-        <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5', gradient)} />
+        <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5 pointer-events-none', gradient)} />
         <div className="container-premium px-4">
           <Reveal>
             <Link to="/blog" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
@@ -354,7 +354,7 @@ export default function BlogPost() {
             'relative h-56 md:h-72 lg:h-80 rounded-2xl bg-gradient-to-br flex items-center justify-center mb-10 overflow-hidden',
             gradient,
           )}>
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
             <div className="relative text-center">
               <span className="block text-white/10 text-8xl font-black tracking-tight select-none">{post.category}</span>
             </div>

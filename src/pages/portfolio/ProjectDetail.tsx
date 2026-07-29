@@ -300,7 +300,7 @@ export default function ProjectDetail() {
                     />
                   ) : (
                     <>
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="text-white/20 text-8xl font-black tracking-tight select-none">{i + 1}</span>
                       </div>

@@ -281,7 +281,7 @@ export default function Blog() {
                                 'relative h-48 bg-gradient-to-br flex items-center justify-center overflow-hidden',
                                 gradient,
                               )}>
-                                <div className="absolute inset-0 bg-black/20" />
+                                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
                                 <span className="relative text-white/20 text-5xl font-black tracking-tight select-none">
                                   {post.category}
                                 </span>
@@ -290,7 +290,7 @@ export default function Blog() {
                                     {post.category}
                                   </span>
                                 </div>
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                               </div>
                               <div className="p-6">
                                 <div className="flex items-center gap-4 text-xs text-text-muted mb-3">
