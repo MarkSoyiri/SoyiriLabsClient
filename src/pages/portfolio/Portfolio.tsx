@@ -198,7 +198,7 @@ export default function Portfolio() {
                   onClick={() => setShowFilters(!showFilters)}
                 >
                   <Filter className="h-4 w-4 shrink-0" />
-                  Filters
+                  <span className="hidden sm:inline">Filters</span>
                 </Button>
               </div>
 
@@ -211,8 +211,8 @@ export default function Portfolio() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="flex flex-wrap gap-6 pt-4 border-t border-border">
-                      <div>
+                    <div className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 pt-4 border-t border-border">
+                      <div className="w-full md:w-auto">
                         <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Industry</span>
                         <div className="flex flex-wrap gap-2">
                           {industries.map((i) => (
@@ -231,7 +231,7 @@ export default function Portfolio() {
                           ))}
                         </div>
                       </div>
-                      <div>
+                      <div className="w-full md:w-auto">
                         <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Technology</span>
                         <div className="flex flex-wrap gap-2">
                           {technologies.map((t) => (
@@ -250,7 +250,7 @@ export default function Portfolio() {
                           ))}
                         </div>
                       </div>
-                      <div>
+                      <div className="w-full md:w-auto">
                         <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Year</span>
                         <div className="flex flex-wrap gap-2">
                           {years.map((y) => (
