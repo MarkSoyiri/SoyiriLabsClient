@@ -114,7 +114,7 @@ export default function Footer() {
                 </a>
                 <div className="flex items-start gap-3 text-sm text-text-secondary">
                   <MapPin size={16} className="text-accent shrink-0 mt-0.5" />
-                  <span>San Francisco, CA 94105</span>
+                  <span>Kumasi - Ashanti Region (Ghana)</span>
                 </div>
               </div>
             </div>
