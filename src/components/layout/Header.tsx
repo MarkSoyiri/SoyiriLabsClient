@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import logoSrc from '@/assets/image.png'
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -52,8 +53,8 @@ export default function Header() {
       )}
     >
       <div className="container-premium flex items-center justify-between h-16 md:h-20 px-4">
-        <Link to="/" className="text-2xl font-bold gradient-text">
-          Soyiri Labs
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logoSrc} alt="Soyiri Labs" className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">

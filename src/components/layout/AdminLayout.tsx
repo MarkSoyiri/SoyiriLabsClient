@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
+import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom'
 import {
   LayoutDashboard,
   FolderKanban,
@@ -14,6 +14,7 @@ import {
   User,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import logoSrc from '@/assets/image.png'
 
 const sidebarLinks = [
   { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
@@ -50,7 +51,9 @@ export default function AdminLayout() {
         )}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-border">
-          <span className="text-lg font-bold gradient-text">Soyiri Labs</span>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logoSrc} alt="Soyiri Labs" className="h-8 w-auto" />
+          </Link>
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden p-1 text-text-secondary hover:text-text transition-colors"

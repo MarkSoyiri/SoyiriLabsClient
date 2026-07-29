@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin, ArrowRight, Code2, MessageCircle, Share2, Globe } from 'lucide-react'
+import logoSrc from '@/assets/image.png'
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -33,8 +34,8 @@ export default function Footer() {
       <div className="relative container-premium px-4 pt-20 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="space-y-6">
-            <Link to="/" className="text-2xl font-bold gradient-text">
-              Soyiri Labs
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logoSrc} alt="Soyiri Labs" className="h-12 w-auto" />
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed">
               We craft premium digital experiences that elevate brands and drive growth.
