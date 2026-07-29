@@ -340,7 +340,7 @@ export default function BlogPost() {
         <meta property="article:author" content={post.author} />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-20">
+      <section className="relative overflow-hidden pt-14 pb-16 md:pt-24 md:pb-20">
         <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5 pointer-events-none', gradient)} />
         <div className="container-premium px-4">
           <Reveal>
