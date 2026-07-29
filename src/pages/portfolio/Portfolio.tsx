@@ -14,6 +14,8 @@ import type { Project } from '@/types'
 
 import zestyThumb from '@/assets/zesty-cave-1.png'
 import hydroThumb from '@/assets/hydromonitor-1.png'
+import hydroV2Thumb from '@/assets/hydromonitor-v2-1.png'
+import backendSpThumb from '@/assets/backend-sp-1.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -62,7 +64,7 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'HydroMonitor',
     industry: 'IoT / Backend Infrastructure',
     technologies: ['Node.js', 'Express.js', 'MongoDB', 'MQTT', 'WebSockets', 'Docker'],
-    thumbnail: '',
+    thumbnail: hydroV2Thumb,
     gallery: ['', '', ''],
     liveUrl: '#',
     featured: true,
@@ -81,7 +83,7 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'BackendSP',
     industry: 'Backend / API Development',
     technologies: ['Node.js', 'Express.js', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker'],
-    thumbnail: '',
+    thumbnail: backendSpThumb,
     gallery: ['', '', ''],
     liveUrl: '#',
     featured: true,

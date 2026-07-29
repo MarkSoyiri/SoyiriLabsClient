@@ -23,6 +23,16 @@ import hydroGallery1 from '@/assets/hydromonitor-1.png'
 import hydroGallery2 from '@/assets/hydromonitor-2.png'
 import hydroGallery3 from '@/assets/hydromonitor-3.png'
 import hydroGallery4 from '@/assets/hydromonitor-4.png'
+import hydroV2Thumb from '@/assets/hydromonitor-v2-1.png'
+import hydroV2Gallery1 from '@/assets/hydromonitor-v2-1.png'
+import hydroV2Gallery2 from '@/assets/hydromonitor-v2-2.png'
+import hydroV2Gallery3 from '@/assets/hydromonitor-v2-3.png'
+import hydroV2Gallery4 from '@/assets/hydromonitor-v2-4.png'
+import backendSpThumb from '@/assets/backend-sp-1.png'
+import backendSpGallery1 from '@/assets/backend-sp-1.png'
+import backendSpGallery2 from '@/assets/backend-sp-2.png'
+import backendSpGallery3 from '@/assets/backend-sp-3.png'
+import backendSpGallery4 from '@/assets/backend-sp-4.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -71,8 +81,8 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'HydroMonitor',
     industry: 'IoT / Backend Infrastructure',
     technologies: ['Node.js', 'Express.js', 'MongoDB', 'MQTT', 'WebSockets', 'Docker'],
-    thumbnail: '',
-    gallery: ['', '', '', ''],
+    thumbnail: hydroV2Thumb,
+    gallery: [hydroV2Gallery1, hydroV2Gallery2, hydroV2Gallery3, hydroV2Gallery4],
     liveUrl: '#',
     featured: true,
     completionYear: 2025,
@@ -90,8 +100,8 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'BackendSP',
     industry: 'Backend / API Development',
     technologies: ['Node.js', 'Express.js', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker'],
-    thumbnail: '',
-    gallery: ['', '', '', ''],
+    thumbnail: backendSpThumb,
+    gallery: [backendSpGallery1, backendSpGallery2, backendSpGallery3, backendSpGallery4],
     liveUrl: '#',
     featured: true,
     completionYear: 2025,
