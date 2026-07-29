@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils'
 import type { Project } from '@/types'
 
 import zestyThumb from '@/assets/zesty-cave-1.png'
+import hydroThumb from '@/assets/hydromonitor-1.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -42,9 +43,9 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'HydroMonitor',
     industry: 'IoT / Smart Water Management',
     technologies: ['React', 'Express.js', 'Node.js', 'MongoDB', 'ESP32', 'Firebase'],
-    thumbnail: '',
+    thumbnail: hydroThumb,
     gallery: ['', '', ''],
-    liveUrl: 'https://example.com/hydromonitor',
+    liveUrl: 'https://hydromonitor-web-app.vercel.app/',
     featured: true,
     completionYear: 2025,
     servicesProvided: ['Web Development', 'IoT Development', 'Dashboard Design'],

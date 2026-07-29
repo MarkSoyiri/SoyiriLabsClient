@@ -18,6 +18,11 @@ import zestyGallery1 from '@/assets/zesty-cave-1.png'
 import zestyGallery2 from '@/assets/zesty-cave-2.png'
 import zestyGallery3 from '@/assets/zesty-cave-3.png'
 import zestyGallery4 from '@/assets/zesty-cave-4.png'
+import hydroThumb from '@/assets/hydromonitor-1.png'
+import hydroGallery1 from '@/assets/hydromonitor-1.png'
+import hydroGallery2 from '@/assets/hydromonitor-2.png'
+import hydroGallery3 from '@/assets/hydromonitor-3.png'
+import hydroGallery4 from '@/assets/hydromonitor-4.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -47,9 +52,9 @@ const DEMO_PROJECTS: Project[] = [
     clientName: 'HydroMonitor',
     industry: 'IoT / Smart Water Management',
     technologies: ['React', 'Express.js', 'Node.js', 'MongoDB', 'ESP32', 'Firebase'],
-    thumbnail: '',
-    gallery: ['', '', '', '', ''],
-    liveUrl: 'https://example.com/hydromonitor',
+    thumbnail: hydroThumb,
+    gallery: [hydroGallery1, hydroGallery2, hydroGallery3, hydroGallery4],
+    liveUrl: 'https://hydromonitor-web-app.vercel.app/',
     featured: true,
     completionYear: 2025,
     servicesProvided: ['Web Development', 'IoT Development', 'Dashboard Design'],
