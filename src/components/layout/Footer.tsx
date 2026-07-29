@@ -106,11 +106,11 @@ export default function Footer() {
                   hello@soyirilabs.com
                 </a>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+233507478237"
                   className="flex items-center gap-3 text-sm text-text-secondary hover:text-accent transition-colors duration-300"
                 >
                   <Phone size={16} className="text-accent shrink-0" />
-                  +1 (234) 567-890
+                  +233 050 747 8237
                 </a>
                 <div className="flex items-start gap-3 text-sm text-text-secondary">
                   <MapPin size={16} className="text-accent shrink-0 mt-0.5" />

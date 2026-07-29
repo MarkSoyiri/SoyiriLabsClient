@@ -45,7 +45,7 @@ interface ContactInfo {
 
 const contactInfo: ContactInfo[] = [
   { icon: Mail, label: 'Email', value: 'hello@soyirilabs.com', href: 'mailto:hello@soyirilabs.com' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' },
+  { icon: Phone, label: 'Phone', value: '+233 050 747 8237', href: 'tel:+233507478237' },
   { icon: MapPin, label: 'Location', value: 'Kumasi - Ashanti Region (Ghana)' },
   { icon: Clock, label: 'Hours', value: 'Mon–Fri, 9 AM – 6 PM PST' },
 ]
