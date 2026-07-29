@@ -13,11 +13,9 @@ const quickLinks = [
 
 const services = [
   { name: 'Web Development', path: '/services/web-development' },
-  { name: 'Mobile Apps', path: '/services/mobile-apps' },
+  { name: 'Mobile App Development', path: '/services/mobile-app-development' },
   { name: 'UI/UX Design', path: '/services/ui-ux-design' },
-  { name: 'Cloud Solutions', path: '/services/cloud-solutions' },
-  { name: 'AI & Automation', path: '/services/ai-automation' },
-  { name: 'Consulting', path: '/services/consulting' },
+  { name: 'Cloud & DevOps', path: '/services/cloud-devops' },
 ]
 
 const socialLinks = [
