@@ -63,6 +63,44 @@ const DEMO_PROJECTS: Project[] = [
     createdAt: '2025-02-01T00:00:00Z',
     updatedAt: '2025-06-01T00:00:00Z',
   },
+  {
+    _id: '3',
+    title: 'HydroMonitorV2 Backend',
+    slug: 'hydromonitor-v2-backend',
+    description: 'A robust backend infrastructure powering the next generation of smart water monitoring. Built with Node.js and Express, it handles real-time sensor data ingestion via MQTT, WebSocket-based live dashboards, tenant management, billing automation, and scalable API services for IoT ecosystems.',
+    clientName: 'HydroMonitor',
+    industry: 'IoT / Backend Infrastructure',
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'MQTT', 'WebSockets', 'Docker'],
+    thumbnail: '',
+    gallery: ['', '', '', ''],
+    liveUrl: '#',
+    featured: true,
+    completionYear: 2025,
+    servicesProvided: ['Backend Development', 'IoT Engineering', 'API Design'],
+    colorTheme: '#0e7490',
+    status: 'completed',
+    createdAt: '2025-03-01T00:00:00Z',
+    updatedAt: '2025-06-01T00:00:00Z',
+  },
+  {
+    _id: '4',
+    title: 'BackendSP',
+    slug: 'backend-sp',
+    description: 'A high-performance backend platform built with Node.js and TypeScript, featuring modular service architecture, real-time data processing, secure authentication, and scalable RESTful APIs for modern web applications and third-party integrations.',
+    clientName: 'BackendSP',
+    industry: 'Backend / API Development',
+    technologies: ['Node.js', 'Express.js', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker'],
+    thumbnail: '',
+    gallery: ['', '', '', ''],
+    liveUrl: '#',
+    featured: true,
+    completionYear: 2025,
+    servicesProvided: ['Backend Development', 'API Design', 'DevOps'],
+    colorTheme: '#7c3aed',
+    status: 'completed',
+    createdAt: '2025-04-01T00:00:00Z',
+    updatedAt: '2025-06-01T00:00:00Z',
+  },
 ]
 
 const gradientMap: Record<string, string> = {
@@ -76,6 +114,8 @@ const gradientMap: Record<string, string> = {
   Media: 'from-red-500 to-pink-600',
   'Restaurant / E-Commerce': 'from-rose-500 to-red-600',
   'IoT / Smart Water Management': 'from-cyan-600 to-blue-700',
+  'IoT / Backend Infrastructure': 'from-cyan-700 to-teal-600',
+  'Backend / API Development': 'from-violet-600 to-purple-700',
 }
 
 function ProjectSkeleton() {
