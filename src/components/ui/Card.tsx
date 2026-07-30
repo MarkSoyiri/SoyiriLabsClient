@@ -27,7 +27,7 @@ export function Card({
       onClick={onClick}
       className={cn(
         solid ? 'glass-solid' : 'glass',
-        'rounded-2xl p-6 transition-colors duration-300 min-w-0 overflow-hidden',
+        'rounded-2xl p-6 transition-colors duration-300 min-w-0',
         hover && 'glass-hover cursor-pointer',
         glow && 'glow',
         border && 'gradient-border',
