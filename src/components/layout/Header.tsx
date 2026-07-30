@@ -15,16 +15,9 @@ const navLinks = [
 ]
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const buttonRef = useRef<HTMLAnchorElement>(null)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : ''
@@ -46,18 +39,13 @@ export default function Header() {
 
   return (
     <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        isScrolled
-          ? 'glass border-b border-border'
-          : 'bg-transparent'
-      )}
+      className="fixed top-0 left-0 right-0 z-50 glass border-b border-border transition-all duration-500"
     >
       <div className="container-premium flex items-center justify-between h-16 md:h-20 px-4">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <img src={logoSrc} alt="Soyiri Labs" className="h-10 w-auto" />
         </Link>
-        <button onClick={() => navigate('/admin/login')} className="hidden md:block relative -ml-2 mr-2 h-2 w-2 rounded-full bg-accent/20 hover:bg-accent/60 transition-all duration-300 shrink-0" aria-label="Admin" />
+        <button onClick={() => navigate('/admin/login')} className="relative -ml-1 md:-ml-2 mr-1 md:mr-2 h-2 w-2 rounded-full bg-accent/20 hover:bg-accent/60 transition-all duration-300 shrink-0" aria-label="Admin" />
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
