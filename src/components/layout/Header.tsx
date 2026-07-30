@@ -96,7 +96,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-border bg-black/60 backdrop-blur-xl"
+            className="md:hidden border-t border-border bg-black/40 backdrop-blur-xl"
           >
             <nav className="container-premium flex flex-col py-6 px-4 gap-2">
               {navLinks.map((link) => (
