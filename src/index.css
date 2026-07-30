@@ -6,9 +6,9 @@
   --color-accent: #6366f1;
   --color-accent-light: #818cf8;
   --color-accent-dark: #4f46e5;
-  --color-glass: rgba(255, 255, 255, 0.25);
-  --color-glass-light: rgba(255, 255, 255, 0.18);
-  --color-glass-hover: rgba(255, 255, 255, 0.30);
+  --color-glass: rgba(0, 0, 0, 0.5);
+  --color-glass-light: rgba(0, 0, 0, 0.35);
+  --color-glass-hover: rgba(0, 0, 0, 0.6);
   --color-border: rgba(255, 255, 255, 0.06);
   --color-border-light: rgba(255, 255, 255, 0.12);
   --color-text: #f1f1f3;
