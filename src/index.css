@@ -66,17 +66,18 @@
 
 @layer utilities {
   .glass {
-    background: var(--color-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--color-border);
+    background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.02) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset, 0 8px 32px rgba(0,0,0,0.3);
   }
 
   .glass-light {
-    background: var(--color-glass-light);
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--color-border-light);
+    border: 1px solid rgba(255,255,255,0.05);
   }
 
   .glass-hover {
@@ -84,8 +85,14 @@
   }
 
   .glass-hover:hover {
-    background: var(--color-glass-hover);
-    border-color: var(--color-border-light);
+    background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .glass-solid {
+    background: #12121a;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
   }
 
   .gradient-text {

@@ -216,7 +216,7 @@ export default function AdminTestimonials() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-4 md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-xl z-50 overflow-auto max-h-[calc(100vh-80px)] rounded-2xl"
             >
-              <Card className="p-6 md:p-8">
+              <Card solid className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-lg font-semibold text-text">{editing ? 'Edit Testimonial' : 'Add Testimonial'}</h2>
                   <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">

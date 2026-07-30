@@ -52,7 +52,7 @@ export default function AdminLogin() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="w-full max-w-md px-4"
         >
-          <div className="glass rounded-2xl p-8 md:p-10">
+          <div className="glass-solid rounded-2xl p-8 md:p-10">
             <div className="mb-8 text-center">
               <h1 className="text-2xl font-bold gradient-text mb-1">Soyiri Labs</h1>
               <p className="text-sm text-text-muted">Admin Dashboard</p>

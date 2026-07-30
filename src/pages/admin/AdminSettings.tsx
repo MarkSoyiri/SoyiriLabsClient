@@ -182,7 +182,7 @@ export default function AdminSettings() {
 
       {activeTab === 'homepage' && homepage && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-          <Card>
+          <Card solid>
             <h2 className="text-lg font-semibold text-text mb-6">Hero Section</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="md:col-span-2">
@@ -200,7 +200,7 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Stats</h2>
               <Button variant="secondary" size="sm" onClick={addStat}>
@@ -221,7 +221,7 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <h2 className="text-lg font-semibold text-text mb-6">About & CTA</h2>
             <div className="grid gap-4">
               <div>
@@ -249,7 +249,7 @@ export default function AdminSettings() {
 
       {activeTab === 'company' && company && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-          <Card>
+          <Card solid>
             <h2 className="text-lg font-semibold text-text mb-6">Branding</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div>
@@ -295,7 +295,7 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <h2 className="text-lg font-semibold text-text mb-6">Mission & Vision</h2>
             <div className="grid gap-4">
               <div>
@@ -309,7 +309,7 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Values</h2>
               <Button variant="secondary" size="sm" onClick={addValue}>
@@ -326,16 +326,16 @@ export default function AdminSettings() {
                     </button>
                   </div>
                   <div className="grid gap-3 md:grid-cols-3">
-                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="w-full h-10 px-3 rounded-xl bg-glass border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
                   </div>
                 </div>
               ))}
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-text">Social Links</h2>
               <Button variant="secondary" size="sm" onClick={addSocial}>
@@ -357,7 +357,7 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card>
+          <Card solid>
             <h2 className="text-lg font-semibold text-text mb-6">Contact Information</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div>

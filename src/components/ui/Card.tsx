@@ -8,6 +8,7 @@ interface CardProps {
   hover?: boolean
   glow?: boolean
   border?: boolean
+  solid?: boolean
   onClick?: () => void
 }
 
@@ -17,6 +18,7 @@ export function Card({
   hover = false,
   glow = false,
   border = false,
+  solid = false,
   onClick,
 }: CardProps) {
   return (
@@ -24,7 +26,8 @@ export function Card({
       whileHover={hover ? { y: -6 } : undefined}
       onClick={onClick}
       className={cn(
-        'glass rounded-2xl p-6 transition-colors duration-300 min-w-0 overflow-hidden',
+        solid ? 'glass-solid' : 'glass',
+        'rounded-2xl p-6 transition-colors duration-300 min-w-0 overflow-hidden',
         hover && 'glass-hover cursor-pointer',
         glow && 'glow',
         border && 'gradient-border',
