@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -18,6 +18,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const buttonRef = useRef<HTMLAnchorElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -53,9 +54,10 @@ export default function Header() {
       )}
     >
       <div className="container-premium flex items-center justify-between h-16 md:h-20 px-4">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
           <img src={logoSrc} alt="Soyiri Labs" className="h-10 w-auto" />
         </Link>
+        <button onClick={() => navigate('/admin/login')} className="hidden md:block relative -ml-2 mr-2 h-2 w-2 rounded-full bg-accent/20 hover:bg-accent/60 transition-all duration-300 shrink-0" aria-label="Admin" />
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import {
@@ -677,7 +677,6 @@ function CTASection() {
 
 function BackToTop() {
   const [visible, setVisible] = useState(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 600)
@@ -686,25 +685,18 @@ function BackToTop() {
   }, [])
 
   return (
-    <>
-      <motion.button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={cn(
-          'fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-glass backdrop-blur-xl transition-colors duration-300 hover:border-accent/50 hover:bg-glass-hover',
-          visible ? 'pointer-events-auto' : 'pointer-events-none',
-        )}
-        animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
-        transition={{ duration: 0.2 }}
-        aria-label="Back to top"
-      >
-        <ArrowUp className="h-5 w-5 text-text-secondary" />
-      </motion.button>
-      <button
-        onClick={() => navigate('/admin/login')}
-        className="fixed bottom-8 right-24 z-50 h-3 w-3 rounded-full bg-accent/20 hover:bg-accent/60 transition-all duration-300"
-        aria-label="Admin"
-      />
-    </>
+    <motion.button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className={cn(
+        'fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-glass backdrop-blur-xl transition-colors duration-300 hover:border-accent/50 hover:bg-glass-hover',
+        visible ? 'pointer-events-auto' : 'pointer-events-none',
+      )}
+      animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
+      transition={{ duration: 0.2 }}
+      aria-label="Back to top"
+    >
+      <ArrowUp className="h-5 w-5 text-text-secondary" />
+    </motion.button>
   )
 }
 
