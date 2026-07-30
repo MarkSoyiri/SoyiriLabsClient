@@ -41,7 +41,7 @@ export default function GlowCard({
   return (
     <motion.div
       ref={ref}
-      className={cn('relative overflow-hidden', className)}
+      className={cn('relative', className)}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
     >
