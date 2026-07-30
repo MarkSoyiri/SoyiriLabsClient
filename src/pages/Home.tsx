@@ -701,7 +701,7 @@ function BackToTop() {
       </motion.button>
       <button
         onClick={() => navigate('/admin/login')}
-        className="fixed bottom-8 right-24 z-50 h-4 w-4 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300"
+        className="fixed bottom-8 right-24 z-50 h-3 w-3 rounded-full bg-accent/20 hover:bg-accent/60 transition-all duration-300"
         aria-label="Admin"
       />
     </>
