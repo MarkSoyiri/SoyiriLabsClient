@@ -7,3 +7,4 @@ dist/
 .vite-temp/
 
 .vercel
+.env*
