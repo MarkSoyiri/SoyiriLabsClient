@@ -157,7 +157,15 @@ export default function ProjectDetail() {
       setError('')
       try {
         const res = await projectsApi.getBySlug(slug!)
-        setProject(res.data.data)
+        const apiProject = res.data.data
+        const demo = DEMO_PROJECTS.find((p) => p.slug === slug)
+        if (apiProject && (!apiProject.gallery || apiProject.gallery.length === 0) && demo) {
+          apiProject.gallery = demo.gallery
+        }
+        setProject(apiProject)
+        if (apiProject) {
+          setRelated(DEMO_PROJECTS.filter((p) => p.industry === apiProject.industry && p.slug !== slug).slice(0, 3))
+        }
       } catch {
         const found = DEMO_PROJECTS.find((p) => p.slug === slug)
         if (found) {
