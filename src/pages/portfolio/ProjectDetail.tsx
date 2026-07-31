@@ -33,6 +33,11 @@ import backendSpGallery1 from '@/assets/backend-sp-1.png'
 import backendSpGallery2 from '@/assets/backend-sp-2.png'
 import backendSpGallery3 from '@/assets/backend-sp-3.png'
 import backendSpGallery4 from '@/assets/backend-sp-4.png'
+import betguardThumb from '@/assets/betguard-1.png'
+import betguardGallery1 from '@/assets/betguard-1.png'
+import betguardGallery2 from '@/assets/betguard-2.png'
+import betguardGallery3 from '@/assets/betguard-3.png'
+import betguardGallery4 from '@/assets/betguard-4.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -111,6 +116,26 @@ const DEMO_PROJECTS: Project[] = [
     createdAt: '2025-04-01T00:00:00Z',
     updatedAt: '2025-06-01T00:00:00Z',
   },
+  {
+    _id: '5',
+    title: 'BetGuard',
+    slug: 'betguard',
+    description: 'A responsible betting companion web app that helps users track spending, set budgets, log bets, and build healthier betting habits. Features spending analytics, smart budget alerts, an AI coach, savings goals, risk assessments, an education center, and a supportive community.',
+    clientName: 'BetGuard',
+    industry: 'Fintech / Responsible Gaming',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Framer Motion', 'Vite'],
+    thumbnail: betguardThumb,
+    gallery: [betguardGallery1, betguardGallery2, betguardGallery3, betguardGallery4],
+    liveUrl: 'https://bet-guard-web-app-soyiri-labs-9yruqr0c5-mark-soyiris-projects.vercel.app/',
+    githubUrl: 'https://github.com/MarkSoyiri/BetGuard-webApp-SoyiriLabs',
+    featured: true,
+    completionYear: 2026,
+    servicesProvided: ['Web Development', 'Web Application', 'UI/UX Design'],
+    colorTheme: '#1e3a8a',
+    status: 'completed',
+    createdAt: '2026-05-01T00:00:00Z',
+    updatedAt: '2026-07-01T00:00:00Z',
+  },
 ]
 
 const gradientMap: Record<string, string> = {
@@ -126,6 +151,7 @@ const gradientMap: Record<string, string> = {
   'IoT / Smart Water Management': 'from-cyan-600 to-blue-700',
   'IoT / Backend Infrastructure': 'from-cyan-700 to-teal-600',
   'Backend / API Development': 'from-violet-600 to-purple-700',
+  'Fintech / Responsible Gaming': 'from-indigo-600 to-blue-700',
 }
 
 function ProjectSkeleton() {

@@ -16,6 +16,7 @@ import zestyThumb from '@/assets/zesty-cave-1.png'
 import hydroThumb from '@/assets/hydromonitor-1.png'
 import hydroV2Thumb from '@/assets/hydromonitor-v2-1.png'
 import backendSpThumb from '@/assets/backend-sp-1.png'
+import betguardThumb from '@/assets/betguard-1.png'
 
 const DEMO_PROJECTS: Project[] = [
   {
@@ -94,11 +95,31 @@ const DEMO_PROJECTS: Project[] = [
     createdAt: '2025-04-01T00:00:00Z',
     updatedAt: '2025-06-01T00:00:00Z',
   },
+  {
+    _id: '5',
+    title: 'BetGuard',
+    slug: 'betguard',
+    description: 'A responsible betting companion web app that helps users track spending, set budgets, log bets, and build healthier betting habits. Features spending analytics, smart budget alerts, an AI coach, savings goals, risk assessments, an education center, and a supportive community.',
+    clientName: 'BetGuard',
+    industry: 'Fintech / Responsible Gaming',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Framer Motion', 'Vite'],
+    thumbnail: betguardThumb,
+    gallery: ['', '', ''],
+    liveUrl: 'https://bet-guard-web-app-soyiri-labs-9yruqr0c5-mark-soyiris-projects.vercel.app/',
+    githubUrl: 'https://github.com/MarkSoyiri/BetGuard-webApp-SoyiriLabs',
+    featured: true,
+    completionYear: 2026,
+    servicesProvided: ['Web Development', 'Web Application', 'UI/UX Design'],
+    colorTheme: '#1e3a8a',
+    status: 'completed',
+    createdAt: '2026-05-01T00:00:00Z',
+    updatedAt: '2026-07-01T00:00:00Z',
+  },
 ]
 
-const industries = ['All', 'Restaurant / E-Commerce', 'IoT / Smart Water Management', 'IoT / Backend Infrastructure', 'Backend / API Development']
-const technologies = ['All', 'React', 'Express.js', 'Node.js', 'MongoDB', 'Tailwind CSS', 'ESP32', 'Firebase', 'MQTT', 'WebSockets', 'Docker', 'TypeScript', 'PostgreSQL', 'Redis']
-const years = ['All', '2025']
+const industries = ['All', 'Restaurant / E-Commerce', 'IoT / Smart Water Management', 'IoT / Backend Infrastructure', 'Backend / API Development', 'Fintech / Responsible Gaming']
+const technologies = ['All', 'React', 'Express.js', 'Node.js', 'MongoDB', 'Tailwind CSS', 'ESP32', 'Firebase', 'MQTT', 'WebSockets', 'Docker', 'TypeScript', 'PostgreSQL', 'Redis', 'Recharts', 'Framer Motion', 'Vite']
+const years = ['All', '2025', '2026']
 
 const thumbnailGradients = [
   'from-accent to-purple-500',
