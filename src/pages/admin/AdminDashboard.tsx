@@ -138,7 +138,7 @@ export default function AdminDashboard() {
                 </Link>
               </div>
               {loading ? (
-                <div className="space-y-4">
+              <div className="space-y-6">
                   {Array.from({ length: 3 }).map((_, i) => (
                     <Skeleton key={i} className="h-16 rounded-xl" />
                   ))}
