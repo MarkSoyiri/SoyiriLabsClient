@@ -116,7 +116,7 @@ export default function AdminMessages() {
               transition={{ delay: i * 0.02 }}
               ref={(el) => {
                 if (el && expanded === msg._id) {
-                  el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+                  el.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
                 }
               }}
             >
