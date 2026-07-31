@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { Toast } from '@/components/ui/Toast'
 import { servicesApi } from '@/lib/api'
-import { cn, getImageUrl, slugify } from '@/lib/utils'
+import { cn, getImageUrl, slugify, toArray } from '@/lib/utils'
 import type { Service } from '@/types'
 
 interface FormData {
@@ -97,7 +97,7 @@ export default function AdminServices() {
       fd.append('description', form.description)
       fd.append('longDescription', form.longDescription)
       fd.append('icon', form.icon)
-      fd.append('features', form.features)
+      fd.append('features', toArray(form.features))
       fd.append('process', form.process)
       fd.append('price', form.price)
       fd.append('order', String(form.order))

@@ -28,3 +28,12 @@ export function getImageUrl(path: string): string {
   if (path.startsWith('http')) return path;
   return import.meta.env.VITE_CLOUDINARY_URL + path;
 }
+
+export function toArray(value: string): string {
+  return JSON.stringify(
+    value
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean)
+  );
+}

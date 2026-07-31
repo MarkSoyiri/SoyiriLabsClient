@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { Toast } from '@/components/ui/Toast'
 import { blogApi } from '@/lib/api'
-import { cn, formatDate, getImageUrl, slugify } from '@/lib/utils'
+import { cn, formatDate, getImageUrl, slugify, toArray } from '@/lib/utils'
 import type { BlogPost } from '@/types'
 
 interface FormData {
@@ -94,7 +94,7 @@ export default function AdminBlog() {
       fd.append('excerpt', form.excerpt)
       fd.append('content', form.content)
       fd.append('category', form.category)
-      fd.append('tags', form.tags)
+      fd.append('tags', toArray(form.tags))
       fd.append('author', form.author)
       fd.append('seoTitle', form.seoTitle)
       fd.append('seoDescription', form.seoDescription)

@@ -10,7 +10,7 @@ import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { Toast } from '@/components/ui/Toast'
 import { projectsApi } from '@/lib/api'
-import { cn, getImageUrl, slugify } from '@/lib/utils'
+import { cn, getImageUrl, slugify, toArray } from '@/lib/utils'
 import type { Project } from '@/types'
 
 const statusColors: Record<string, string> = {
@@ -126,12 +126,12 @@ export default function AdminProjects() {
       fd.append('description', form.description)
       fd.append('clientName', form.clientName)
       fd.append('industry', form.industry)
-      fd.append('technologies', form.technologies)
+      fd.append('technologies', toArray(form.technologies))
       fd.append('liveUrl', form.liveUrl)
       fd.append('githubUrl', form.githubUrl)
       fd.append('featured', String(form.featured))
       fd.append('completionYear', String(form.completionYear))
-      fd.append('servicesProvided', form.servicesProvided)
+      fd.append('servicesProvided', toArray(form.servicesProvided))
       fd.append('colorTheme', form.colorTheme)
       fd.append('status', form.status)
       fd.append('seoTitle', form.seoTitle)
