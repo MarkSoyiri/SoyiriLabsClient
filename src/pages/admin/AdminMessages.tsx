@@ -176,7 +176,7 @@ export default function AdminMessages() {
                           <div className="flex items-center gap-2 mt-4">
                             {!msg.read && (
                               <Button
-                                variant="secondary"
+                                variant="primary"
                                 size="sm"
                                 onClick={(e) => { e.stopPropagation(); handleMarkRead(msg._id) }}
                               >
