@@ -208,7 +208,7 @@ function HeroSection() {
       <FloatingElements count={10} />
       <BackgroundGradient />
 
-      <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pt-20">
+      <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pt-20 md:pt-[90px]">
         <div className="container-premium">
           <div className="flex flex-col items-center text-center">
             <Reveal delay={0.1}>
