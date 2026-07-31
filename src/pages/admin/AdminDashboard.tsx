@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   FolderKanban, Code, FileText, MessageSquare, Plus,
-  ArrowRight, Calendar, Mail, User, ExternalLink, Clock,
+  ArrowRight, Calendar, Mail, User, ExternalLink, Clock, AlertCircle,
 } from 'lucide-react'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -24,6 +24,7 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats>({ projects: 0, services: 0, blogPosts: 0, messages: 0 })
   const [recentMessages, setRecentMessages] = useState<ContactMessage[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
   const [user, setUser] = useState<{ name?: string }>({})
 
   useEffect(() => {
@@ -35,24 +36,30 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const [projRes, servRes, blogRes, msgRes] = await Promise.all([
-          projectsApi.getAll(),
-          servicesApi.getAll(),
-          blogApi.getAll(),
-          contactApi.getAll(),
-        ])
-        setStats({
-          projects: projRes.data.data?.length || projRes.data?.length || 0,
-          services: servRes.data.data?.length || servRes.data?.length || 0,
-          blogPosts: blogRes.data.data?.length || blogRes.data?.length || 0,
-          messages: msgRes.data.data?.length || msgRes.data?.length || 0,
-        })
-        const msgs = msgRes.data.data || msgRes.data || []
-        setRecentMessages(msgs.slice(0, 5))
-      } catch { } finally {
-        setLoading(false)
+      const [projRes, servRes, blogRes, msgRes] = await Promise.allSettled([
+        projectsApi.getAll(),
+        servicesApi.getAll(),
+        blogApi.getAll(),
+        contactApi.getAll(),
+      ])
+      const dataOf = (r: PromiseSettledResult<unknown>) =>
+        r.status === 'fulfilled' ? (r.value as { data?: { data?: ContactMessage[]; length?: number } }).data : undefined
+      const projData = dataOf(projRes) as { data?: unknown[]; length?: number } | undefined
+      const servData = dataOf(servRes) as { data?: unknown[]; length?: number } | undefined
+      const blogData = dataOf(blogRes) as { data?: unknown[]; length?: number } | undefined
+      const msgData = dataOf(msgRes) as { data?: ContactMessage[]; length?: number } | undefined
+      setStats({
+        projects: projData?.data?.length || projData?.length || 0,
+        services: servData?.data?.length || servData?.length || 0,
+        blogPosts: blogData?.data?.length || blogData?.length || 0,
+        messages: msgData?.data?.length || msgData?.length || 0,
+      })
+      const msgs = msgData?.data || msgData
+      setRecentMessages(Array.isArray(msgs) ? msgs.slice(0, 5) : [])
+      if ([projRes, servRes, blogRes, msgRes].some((r) => r.status === 'rejected')) {
+        setLoadError('Some data could not be loaded. If this keeps happening, log out and sign back in.')
       }
+      setLoading(false)
     }
     fetchData()
   }, [])
@@ -87,6 +94,17 @@ export default function AdminDashboard() {
           </h1>
           <p className="mt-1 text-text-secondary">Here's an overview of your site.</p>
         </motion.div>
+
+        {loadError && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 rounded-xl bg-error/10 border border-error/20 px-4 py-3 text-sm text-error mb-6"
+          >
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            {loadError}
+          </motion.div>
+        )}
 
         <motion.div variants={item} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           {loading
