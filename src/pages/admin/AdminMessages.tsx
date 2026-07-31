@@ -114,6 +114,11 @@ export default function AdminMessages() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.02 }}
+              ref={(el) => {
+                if (el && expanded === msg._id) {
+                  el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+                }
+              }}
             >
               <Card
                 className={cn(
@@ -155,7 +160,7 @@ export default function AdminMessages() {
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-border">
+                          <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-border max-h-[40vh] overflow-y-auto pr-1">
                             {msg.company && (
                               <span className="text-xs text-text-muted flex items-center gap-1">
                                 <Building2 className="h-3.5 w-3.5" />
