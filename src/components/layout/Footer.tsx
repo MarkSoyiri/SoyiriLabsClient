@@ -13,10 +13,10 @@ const quickLinks = [
 ]
 
 const services = [
-  { name: 'Web Development', path: '/services/web-development' },
-  { name: 'Mobile App Development', path: '/services/mobile-app-development' },
+  { name: 'Web Development', path: '/services/website-development' },
+  { name: 'Web Applications', path: '/services/web-applications' },
   { name: 'UI/UX Design', path: '/services/ui-ux-design' },
-  { name: 'Cloud & DevOps', path: '/services/cloud-devops' },
+  { name: 'Hosting & Deployment', path: '/services/hosting-deployment' },
 ]
 
 const socialLinks = [

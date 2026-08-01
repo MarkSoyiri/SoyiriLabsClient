@@ -130,7 +130,6 @@ export default function Header() {
                     }
                   >
                     {link.name}
-                    <ArrowRight className="h-3.5 w-3.5 text-accent/60" />
                   </NavLink>
                 </motion.div>
               ))}
