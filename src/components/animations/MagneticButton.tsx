@@ -47,7 +47,7 @@ export default function MagneticButton({
   return (
     <motion.div
       ref={ref}
-      className={cn('inline-block', className)}
+      className={cn(className)}
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
