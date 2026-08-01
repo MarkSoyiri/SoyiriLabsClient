@@ -137,10 +137,10 @@ export default function Header() {
               <Link
                 to="/contact"
                 onClick={() => setIsMobileOpen(false)}
-                className="mt-4 py-3.5 px-6 flex items-center justify-center gap-2 text-center text-sm font-medium rounded-full bg-text text-primary hover:bg-white transition-colors duration-300"
+                className="mt-4 py-2.5 px-5 flex items-center justify-center gap-1.5 text-center text-xs font-semibold rounded-full bg-text text-primary hover:bg-white transition-colors duration-300"
               >
                 Get a Quote
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </nav>
           </motion.div>
