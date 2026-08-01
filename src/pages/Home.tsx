@@ -171,9 +171,9 @@ const stats = [
 function BackgroundGradient() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute -left-[20%] -top-[20%] h-[60%] w-[60%] rounded-full bg-accent/10 blur-[120px]" />
-      <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-purple-500/8 blur-[100px]" />
-      <div className="absolute -bottom-[20%] left-[30%] h-[50%] w-[50%] rounded-full bg-blue-500/8 blur-[100px]" />
+      <div className="absolute -left-[20%] -top-[20%] h-[60%] w-[60%] rounded-full bg-accent/10 blur-[60px] md:blur-[120px]" />
+      <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-purple-500/8 blur-[50px] md:blur-[100px]" />
+      <div className="absolute -bottom-[20%] left-[30%] h-[50%] w-[50%] rounded-full bg-blue-500/8 blur-[50px] md:blur-[100px]" />
     </div>
   )
 }
@@ -511,8 +511,6 @@ function TechnologiesSection() {
               <motion.div
                 className="glass rounded-full px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors duration-300 hover:border-accent/30 hover:text-text"
                 whileHover={{ y: -4, scale: 1.05 }}
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 4 + (i % 3), repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
               >
                 {tech}
               </motion.div>

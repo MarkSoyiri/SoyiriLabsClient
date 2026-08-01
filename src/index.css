@@ -29,8 +29,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
     scrollbar-gutter: stable;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -79,6 +84,18 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  @media (max-width: 640px) {
+    .glass {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .glass-light {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
 
   .glass-hover {

@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 interface FloatingElement {
@@ -18,17 +18,30 @@ interface FloatingElementsProps {
   colors?: string[]
 }
 
-function createElements(count: number, colors: string[]): FloatingElement[] {
+function createElements(count: number, colors: string[], maxSize: number): FloatingElement[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
     type: i % 3 === 0 ? 'square' : 'circle',
-    size: Math.random() * 120 + 40,
+    size: Math.random() * maxSize + Math.max(20, maxSize * 0.25),
     x: Math.random() * 100,
     y: Math.random() * 100,
     duration: Math.random() * 20 + 15,
     delay: Math.random() * -20,
     color: colors[Math.floor(Math.random() * colors.length)],
   }))
+}
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 640px)').matches)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    const onChange = () => setIsMobile(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  return isMobile
 }
 
 export default function FloatingElements({
@@ -41,10 +54,15 @@ export default function FloatingElements({
     'rgba(59, 130, 246, 0.06)',
   ],
 }: FloatingElementsProps) {
-  const elements = useMemo(() => createElements(count, colors), [count, colors])
+  const isMobile = useIsMobile()
+  const effectiveCount = isMobile ? Math.max(3, Math.ceil(count / 2)) : count
+  const elements = useMemo(
+    () => createElements(effectiveCount, colors, isMobile ? 72 : 160),
+    [effectiveCount, colors, isMobile],
+  )
 
   return (
-    <div className={cn('pointer-events-none fixed inset-0 overflow-hidden', className)}>
+    <div className={cn('pointer-events-none absolute inset-0 overflow-hidden', className)}>
       {elements.map((el) => (
         <div
           key={el.id}
