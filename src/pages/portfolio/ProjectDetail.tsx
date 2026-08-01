@@ -139,19 +139,19 @@ const DEMO_PROJECTS: Project[] = [
 ]
 
 const gradientMap: Record<string, string> = {
-  Fintech: 'from-accent to-purple-500',
-  Healthcare: 'from-cyan-500 to-blue-600',
-  Sustainability: 'from-green-500 to-emerald-600',
-  'E-commerce': 'from-pink-500 to-rose-600',
-  Blockchain: 'from-amber-500 to-orange-600',
-  'Smart City': 'from-violet-500 to-indigo-600',
-  Education: 'from-blue-500 to-cyan-600',
-  Media: 'from-red-500 to-pink-600',
-  'Restaurant / E-Commerce': 'from-rose-500 to-red-600',
-  'IoT / Smart Water Management': 'from-cyan-600 to-blue-700',
-  'IoT / Backend Infrastructure': 'from-cyan-700 to-teal-600',
-  'Backend / API Development': 'from-violet-600 to-purple-700',
-  'Fintech / Responsible Gaming': 'from-indigo-600 to-blue-700',
+  Fintech: 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  Healthcare: 'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  Sustainability: 'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  'E-commerce': 'from-[#332b1f] via-[#262019] to-[#17130e]',
+  Blockchain: 'from-[#2f2330] via-[#241b26] to-[#141114]',
+  'Smart City': 'from-[#2a2a38] via-[#202030] to-[#131319]',
+  Education: 'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  Media: 'from-[#2f2330] via-[#241b26] to-[#141114]',
+  'Restaurant / E-Commerce': 'from-[#332b1f] via-[#262019] to-[#17130e]',
+  'IoT / Smart Water Management': 'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  'IoT / Backend Infrastructure': 'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  'Backend / API Development': 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  'Fintech / Responsible Gaming': 'from-[#2a2a38] via-[#202030] to-[#131319]',
 }
 
 function ProjectSkeleton() {
@@ -225,7 +225,7 @@ export default function ProjectDetail() {
     )
   }
 
-  const gradient = gradientMap[project.industry] || 'from-accent to-purple-500'
+  const gradient = gradientMap[project.industry] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]'
 
   return (
     <>
@@ -454,7 +454,7 @@ export default function ProjectDetail() {
                         )}>
                           <div className={cn(
                             'h-36 bg-gradient-to-br flex items-center justify-center',
-                            gradientMap[r.industry] || 'from-accent to-purple-500',
+                            gradientMap[r.industry] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
                           )}>
                             <span className="text-white/20 text-4xl font-black select-none">{r.title.charAt(0)}</span>
                           </div>

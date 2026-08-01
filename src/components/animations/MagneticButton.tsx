@@ -1,4 +1,5 @@
 import { useRef, type ElementType, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -7,21 +8,27 @@ interface MagneticButtonProps {
   className?: string
   strength?: number
   as?: ElementType
+  to?: string
+  onClick?: () => void
 }
 
 export default function MagneticButton({
   children,
   className,
-  strength = 0.3,
-  as: Tag = 'button',
+  strength = 0.25,
+  as,
+  to,
+  onClick,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
-  const springX = useSpring(x, { stiffness: 200, damping: 15 })
-  const springY = useSpring(y, { stiffness: 200, damping: 15 })
+  const springX = useSpring(x, { stiffness: 180, damping: 18 })
+  const springY = useSpring(y, { stiffness: 180, damping: 18 })
+
+  const Tag = as ?? (to ? Link : 'button')
 
   function handleMouse(e: React.MouseEvent<HTMLDivElement>) {
     if (!ref.current) return
@@ -45,7 +52,9 @@ export default function MagneticButton({
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
     >
-      <Tag>{children}</Tag>
+      <Tag {...(to ? { to } : {})} onClick={onClick}>
+        {children}
+      </Tag>
     </motion.div>
   )
 }

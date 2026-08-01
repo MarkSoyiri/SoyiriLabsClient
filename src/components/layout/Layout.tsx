@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Header from './Header'
 import Footer from './Footer'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import PageTransition from '@/components/animations/PageTransition'
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -32,10 +34,13 @@ export default function Layout() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-primary text-text">
+      <ScrollProgress />
       <Header />
       <main className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet key={pathname} />
+        </PageTransition>
       </main>
       <Footer />
     </div>

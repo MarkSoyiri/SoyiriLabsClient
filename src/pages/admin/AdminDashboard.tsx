@@ -66,9 +66,9 @@ export default function AdminDashboard() {
 
   const statCards = [
     { label: 'Total Projects', value: stats.projects, icon: FolderKanban, color: 'text-accent', href: '/admin/projects' },
-    { label: 'Services', value: stats.services, icon: Code, color: 'text-purple-400', href: '/admin/services' },
-    { label: 'Blog Posts', value: stats.blogPosts, icon: FileText, color: 'text-emerald-400', href: '/admin/blog' },
-    { label: 'Messages', value: stats.messages, icon: MessageSquare, color: 'text-amber-400', href: '/admin/messages' },
+    { label: 'Services', value: stats.services, icon: Code, color: 'text-gold', href: '/admin/services' },
+    { label: 'Blog Posts', value: stats.blogPosts, icon: FileText, color: 'text-success', href: '/admin/blog' },
+    { label: 'Messages', value: stats.messages, icon: MessageSquare, color: 'text-warning', href: '/admin/messages' },
   ]
 
   const container = {
@@ -199,7 +199,7 @@ export default function AdminDashboard() {
                 </Link>
                 <Link to="/admin/blog">
                   <Card hover className="flex items-center gap-4 p-4">
-                    <div className="glass-light rounded-xl p-3 text-purple-400">
+                    <div className="glass-light rounded-xl p-3 text-gold">
                       <Plus className="h-5 w-5" />
                     </div>
                     <div>
@@ -211,7 +211,7 @@ export default function AdminDashboard() {
                 </Link>
                 <Link to="/admin/services">
                   <Card hover className="flex items-center gap-4 p-4">
-                    <div className="glass-light rounded-xl p-3 text-emerald-400">
+                    <div className="glass-light rounded-xl p-3 text-success">
                       <Plus className="h-5 w-5" />
                     </div>
                     <div>

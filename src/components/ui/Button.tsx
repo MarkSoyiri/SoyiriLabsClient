@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -21,7 +21,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const loaderSizes: Record<ButtonSize, string> = {
   sm: 'h-3.5 w-3.5',
   md: 'h-4 w-4',
-  lg: 'h-5 w-5',
+  lg: 'h-4.5 w-4.5',
 }
 
 export function Button({
@@ -36,36 +36,21 @@ export function Button({
   type = 'button',
   ...props
 }: ButtonProps) {
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    x.set((e.clientX - centerX) * 0.15)
-    y.set((e.clientY - centerY) * 0.15)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
   const baseStyles =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-secondary disabled:pointer-events-none disabled:opacity-50 cursor-pointer overflow-hidden group'
+    'relative inline-flex items-center justify-center overflow-hidden rounded-xl font-medium whitespace-nowrap transition-colors duration-300 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:pointer-events-none disabled:opacity-40 group'
 
   const variantStyles: Record<ButtonVariant, string> = {
     primary:
-      'bg-gradient-to-r from-accent to-purple-500 text-white shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30',
-    secondary: 'glass glass-hover text-text hover:border-border-light',
-    ghost: 'bg-transparent text-text-secondary hover:text-text hover:bg-glass-light',
+      'bg-text text-primary hover:bg-white shadow-[0_1px_0_0_rgba(255,255,255,0.4)_inset,0_12px_32px_-14px_rgba(0,0,0,0.7)]',
+    secondary:
+      'bg-transparent border border-border-light text-text hover:border-white/30 hover:bg-white/[0.04]',
+    ghost: 'bg-transparent text-text-secondary hover:text-text hover:bg-white/[0.05]',
   }
 
   const sizeStyles: Record<ButtonSize, string> = {
-    sm: 'h-9 px-4 text-sm gap-1.5',
-    md: 'h-11 px-6 text-base gap-2',
-    lg: 'h-12 px-8 text-lg gap-2.5',
+    sm: 'h-9 px-4 text-[13px] gap-1.5',
+    md: 'h-11 px-5 text-sm gap-2',
+    lg: 'h-12 px-7 text-[15px] gap-2.5',
   }
 
   const iconSizes: Record<ButtonSize, string> = {
@@ -75,9 +60,8 @@ export function Button({
   }
 
   const sharedProps = {
-    style: { x, y } as const,
-    onMouseMove: handleMouseMove,
-    onMouseLeave: handleMouseLeave,
+    whileHover: { y: -1 },
+    whileTap: { scale: 0.98 },
     className: cn(baseStyles, variantStyles[variant], sizeStyles[size], className),
   }
 
@@ -89,11 +73,19 @@ export function Button({
 
   const content = (
     <>
-      {loading && <Loader2 className={cn('animate-spin shrink-0', loaderSizes[size])} />}
-      <span className={cn('inline-flex items-center whitespace-nowrap', gapStyles[size], loading && 'opacity-70')}>{children}</span>
       {variant === 'primary' && !loading && (
-        <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-accent to-purple-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-50" />
+        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
       )}
+      {loading && <Loader2 className={cn('animate-spin shrink-0', loaderSizes[size])} />}
+      <span
+        className={cn(
+          'relative inline-flex items-center whitespace-nowrap',
+          gapStyles[size],
+          loading && 'opacity-70',
+        )}
+      >
+        {children}
+      </span>
     </>
   )
 

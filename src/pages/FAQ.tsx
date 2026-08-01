@@ -201,7 +201,7 @@ export default function FAQ() {
                   className="mb-12 last:mb-0"
                 >
                   <div className="mb-6 flex items-center gap-3">
-                    <span className="h-6 w-1 rounded-full bg-gradient-to-b from-accent to-purple-500" />
+                    <span className="h-6 w-1 rounded-full bg-gradient-to-b from-accent to-gold" />
                     <h2 className="text-lg font-semibold text-text">{cat}</h2>
                   </div>
 

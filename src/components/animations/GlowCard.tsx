@@ -11,15 +11,15 @@ interface GlowCardProps {
 export default function GlowCard({
   children,
   className,
-  color = 'rgba(99, 102, 241, 0.15)',
+  color = 'rgba(139, 131, 255, 0.10)',
 }: GlowCardProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const springX = useSpring(mouseX, { stiffness: 150, damping: 15 })
-  const springY = useSpring(mouseY, { stiffness: 150, damping: 15 })
+  const springX = useSpring(mouseX, { stiffness: 120, damping: 20 })
+  const springY = useSpring(mouseY, { stiffness: 120, damping: 20 })
 
   const glowX = useTransform(springX, [-0.5, 0.5], ['0%', '100%'])
   const glowY = useTransform(springY, [-0.5, 0.5], ['0%', '100%'])
@@ -46,9 +46,9 @@ export default function GlowCard({
       onMouseLeave={handleLeave}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{
-          background: `radial-gradient(circle at ${glowX} ${glowY}, ${color}, transparent 70%)`,
+          background: `radial-gradient(420px circle at ${glowX} ${glowY}, ${color}, transparent 65%)`,
         }}
       />
       {children}

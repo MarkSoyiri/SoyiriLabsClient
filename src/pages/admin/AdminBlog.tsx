@@ -199,8 +199,8 @@ export default function AdminBlog() {
                     <span className={cn(
                       'text-[11px] font-medium px-2 py-0.5 rounded-full border',
                       post.status === 'published'
-                        ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20'
-                        : 'text-amber-400 bg-amber-400/10 border-amber-400/20'
+                        ? 'text-success bg-success/10 border-success/20'
+                        : 'text-warning bg-warning/10 border-warning/20'
                     )}>
                       {post.status}
                     </span>

@@ -11,15 +11,15 @@ interface ParallaxTiltProps {
 export default function ParallaxTilt({
   children,
   className,
-  intensity = 15,
+  intensity = 7,
 }: ParallaxTiltProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
-  const springX = useSpring(x, { stiffness: 300, damping: 30 })
-  const springY = useSpring(y, { stiffness: 300, damping: 30 })
+  const springX = useSpring(x, { stiffness: 250, damping: 25 })
+  const springY = useSpring(y, { stiffness: 250, damping: 25 })
 
   const rotateX = useTransform(springY, [-0.5, 0.5], [intensity, -intensity])
   const rotateY = useTransform(springX, [-0.5, 0.5], [-intensity, intensity])
@@ -41,8 +41,8 @@ export default function ParallaxTilt({
   return (
     <motion.div
       ref={ref}
-      className={cn('relative', className)}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      className={cn('relative [transform-style:preserve-3d]', className)}
+      style={{ rotateX, rotateY }}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
     >

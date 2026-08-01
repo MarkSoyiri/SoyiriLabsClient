@@ -180,7 +180,7 @@ export default function AdminTestimonials() {
                 </div>
                 <div className="flex gap-0.5 mb-2">
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className={cn('h-3.5 w-3.5', j < t.rating ? 'fill-yellow-500 text-yellow-500' : 'text-text-muted')} />
+                    <Star key={j} className={cn('h-3.5 w-3.5', j < t.rating ? 'fill-gold text-gold' : 'text-text-muted')} />
                   ))}
                 </div>
                 <p className="text-xs text-text-secondary line-clamp-3 mb-3 leading-relaxed">&ldquo;{t.review}&rdquo;</p>
@@ -242,7 +242,7 @@ export default function AdminTestimonials() {
                     <div className="flex items-center gap-2 h-10">
                       {[1, 2, 3, 4, 5].map((n) => (
                         <button key={n} type="button" onClick={() => setForm({ ...form, rating: n })}>
-                          <Star className={cn('h-6 w-6 transition-colors', n <= form.rating ? 'fill-yellow-500 text-yellow-500' : 'text-text-muted')} />
+                          <Star className={cn('h-6 w-6 transition-colors', n <= form.rating ? 'fill-gold text-gold' : 'text-text-muted')} />
                         </button>
                       ))}
                     </div>

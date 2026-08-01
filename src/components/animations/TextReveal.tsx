@@ -14,10 +14,10 @@ interface TextRevealProps {
 }
 
 const directionMap: Record<Direction, Record<string, number>> = {
-  up: { y: 40 },
-  down: { y: -40 },
-  left: { x: 40 },
-  right: { x: -40 },
+  up: { y: 30 },
+  down: { y: -30 },
+  left: { x: 30 },
+  right: { x: -30 },
 }
 
 export default function TextReveal({
@@ -29,7 +29,7 @@ export default function TextReveal({
   direction = 'up',
 }: TextRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
 
   const words = text.split(' ')
 
@@ -53,8 +53,8 @@ export default function TextReveal({
       x: 0,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1],
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   }
@@ -71,7 +71,7 @@ export default function TextReveal({
         {words.map((word, i) => (
           <motion.span
             key={`${word}-${i}`}
-            className="inline-block"
+            className="inline-block will-change-transform"
             variants={childVariants}
           >
             {word}{i < words.length - 1 ? '\u00A0' : ''}

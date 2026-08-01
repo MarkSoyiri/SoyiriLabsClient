@@ -122,14 +122,12 @@ const technologies = ['All', 'React', 'Express.js', 'Node.js', 'MongoDB', 'Tailw
 const years = ['All', '2025', '2026']
 
 const thumbnailGradients = [
-  'from-accent to-purple-500',
-  'from-cyan-500 to-blue-600',
-  'from-green-500 to-emerald-600',
-  'from-pink-500 to-rose-600',
-  'from-amber-500 to-orange-600',
-  'from-violet-500 to-indigo-600',
-  'from-blue-500 to-cyan-600',
-  'from-red-500 to-pink-600',
+  'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  'from-[#2a2a38] via-[#202030] to-[#131319]',
+  'from-[#332b1f] via-[#262019] to-[#17130e]',
+  'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  'from-[#2f2330] via-[#241b26] to-[#141114]',
 ]
 
 interface FilterState {

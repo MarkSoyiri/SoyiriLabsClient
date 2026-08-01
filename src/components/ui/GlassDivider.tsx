@@ -8,7 +8,7 @@ export function GlassDivider({ className }: GlassDividerProps) {
   return (
     <div
       className={cn(
-        'mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-accent/50 to-transparent',
+        'mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-white/12 to-transparent',
         className,
       )}
     />

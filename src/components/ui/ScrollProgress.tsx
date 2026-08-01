@@ -10,7 +10,7 @@ interface ScrollProgressProps {
 export function ScrollProgress({ className }: ScrollProgressProps) {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   })
@@ -19,7 +19,7 @@ export function ScrollProgress({ className }: ScrollProgressProps) {
     <motion.div
       style={{ scaleX }}
       className={cn(
-        'fixed left-0 top-0 z-50 h-[3px] origin-left bg-gradient-to-r from-accent via-purple-500 to-accent-light',
+        'fixed left-0 top-0 z-[70] h-[2px] origin-left bg-gradient-to-r from-accent-dark via-accent to-accent-light',
         className,
       )}
     />

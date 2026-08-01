@@ -172,8 +172,8 @@ function BackgroundGradient() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute -left-[20%] -top-[20%] h-[60%] w-[60%] rounded-full bg-accent/10 blur-[60px] md:blur-[120px]" />
-      <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-purple-500/8 blur-[50px] md:blur-[100px]" />
-      <div className="absolute -bottom-[20%] left-[30%] h-[50%] w-[50%] rounded-full bg-blue-500/8 blur-[50px] md:blur-[100px]" />
+      <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-gold/6 blur-[50px] md:blur-[100px]" />
+      <div className="absolute -bottom-[20%] left-[30%] h-[50%] w-[50%] rounded-full bg-accent-light/5 blur-[50px] md:blur-[100px]" />
     </div>
   )
 }
@@ -213,7 +213,7 @@ function HeroSection() {
           <div className="flex flex-col items-center text-center">
             <Reveal delay={0.1}>
               <div className="glass mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm">
-                <span className="h-2 w-2 rounded-full bg-gradient-to-r from-accent to-purple-500" />
+                <span className="h-2 w-2 rounded-full bg-gradient-to-r from-accent to-gold" />
                 <span className="text-text-muted">Welcome to Soyiri Labs</span>
               </div>
             </Reveal>
@@ -337,12 +337,12 @@ function ServicesSection() {
 }
 
 const gradients = [
-  'from-blue-600 to-indigo-600',
-  'from-purple-600 to-pink-600',
-  'from-emerald-600 to-teal-600',
-  'from-orange-600 to-red-600',
-  'from-cyan-600 to-blue-600',
-  'from-rose-600 to-purple-600',
+  'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  'from-[#2a2a38] via-[#202030] to-[#131319]',
+  'from-[#332b1f] via-[#262019] to-[#17130e]',
+  'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  'from-[#2f2330] via-[#241b26] to-[#141114]',
 ] as const
 
 function FeaturedProjectsSection() {
@@ -536,7 +536,7 @@ function ProcessSection() {
         </Reveal>
 
         <div className="relative mt-20">
-          <div className="absolute bottom-0 left-6 top-0 hidden w-px bg-gradient-to-b from-accent via-purple-500/50 to-transparent md:block" />
+          <div className="absolute bottom-0 left-6 top-0 hidden w-px bg-gradient-to-b from-accent via-gold/40 to-transparent md:block" />
 
           <div className="space-y-12 md:space-y-16">
             {processSteps.map((step, i) => (
@@ -592,7 +592,7 @@ function TestimonialsSection() {
                   </p>
                   <div className="mb-4 flex gap-1">
                     {Array.from({ length: testimonial.rating }).map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                      <Star key={j} className="h-4 w-4 fill-gold text-gold" />
                     ))}
                   </div>
                   <div className="border-t border-border pt-4">
@@ -652,7 +652,7 @@ function CTASection() {
       <div className="container-premium relative z-10">
         <Reveal>
           <Card className="relative overflow-hidden text-center">
-            <div className="pointer-events-none absolute -inset-px bg-gradient-to-br from-accent/10 via-purple-500/5 to-transparent opacity-50" />
+            <div className="pointer-events-none absolute -inset-px bg-gradient-to-br from-accent/10 via-gold/5 to-transparent opacity-50" />
             <div className="relative z-10 py-8 md:py-12">
               <h2 className="mb-4 text-3xl font-bold tracking-tight text-text md:text-4xl lg:text-5xl">
                 Ready to Build Something Amazing?

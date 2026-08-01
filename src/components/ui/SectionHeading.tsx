@@ -14,16 +14,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.12 },
   },
 } as const
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 22 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   },
 } as const
 
@@ -34,6 +34,8 @@ export function SectionHeading({
   align = 'center',
   className,
 }: SectionHeadingProps) {
+  const isCenter = align === 'center'
+
   return (
     <motion.div
       variants={containerVariants}
@@ -42,28 +44,36 @@ export function SectionHeading({
       viewport={{ once: true, margin: '-60px' }}
       className={cn(
         'max-w-2xl',
-        align === 'center' && 'mx-auto text-center',
+        isCenter && 'mx-auto text-center',
         className,
       )}
     >
       {label && (
-        <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gradient-to-r from-accent to-purple-500" />
-          <span className="text-xs font-medium uppercase tracking-widest text-text-muted">
-            {label}
-          </span>
+        <motion.div
+          variants={itemVariants}
+          className={cn(
+            'eyebrow mb-4 flex items-center gap-2.5 text-accent',
+            isCenter && 'justify-center',
+          )}
+        >
+          <span className="inline-block h-px w-6 bg-accent/50" />
+          <span className="text-text-muted">{label}</span>
+          {isCenter && <span className="inline-block h-px w-6 bg-accent/50" />}
         </motion.div>
       )}
       <motion.h2
         variants={itemVariants}
-        className="text-3xl font-bold tracking-tight text-text md:text-4xl lg:text-5xl"
+        className="text-3xl font-semibold tracking-[-0.02em] text-text text-balance md:text-4xl lg:text-[2.75rem] lg:leading-[1.08]"
       >
         {title}
       </motion.h2>
       {description && (
         <motion.div
           variants={itemVariants}
-          className="mt-4 text-base leading-relaxed text-text-secondary md:text-lg"
+          className={cn(
+            'mt-5 text-base leading-relaxed text-text-secondary md:text-lg',
+            isCenter && 'mx-auto',
+          )}
         >
           {description}
         </motion.div>

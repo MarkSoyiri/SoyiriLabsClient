@@ -23,14 +23,16 @@ export function Card({
 }: CardProps) {
   return (
     <motion.div
-      whileHover={hover ? { y: -6 } : undefined}
+      whileHover={hover ? { y: -4 } : undefined}
       onClick={onClick}
       className={cn(
-        solid ? 'glass-solid' : 'glass',
-        'rounded-2xl p-6 transition-colors duration-300 min-w-0',
-        hover && 'glass-hover cursor-pointer',
+        solid
+          ? 'bg-secondary'
+          : 'bg-gradient-to-b from-white/[0.04] to-white/[0.012]',
+        'rounded-2xl p-6 min-w-0 border border-border shadow-card transition-colors duration-300',
+        hover && 'cursor-pointer hover:border-border-light',
         glow && 'glow',
-        border && 'gradient-border',
+        border && 'gradient-border border-accent/20',
         className,
       )}
     >

@@ -28,13 +28,13 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative">
+    <footer className="relative border-t border-border/60">
       <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary pointer-events-none" />
 
       <div className="relative container-premium px-4 pt-20 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
               <img src={logoSrc} alt="Soyiri Labs" className="h-12 w-auto" />
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -57,15 +57,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text mb-6">
-              Quick Links
-            </h3>
+            <h3 className="eyebrow mb-6 text-text-muted">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-sm text-text-secondary hover:text-accent transition-colors duration-300"
+                    className="group text-sm text-text-secondary hover:text-text transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -75,15 +73,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text mb-6">
-              Services
-            </h3>
+            <h3 className="eyebrow mb-6 text-text-muted">Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.path}>
                   <Link
                     to={service.path}
-                    className="text-sm text-text-secondary hover:text-accent transition-colors duration-300"
+                    className="group text-sm text-text-secondary hover:text-text transition-colors duration-300"
                   >
                     {service.name}
                   </Link>
@@ -94,9 +90,7 @@ export default function Footer() {
 
           <div className="space-y-8">
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-text mb-6">
-                Contact Us
-              </h3>
+              <h3 className="eyebrow mb-6 text-text-muted">Contact Us</h3>
               <div className="space-y-3">
                 <a
                   href="mailto:hello@soyirilabs.com"
@@ -133,11 +127,12 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 min-w-0 px-4 py-2.5 text-sm rounded-lg bg-glass-light border border-border text-text placeholder-text-muted focus:outline-none focus:border-accent/50 transition-colors duration-300"
+                  className="flex-1 min-w-0 px-4 py-2.5 text-sm rounded-lg bg-white/[0.04] border border-border text-text placeholder-text-muted focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-colors duration-300"
                 />
                 <button
                   type="submit"
                   className="flex items-center justify-center p-2.5 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors duration-300 shrink-0"
+                  aria-label="Subscribe"
                 >
                   <ArrowRight size={16} />
                 </button>
@@ -146,7 +141,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent my-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-border-light/60 to-transparent my-8" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted">

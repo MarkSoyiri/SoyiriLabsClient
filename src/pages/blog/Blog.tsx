@@ -113,11 +113,11 @@ const DEMO_POSTS: BlogPost[] = [
 const categories = ['All', 'Frontend', 'Backend', 'Design', 'AI & ML', 'DevOps']
 
 const categoryGradients: Record<string, string> = {
-  Frontend: 'from-blue-500 to-cyan-600',
-  Backend: 'from-accent to-purple-500',
-  Design: 'from-pink-500 to-rose-600',
-  'AI & ML': 'from-green-500 to-emerald-600',
-  DevOps: 'from-amber-500 to-orange-600',
+  Frontend: 'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  Backend: 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  Design: 'from-[#2f2330] via-[#241b26] to-[#141114]',
+  'AI & ML': 'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  DevOps: 'from-[#332b1f] via-[#262019] to-[#17130e]',
 }
 
 const POSTS_PER_PAGE = 4
@@ -264,7 +264,7 @@ export default function Blog() {
               <div className="grid gap-6 md:grid-cols-2">
                 <AnimatePresence mode="popLayout">
                   {visiblePosts.map((post, index) => {
-                    const gradient = categoryGradients[post.category] || 'from-accent to-purple-500'
+                    const gradient = categoryGradients[post.category] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]'
                     return (
                       <motion.div
                         key={post._id}

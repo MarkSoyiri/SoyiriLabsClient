@@ -3,13 +3,13 @@ import { cn } from '@/lib/utils'
 
 interface FloatingElement {
   id: number
-  type: 'circle' | 'square'
   size: number
   x: number
   y: number
   duration: number
   delay: number
   color: string
+  opacity: number
 }
 
 interface FloatingElementsProps {
@@ -19,15 +19,16 @@ interface FloatingElementsProps {
 }
 
 function createElements(count: number, colors: string[], maxSize: number): FloatingElement[] {
+  const alphas = [0.07, 0.05, 0.04, 0.06]
   return Array.from({ length: count }, (_, i) => ({
     id: i,
-    type: i % 3 === 0 ? 'square' : 'circle',
-    size: Math.random() * maxSize + Math.max(20, maxSize * 0.25),
+    size: Math.random() * maxSize + Math.max(120, maxSize * 0.6),
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 20 + 15,
+    duration: Math.random() * 18 + 20,
     delay: Math.random() * -20,
     color: colors[Math.floor(Math.random() * colors.length)],
+    opacity: alphas[i % alphas.length],
   }))
 }
 
@@ -45,19 +46,19 @@ function useIsMobile() {
 }
 
 export default function FloatingElements({
-  count = 8,
+  count = 6,
   className,
   colors = [
-    'rgba(99, 102, 241, 0.07)',
-    'rgba(168, 85, 247, 0.05)',
-    'rgba(236, 72, 153, 0.05)',
-    'rgba(59, 130, 246, 0.06)',
+    'rgba(139, 131, 255, 0.5)',
+    'rgba(216, 182, 115, 0.4)',
+    'rgba(168, 162, 255, 0.35)',
+    'rgba(255, 255, 255, 0.25)',
   ],
 }: FloatingElementsProps) {
   const isMobile = useIsMobile()
-  const effectiveCount = isMobile ? Math.max(3, Math.ceil(count / 2)) : count
+  const effectiveCount = isMobile ? Math.max(2, Math.ceil(count / 2)) : count
   const elements = useMemo(
-    () => createElements(effectiveCount, colors, isMobile ? 72 : 160),
+    () => createElements(effectiveCount, colors, isMobile ? 140 : 240),
     [effectiveCount, colors, isMobile],
   )
 
@@ -66,15 +67,16 @@ export default function FloatingElements({
       {elements.map((el) => (
         <div
           key={el.id}
-          className="absolute"
+          className="absolute rounded-full"
           style={{
             width: el.size,
             height: el.size,
             left: `${el.x}%`,
             top: `${el.y}%`,
-            borderRadius: el.type === 'circle' ? '50%' : '20%',
             background: el.color,
-            animation: `float ${el.duration}s ease-in-out ${el.delay}s infinite alternate`,
+            opacity: el.opacity,
+            filter: 'blur(64px)',
+            animation: `float ${el.duration}s ease-in-out ${el.delay}s infinite`,
             willChange: 'transform',
           }}
         />

@@ -14,9 +14,9 @@ import { cn, getImageUrl, slugify, toArray } from '@/lib/utils'
 import type { Project } from '@/types'
 
 const statusColors: Record<string, string> = {
-  completed: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-  'in-progress': 'text-amber-400 bg-amber-400/10 border-amber-400/20',
-  maintenance: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+  completed: 'text-success bg-success/10 border-success/20',
+  'in-progress': 'text-warning bg-warning/10 border-warning/20',
+  maintenance: 'text-accent-light bg-accent/10 border-accent/20',
 }
 
 interface FormData {
@@ -43,7 +43,7 @@ const emptyForm: FormData = {
   title: '', description: '', clientName: '', industry: '',
   technologies: '', liveUrl: '', githubUrl: '', featured: false,
   completionYear: new Date().getFullYear(), servicesProvided: '',
-  colorTheme: '#6366f1', status: 'completed', seoTitle: '',
+  colorTheme: '#8b83ff', status: 'completed', seoTitle: '',
   seoDescription: '', challenges: '', solution: '', results: '',
 }
 
@@ -99,7 +99,7 @@ export default function AdminProjects() {
       featured: project.featured,
       completionYear: project.completionYear,
       servicesProvided: project.servicesProvided.join(', '),
-      colorTheme: project.colorTheme || '#6366f1',
+      colorTheme: project.colorTheme || '#8b83ff',
       status: project.status,
       seoTitle: project.seoTitle || '',
       seoDescription: project.seoDescription || '',

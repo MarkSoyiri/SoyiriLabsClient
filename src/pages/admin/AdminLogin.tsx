@@ -40,10 +40,10 @@ export default function AdminLogin() {
         <title>Admin Login | Soyiri Labs</title>
       </Helmet>
 
-      <div className="relative min-h-screen bg-[#0a0a0f] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-screen bg-primary flex items-center justify-center overflow-hidden">
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div className="absolute -left-[20%] -top-[20%] h-[60%] w-[60%] rounded-full bg-accent/10 blur-[120px]" />
-          <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-purple-500/8 blur-[100px]" />
+          <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-gold/8 blur-[100px]" />
         </div>
 
         <motion.div

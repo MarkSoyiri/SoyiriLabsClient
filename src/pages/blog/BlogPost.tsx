@@ -224,11 +224,11 @@ const DEMO_POSTS: BlogPost[] = [
 ]
 
 const categoryGradients: Record<string, string> = {
-  Frontend: 'from-blue-500 to-cyan-600',
-  Backend: 'from-accent to-purple-500',
-  Design: 'from-pink-500 to-rose-600',
-  'AI & ML': 'from-green-500 to-emerald-600',
-  DevOps: 'from-amber-500 to-orange-600',
+  Frontend: 'from-[#26304a] via-[#1d2438] to-[#11141f]',
+  Backend: 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
+  Design: 'from-[#2f2330] via-[#241b26] to-[#141114]',
+  'AI & ML': 'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
+  DevOps: 'from-[#332b1f] via-[#262019] to-[#17130e]',
 }
 
 function BlogPostSkeleton() {
@@ -326,7 +326,7 @@ export default function BlogPost() {
     )
   }
 
-  const gradient = categoryGradients[post.category] || 'from-accent to-purple-500'
+  const gradient = categoryGradients[post.category] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]'
 
   return (
     <>
@@ -471,7 +471,7 @@ export default function BlogPost() {
                       <div className="glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
                         <div className={cn(
                           'h-36 bg-gradient-to-br flex items-center justify-center',
-                          categoryGradients[r.category] || 'from-accent to-purple-500',
+                          categoryGradients[r.category] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
                         )}>
                           <span className="text-white/20 text-3xl font-black select-none">{r.category}</span>
                         </div>

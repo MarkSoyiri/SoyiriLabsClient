@@ -14,10 +14,10 @@ interface RevealProps {
 }
 
 const directionVariants: Record<Direction, { x?: number; y?: number }> = {
-  up: { y: 60 },
-  down: { y: -60 },
-  left: { x: 60 },
-  right: { x: -60 },
+  up: { y: 40 },
+  down: { y: -40 },
+  left: { x: 40 },
+  right: { x: -40 },
 }
 
 export default function Reveal({
@@ -25,11 +25,11 @@ export default function Reveal({
   className,
   direction = 'up',
   delay = 0,
-  duration = 0.6,
+  duration = 0.7,
   stagger = 0,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
 
   const offset = directionVariants[direction]
 
@@ -46,7 +46,7 @@ export default function Reveal({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.4, 0.25, 1],
+        ease: [0.22, 1, 0.36, 1],
         staggerChildren: stagger > 0 ? stagger : undefined,
       },
     },
