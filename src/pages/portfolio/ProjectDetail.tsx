@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, ExternalLink, Code2, Calendar, Building2, Lightbulb, Target, Trophy } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import { Skeleton } from '@/components/ui/Skeleton'
 import Reveal from '@/components/animations/Reveal'
-import ParallaxTilt from '@/components/animations/ParallaxTilt'
 import { projectsApi } from '@/lib/api'
 import { cn, formatDate } from '@/lib/utils'
 import type { Project } from '@/types'
@@ -156,15 +153,17 @@ const gradientMap: Record<string, string> = {
 
 function ProjectSkeleton() {
   return (
-    <div className="container-premium section-padding">
-      <Skeleton className="h-6 w-32 mb-8" />
-      <Skeleton className="h-64 w-full rounded-2xl mb-8" />
-      <div className="space-y-4 max-w-3xl">
-        <Skeleton className="h-10 w-3/4" />
-        <Skeleton className="h-5 w-1/2" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-2/3" />
+    <div className="tile-light">
+      <div className="container-site px-4 py-16">
+        <Skeleton className="mb-8 h-6 w-32" />
+        <Skeleton className="mb-8 h-64 w-full rounded-[18px]" />
+        <div className="max-w-3xl space-y-4">
+          <Skeleton className="h-10 w-3/4" />
+          <Skeleton className="h-5 w-1/2" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+        </div>
       </div>
     </div>
   )
@@ -211,16 +210,18 @@ export default function ProjectDetail() {
 
   if (error || !project) {
     return (
-      <div className="container-premium section-padding text-center">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full glass flex items-center justify-center">
-          <Target className="h-8 w-8 text-text-muted" />
+      <div className="tile-light text-center">
+        <div className="container-site px-4 py-24">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-canvas shadow-hard-sm">
+            <Target className="h-8 w-8 text-ink-48" />
+          </div>
+          <h2 className="mb-2 text-2xl font-bold text-ink">Project Not Found</h2>
+          <p className="mb-6 text-ink-80">{error || 'The project you\'re looking for doesn\'t exist.'}</p>
+          <Button variant="primary" href="/portfolio">
+            <ArrowLeft className="h-4 w-4 shrink-0" />
+            Back to Portfolio
+          </Button>
         </div>
-        <h2 className="text-2xl font-bold text-text mb-2">Project Not Found</h2>
-        <p className="text-text-secondary mb-6">{error || 'The project you\'re looking for doesn\'t exist.'}</p>
-        <Button variant="primary" href="/portfolio">
-          <ArrowLeft className="h-4 w-4 shrink-0" />
-          Back to Portfolio
-        </Button>
       </div>
     )
   }
@@ -234,66 +235,70 @@ export default function ProjectDetail() {
         <meta name="description" content={project.seoDescription || project.description} />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-14 pb-16 md:pt-24 md:pb-20">
-        <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5 pointer-events-none', gradient)} />
-        <div className="container-premium section-padding pt-0 pb-0">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-24 right-[-10%] h-[460px] w-[460px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-20%] left-[-10%] h-[420px] w-[420px] blob-violet" />
+        <div className={cn('pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-gradient-to-br opacity-5', gradient)} />
+        <div className="relative container-site px-4 py-14 md:py-20">
           <Reveal>
-            <Link to="/portfolio" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
+            <Link to="/portfolio" className="mb-8 inline-flex items-center gap-2 text-ink-48 transition-colors hover:text-action">
               <ArrowLeft className="h-4 w-4 shrink-0" />
-              <span className="text-sm font-medium">Back to Portfolio</span>
+              <span className="text-[15px] font-medium">Back to Portfolio</span>
             </Link>
           </Reveal>
-          <div className="grid lg:grid-cols-3 gap-10 items-start">
+          <div className="grid items-start gap-10 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <Reveal delay={0.1}>
-                <div className="flex flex-wrap items-center gap-3 mb-4">
+                <div className="mb-4 flex flex-wrap items-center gap-3">
                   <span className={cn(
-                    'text-xs font-medium px-3 py-1 rounded-full glass text-accent-light',
-                    project.status === 'completed' && 'text-success',
-                    project.status === 'in-progress' && 'text-warning',
-                    project.status === 'maintenance' && 'text-accent',
+                    'rounded-full px-3 py-1 text-xs font-semibold',
+                    project.status === 'completed' && 'bg-success/10 text-success',
+                    project.status === 'in-progress' && 'bg-warning/10 text-warning',
+                    project.status === 'maintenance' && 'bg-action/10 text-action',
                   )}>
                     {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
                   </span>
-                  <span className="text-xs text-text-muted">{project.industry}</span>
-                  <span className="text-xs text-text-muted">·</span>
-                  <span className="text-xs text-text-muted">{project.completionYear}</span>
+                  <span className="text-caption text-ink-48">{project.industry}</span>
+                  <span className="text-ink-48">·</span>
+                  <span className="text-caption text-ink-48">{project.completionYear}</span>
                 </div>
               </Reveal>
               <Reveal delay={0.15}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text mb-4">
+                <h1 className="mb-4 text-4xl font-bold tracking-tight text-ink md:text-5xl lg:text-6xl">
                   {project.title}
+                  <span className="text-action">.</span>
                 </h1>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="text-lg text-text-secondary leading-relaxed">{project.description}</p>
+                <p className="text-lg leading-relaxed text-ink-80">{project.description}</p>
               </Reveal>
             </div>
-            <div className="glass rounded-2xl p-6 space-y-4">
+            <div className="rounded-2xl border-2 border-ink bg-canvas p-6 shadow-hard">
               <Reveal delay={0.25}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg glass flex items-center justify-center shrink-0">
-                    <Building2 className="h-5 w-5 text-accent" />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-action/10">
+                    <Building2 className="h-5 w-5 text-action" />
                   </div>
                   <div>
-                    <span className="block text-xs text-text-muted">Client</span>
-                    <span className="text-sm font-medium text-text">{project.clientName}</span>
+                    <span className="block text-caption text-ink-48">Client</span>
+                    <span className="text-[15px] font-medium text-ink">{project.clientName}</span>
                   </div>
                 </div>
               </Reveal>
-              <GlassDivider />
+              <div className="my-5 h-px bg-ink/15" />
               <Reveal delay={0.3}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg glass flex items-center justify-center shrink-0">
-                    <Calendar className="h-5 w-5 text-accent" />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10">
+                    <Calendar className="h-5 w-5 text-violet" />
                   </div>
                   <div>
-                    <span className="block text-xs text-text-muted">Completed</span>
-                    <span className="text-sm font-medium text-text">{formatDate(project.createdAt)}</span>
+                    <span className="block text-caption text-ink-48">Completed</span>
+                    <span className="text-[15px] font-medium text-ink">{formatDate(project.createdAt)}</span>
                   </div>
                 </div>
               </Reveal>
-              <GlassDivider />
+              <div className="my-5 h-px bg-ink/15" />
               <Reveal delay={0.35}>
                 <div className="flex gap-3">
                   {project.liveUrl && (
@@ -315,16 +320,17 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      <section className="section-padding pt-0">
-        <div className="container-premium">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+      <section className="tile-dark tile relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+        <div className="relative container-site px-4">
+          <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {project.gallery.map((img, i) => (
               <Reveal key={i} delay={i * 0.05}>
                 <div className={cn(
-                  'relative h-56 rounded-2xl overflow-hidden group cursor-pointer',
+                  'group relative h-56 cursor-pointer overflow-hidden rounded-2xl border border-white/10',
                   !img && 'bg-gradient-to-br',
                   !img && gradient,
-                  i === 0 && 'md:col-span-2 md:row-span-2 h-72 md:h-80',
+                  i === 0 && 'h-72 md:col-span-2 md:row-span-2 md:h-80',
                 )}>
                   {img ? (
                     <img
@@ -334,27 +340,27 @@ export default function ProjectDetail() {
                     />
                   ) : (
                     <>
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+                      <div className="pointer-events-none absolute inset-0 bg-black/20 transition-colors duration-300 group-hover:bg-black/10" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-white/20 text-8xl font-black tracking-tight select-none">{i + 1}</span>
+                        <span className="select-none font-display text-8xl font-bold tracking-tight text-white/15">{i + 1}</span>
                       </div>
                     </>
                   )}
-                  <div className="absolute bottom-4 left-4 glass rounded-lg px-3 py-1.5">
-                    <span className="text-xs text-text">Screenshot {i + 1}</span>
+                  <div className="absolute bottom-4 left-4 rounded-lg bg-tile-1/80 px-3 py-1.5 backdrop-blur">
+                    <span className="text-xs text-on-dark-muted">Screenshot {i + 1}</span>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="mx-auto max-w-4xl space-y-12">
             <Reveal>
-              <div className="glass rounded-2xl p-8">
-                <h2 className="text-xl font-semibold text-text mb-4">Services Provided</h2>
+              <div className="rounded-2xl border border-white/10 bg-tile-2 p-8">
+                <h2 className="mb-4 text-xl font-semibold text-on-dark">Services Provided</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.servicesProvided.map((s) => (
-                    <span key={s} className="px-3 py-1.5 rounded-lg glass text-sm text-text-secondary">
+                    <span key={s} className="rounded-lg border border-white/12 bg-white/10 px-3 py-1.5 text-sm text-on-dark-muted">
                       {s}
                     </span>
                   ))}
@@ -364,12 +370,12 @@ export default function ProjectDetail() {
 
             <Reveal>
               <div>
-                <h2 className="text-xl font-semibold text-text mb-4">Technologies Used</h2>
+                <h2 className="mb-4 text-xl font-semibold text-on-dark">Technologies Used</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-4 py-2 rounded-full glass text-sm text-text-secondary border border-accent/20 hover:border-accent/40 transition-colors"
+                      className="rounded-full border border-white/12 bg-tile-2 px-4 py-2 text-sm text-on-dark-muted transition-colors hover:border-action-sky/50 hover:text-on-dark"
                     >
                       {tech}
                     </span>
@@ -380,48 +386,48 @@ export default function ProjectDetail() {
 
             {project.challenges && (
               <Reveal>
-                <div className="glass rounded-2xl p-8 border-l-4 border-warning">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg glass flex items-center justify-center">
+                <div className="rounded-2xl border border-white/10 border-l-4 border-l-warning bg-tile-2 p-8">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-warning/15">
                       <Lightbulb className="h-5 w-5 text-warning" />
                     </div>
-                    <h2 className="text-xl font-semibold text-text">The Challenge</h2>
+                    <h2 className="text-xl font-semibold text-on-dark">The Challenge</h2>
                   </div>
-                  <p className="text-text-secondary leading-relaxed">{project.challenges}</p>
+                  <p className="leading-relaxed text-on-dark-muted">{project.challenges}</p>
                 </div>
               </Reveal>
             )}
 
             {project.solution && (
               <Reveal>
-                <div className="glass rounded-2xl p-8 border-l-4 border-accent">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg glass flex items-center justify-center">
-                      <Target className="h-5 w-5 text-accent" />
+                <div className="rounded-2xl border border-white/10 border-l-4 border-l-action bg-tile-2 p-8">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-action/15">
+                      <Target className="h-5 w-5 text-action-sky" />
                     </div>
-                    <h2 className="text-xl font-semibold text-text">Our Solution</h2>
+                    <h2 className="text-xl font-semibold text-on-dark">Our Solution</h2>
                   </div>
-                  <p className="text-text-secondary leading-relaxed">{project.solution}</p>
+                  <p className="leading-relaxed text-on-dark-muted">{project.solution}</p>
                 </div>
               </Reveal>
             )}
 
             {project.results && (
               <Reveal>
-                <div className="glass rounded-2xl p-8 border-l-4 border-success">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg glass flex items-center justify-center">
+                <div className="rounded-2xl border border-white/10 border-l-4 border-l-success bg-tile-2 p-8">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-success/15">
                       <Trophy className="h-5 w-5 text-success" />
                     </div>
-                    <h2 className="text-xl font-semibold text-text">The Results</h2>
+                    <h2 className="text-xl font-semibold text-on-dark">The Results</h2>
                   </div>
-                  <p className="text-text-secondary leading-relaxed">{project.results}</p>
+                  <p className="leading-relaxed text-on-dark-muted">{project.results}</p>
                 </div>
               </Reveal>
             )}
 
             <Reveal>
-              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+              <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
                 {project.liveUrl && (
                   <Button variant="primary" size="lg" href={project.liveUrl} className="text-sm md:text-lg">
                     <ExternalLink className="h-5 w-5 shrink-0" />
@@ -438,33 +444,34 @@ export default function ProjectDetail() {
 
           {related.length > 0 && (
             <div className="mt-20">
-              <GlassDivider className="mb-12" />
+              <div className="mb-12 h-px bg-white/10" />
               <SectionHeading
                 label="Explore More"
-                title="Related Projects"
+                title={
+                  <>
+                    Related <span className="text-serif-accent text-action-sky">projects</span>
+                  </>
+                }
                 description="Check out more projects in the same industry."
+                onDark
               />
-              <div className="grid md:grid-cols-3 gap-6 mt-10">
+              <div className="mt-10 grid gap-6 md:grid-cols-3">
                 {related.map((r, i) => (
                   <Reveal key={r._id} delay={i * 0.05}>
-                    <ParallaxTilt intensity={8}>
-                      <Link to={`/portfolio/${r.slug}`} className="block group">
+                    <Link to={`/portfolio/${r.slug}`} className="group block">
+                      <div className="overflow-hidden rounded-2xl border border-white/10 bg-tile-2 transition-colors duration-300 hover:border-white/25">
                         <div className={cn(
-                          'glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30',
+                          'flex h-36 items-center justify-center bg-gradient-to-br',
+                          gradientMap[r.industry] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
                         )}>
-                          <div className={cn(
-                            'h-36 bg-gradient-to-br flex items-center justify-center',
-                            gradientMap[r.industry] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
-                          )}>
-                            <span className="text-white/20 text-4xl font-black select-none">{r.title.charAt(0)}</span>
-                          </div>
-                          <div className="p-5">
-                            <h3 className="text-base font-semibold text-text mb-1 group-hover:text-accent transition-colors">{r.title}</h3>
-                            <p className="text-sm text-text-secondary line-clamp-2">{r.description}</p>
-                          </div>
+                          <span className="select-none font-display text-4xl font-bold text-white/20">{r.title.charAt(0)}</span>
                         </div>
-                      </Link>
-                    </ParallaxTilt>
+                        <div className="p-5">
+                          <h3 className="mb-1 text-base font-semibold text-on-dark transition-colors group-hover:text-action-sky">{r.title}</h3>
+                          <p className="line-clamp-2 text-sm text-on-dark-muted">{r.description}</p>
+                        </div>
+                      </div>
+                    </Link>
                   </Reveal>
                 ))}
               </div>

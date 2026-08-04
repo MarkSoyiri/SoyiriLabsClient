@@ -21,9 +21,6 @@ import {
   Rocket,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { Card } from '@/components/ui/Card'
-import { SectionHeading } from '@/components/ui/SectionHeading'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import Reveal from '@/components/animations/Reveal'
 import TextReveal from '@/components/animations/TextReveal'
 
@@ -435,8 +432,8 @@ export default function ServiceDetail() {
         <Helmet>
           <title>Service Not Found | Soyiri Labs</title>
         </Helmet>
-        <h1 className="mb-4 text-4xl font-bold text-text">Service Not Found</h1>
-        <p className="mb-8 text-text-secondary">
+        <h1 className="mb-4 text-display-md text-ink">Service Not Found</h1>
+        <p className="mb-8 text-ink-80">
           The service you are looking for does not exist or may have been moved.
         </p>
         <Button href="/services" variant="primary">
@@ -458,16 +455,15 @@ export default function ServiceDetail() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pb-20 pt-14 md:pb-32 md:pt-24">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
-          <div className="absolute right-0 top-1/3 h-[300px] w-[300px] rounded-full bg-gold/8 blur-[100px]" />
-        </div>
-        <div className="container-premium px-4">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[440px] w-[440px] blob-violet" />
+        <div className="relative container-site px-4 pb-20 pt-14 md:pb-28 md:pt-24">
           <Reveal>
             <Link
               to="/services"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-accent-light"
+              className="mb-8 inline-flex items-center gap-2 text-[15px] text-ink-48 transition-colors hover:text-action"
             >
               <ArrowRight className="h-4 w-4 shrink-0 rotate-180" />
               Back to Services
@@ -475,78 +471,81 @@ export default function ServiceDetail() {
           </Reveal>
           <div className="max-w-3xl">
             <Reveal>
-              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-sm text-accent-light">
-                <service.icon className="h-4 w-4" />
+              <span className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas/80 px-4 py-2 text-caption-strong text-ink shadow-hard-sm">
+                <service.icon className="h-4 w-4 text-action" />
                 {service.title}
               </span>
             </Reveal>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-text md:text-5xl lg:text-7xl">
+            <h1 className="mb-6 text-hero-display text-ink">
               <TextReveal text={service.title} />
             </h1>
             <Reveal delay={0.3}>
-              <p className="text-lg text-text-secondary md:text-xl">{service.tagline}</p>
+              <p className="max-w-2xl text-lead-airy text-ink-80">{service.tagline}</p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <GlassDivider />
-
       {/* Details */}
-      <section className="section-padding">
-        <div className="container-premium px-4">
+      <section className="tile-parchment tile">
+        <div className="container-site px-4">
           <div className="grid gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <Reveal>
-                <h2 className="mb-6 text-2xl font-bold text-text md:text-3xl">Overview</h2>
+                <h2 className="mb-6 text-display-md text-ink">
+                  Overview<span className="text-action">.</span>
+                </h2>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="mb-8 text-lg leading-relaxed text-text-secondary">{service.description}</p>
+                <p className="mb-6 leading-relaxed text-ink-80">{service.description}</p>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="mb-8 text-lg leading-relaxed text-text-secondary">{service.detailedDescription}</p>
+                <p className="mb-8 leading-relaxed text-ink-80">{service.detailedDescription}</p>
               </Reveal>
 
-              <GlassDivider className="my-10" />
+              <div className="my-10 h-px bg-ink/15" />
 
               {/* Features */}
               <Reveal>
-                <h2 className="mb-6 text-2xl font-bold text-text md:text-3xl">Key Features</h2>
+                <h2 className="mb-6 text-display-md text-ink">
+                  Key Features<span className="text-violet">.</span>
+                </h2>
               </Reveal>
               <div className="mb-10 grid gap-4 sm:grid-cols-2">
                 {service.features.map((feature, i) => (
                   <Reveal key={feature} delay={i * 0.05}>
-                    <div className="flex items-start gap-3 rounded-xl bg-glass p-4">
-                      <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-accent-light" />
-                      <span className="text-text-secondary">{feature}</span>
+                    <div className="flex items-start gap-3 rounded-xl border border-hairline bg-canvas p-4 transition-colors duration-300 hover:border-ink/30">
+                      <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-action" />
+                      <span className="text-[15px] leading-relaxed text-ink-80">{feature}</span>
                     </div>
                   </Reveal>
                 ))}
               </div>
 
-              <GlassDivider className="my-10" />
+              <div className="my-10 h-px bg-ink/15" />
 
               {/* Process */}
               <Reveal>
-                <h2 className="mb-6 text-2xl font-bold text-text md:text-3xl">
-                  Our Process
+                <h2 className="mb-6 text-display-md text-ink">
+                  Our Process<span className="text-cyan">.</span>
                 </h2>
               </Reveal>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {service.process.map((step, i) => (
                   <Reveal key={step.title} delay={i * 0.1}>
-                    <div className="relative flex gap-5 rounded-xl bg-glass p-5 md:p-6">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                        <step.icon className="h-6 w-6 text-accent-light" />
+                    <div className="relative flex gap-5 overflow-hidden rounded-2xl border border-hairline bg-canvas p-5 md:p-6">
+                      <span className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-7xl font-bold text-outline">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-action/10">
+                        <step.icon className="h-6 w-6 text-action" />
                       </div>
-                      <div className="flex-1">
-                        <div className="mb-1 flex items-center gap-2">
-                          <span className="text-xs font-semibold uppercase tracking-wider text-accent-light">
-                            Step {i + 1}
-                          </span>
-                        </div>
-                        <h3 className="mb-2 text-lg font-semibold text-text">{step.title}</h3>
-                        <p className="text-text-secondary leading-relaxed">{step.description}</p>
+                      <div className="relative flex-1">
+                        <span className="mb-1 inline-block text-caption-strong uppercase tracking-[0.14em] text-action">
+                          Step {i + 1}
+                        </span>
+                        <h3 className="mb-2 text-tagline text-ink">{step.title}</h3>
+                        <p className="leading-relaxed text-ink-80">{step.description}</p>
                       </div>
                     </div>
                   </Reveal>
@@ -558,10 +557,10 @@ export default function ServiceDetail() {
             <aside>
               <div className="sticky top-28">
                 <Reveal>
-                  <Card className="p-6">
+                  <div className="rounded-2xl border-2 border-ink bg-canvas p-6 shadow-hard">
                     <div className="mb-5 flex items-center gap-2">
-                      <Layers className="h-5 w-5 text-accent-light" />
-                      <h3 className="text-lg font-semibold text-text">Related Services</h3>
+                      <Layers className="h-5 w-5 text-action" />
+                      <h3 className="text-lg font-semibold text-ink">Related Services</h3>
                     </div>
                     <div className="space-y-3">
                       {relatedServices.length > 0 ? (
@@ -572,35 +571,35 @@ export default function ServiceDetail() {
                             <Link
                               key={related.slug}
                               to={`/services/${related.slug}`}
-                              className="group flex items-center gap-3 rounded-xl bg-glass-light p-3 transition-all duration-300 hover:bg-accent/10"
+                              className="group flex items-center gap-3 rounded-xl border border-hairline bg-canvas p-3 transition-colors duration-300 hover:border-action/40 hover:bg-action/5"
                             >
-                              <Icon className="h-5 w-5 text-accent-light" />
-                              <span className="text-sm font-medium text-text-secondary transition-colors group-hover:text-text">
+                              <Icon className="h-5 w-5 text-action" />
+                              <span className="text-[15px] font-medium text-ink-80 transition-colors group-hover:text-ink">
                                 {related.title}
                               </span>
                             </Link>
                           )
                         })
                       ) : (
-                        <p className="text-sm text-text-muted">No related services available.</p>
+                        <p className="text-sm text-ink-48">No related services available.</p>
                       )}
                     </div>
-                  </Card>
+                  </div>
                 </Reveal>
 
                 <Reveal delay={0.15}>
-                  <Card className="mt-6 p-6 text-center">
-                    <Clock className="mx-auto mb-4 h-8 w-8 text-accent-light" />
-                    <h3 className="mb-2 text-lg font-semibold text-text">
+                  <div className="mt-6 rounded-2xl border-2 border-ink bg-parchment p-6 text-center shadow-hard-sm">
+                    <Clock className="mx-auto mb-4 h-8 w-8 text-action" />
+                    <h3 className="mb-2 text-lg font-semibold text-ink">
                       Have a Project?
                     </h3>
-                    <p className="mb-6 text-sm text-text-secondary">
+                    <p className="mb-6 text-sm text-ink-80">
                       Tell us about your needs and we will craft a solution tailored to you.
                     </p>
                     <Button href="/contact" size="sm" className="w-full">
                       Get in Touch
                     </Button>
-                  </Card>
+                  </div>
                 </Reveal>
               </div>
             </aside>
@@ -608,31 +607,41 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      <GlassDivider />
-
       {/* CTA */}
-      <section className="section-padding">
-        <div className="container-premium px-4">
-          <Card glow border className="relative overflow-hidden p-10 text-center md:p-16">
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[80px]" />
-            </div>
-            <SectionHeading
-              title="Ready to Get Started?"
-              description={`Let us discuss how our ${service.title.toLowerCase()} service can help achieve your goals.`}
-            />
-            <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Button href="/contact" size="lg">
-                  Start Your Project
-                  <ArrowRight className="h-5 w-5 shrink-0" />
-                </Button>
-                <Button href="/portfolio" variant="secondary" size="lg">
-                  See Our Work
-                </Button>
+      <section className="tile-electric tile relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+        <div className="pointer-events-none absolute -left-24 top-1/2 h-[380px] w-[380px] -translate-y-1/2 blob-violet" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-[320px] w-[320px] blob-cyan" />
+        <div className="relative">
+          <div className="container-site px-4">
+            <Reveal>
+              <div className="text-center">
+                <h2 className="text-display-lg text-white text-balance">
+                  Ready to <span className="text-serif-accent">get started?</span>
+                </h2>
+                <p className="mx-auto mt-5 max-w-xl text-lead-airy text-white/80">
+                  Let us discuss how our {service.title.toLowerCase()} service can help achieve your goals.
+                </p>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+                  <Button
+                    href="/contact"
+                    size="lg"
+                    variant="white"
+                  >
+                    Start Your Project
+                    <ArrowRight className="h-5 w-5 shrink-0" />
+                  </Button>
+                  <Button
+                    href="/portfolio"
+                    variant="outline-light"
+                    size="lg"
+                  >
+                    See Our Work
+                  </Button>
+                </div>
               </div>
             </Reveal>
-          </Card>
+          </div>
         </div>
       </section>
     </>

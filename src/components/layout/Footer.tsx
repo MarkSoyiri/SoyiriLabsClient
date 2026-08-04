@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, ArrowRight, Code2, MessageCircle, Share2, Globe } from 'lucide-react'
-import logoSrc from '@/assets/image.png'
+import { Mail, Phone, MapPin, ArrowRight, ArrowUpRight, Code2, MessageCircle, Share2, Globe } from 'lucide-react'
+import logo from '@/assets/image.png'
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -28,27 +28,49 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-border/60">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary pointer-events-none" />
-
-      <div className="relative container-premium px-4 pt-20 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-              <img src={logoSrc} alt="Soyiri Labs" className="h-12 w-auto" />
-            </Link>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              We craft premium digital experiences that elevate brands and drive growth.
-              Our team combines creativity with cutting-edge technology.
+    <footer className="bg-tile-1 text-on-dark">
+      {/* Big CTA strip */}
+      <div className="border-b border-white/10">
+        <div className="container-wide flex flex-col items-start justify-between gap-8 px-4 py-16 md:flex-row md:items-center md:px-6 md:py-20">
+          <div>
+            <p className="mb-3 flex items-center gap-2 text-caption-strong uppercase tracking-[0.14em] text-on-dark-muted">
+              <span className="inline-block h-2 w-2 rounded-full bg-action-sky" />
+              Got a project in mind?
             </p>
-            <div className="flex items-center gap-3">
+            <h2 className="text-display-lg text-white">
+              Let's build something
+              <br />
+              <span className="text-serif-accent text-action-sky">great together.</span>
+            </h2>
+          </div>
+          <Link
+            to="/contact"
+            className="group inline-flex h-14 shrink-0 items-center gap-2 rounded-full bg-action px-9 text-button-large text-white transition-colors duration-200 hover:bg-action-focus"
+          >
+            Start a Project
+            <ArrowUpRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </div>
+
+      <div className="container-wide px-4 pt-14 pb-8 md:px-6">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-6">
+            <Link to="/" className="inline-flex transition-opacity hover:opacity-80">
+              <img src={logo} alt="Soyiri Labs" className="h-10 w-auto object-contain" />
+            </Link>
+            <p className="max-w-[26ch] text-[15px] leading-relaxed text-on-dark-muted">
+              We craft premium digital experiences that elevate brands and drive growth.
+            </p>
+            <div className="flex items-center gap-2.5">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center text-text-secondary hover:text-accent hover:border-accent/50 transition-all duration-300"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-on-dark-muted transition-colors duration-200 hover:border-action-sky hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Social link"
                 >
                   <social.icon size={18} />
                 </a>
@@ -57,13 +79,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="eyebrow mb-6 text-text-muted">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-on-dark-muted">Quick Links</h3>
+            <ul className="text-dense-link text-on-dark-muted">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="group text-sm text-text-secondary hover:text-text transition-colors duration-300"
+                    className="transition-colors duration-200 hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -73,13 +95,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="eyebrow mb-6 text-text-muted">Services</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-on-dark-muted">Services</h3>
+            <ul className="text-dense-link text-on-dark-muted">
               {services.map((service) => (
                 <li key={service.path}>
                   <Link
                     to={service.path}
-                    className="group text-sm text-text-secondary hover:text-text transition-colors duration-300"
+                    className="transition-colors duration-200 hover:text-white"
                   >
                     {service.name}
                   </Link>
@@ -88,36 +110,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h3 className="eyebrow mb-6 text-text-muted">Contact Us</h3>
-              <div className="space-y-3">
-                <a
-                  href="mailto:hello@soyirilabs.com"
-                  className="flex items-center gap-3 text-sm text-text-secondary hover:text-accent transition-colors duration-300"
-                >
-                  <Mail size={16} className="text-accent shrink-0" />
-                  hello@soyirilabs.com
-                </a>
-                <a
-                  href="tel:+233507478237"
-                  className="flex items-center gap-3 text-sm text-text-secondary hover:text-accent transition-colors duration-300"
-                >
-                  <Phone size={16} className="text-accent shrink-0" />
-                  +233 050 747 8237
-                </a>
-                <div className="flex items-start gap-3 text-sm text-text-secondary">
-                  <MapPin size={16} className="text-accent shrink-0 mt-0.5" />
-                  <span>Kumasi - Ashanti Region (Ghana)</span>
-                </div>
+          <div className="space-y-10">
+            <div className="space-y-3">
+              <h3 className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-on-dark-muted">Contact Us</h3>
+              <a
+                href="mailto:hello@soyirilabs.com"
+                className="flex items-center gap-3 text-[15px] text-on-dark-muted transition-colors duration-200 hover:text-white"
+              >
+                <Mail size={16} className="shrink-0 text-action-sky" />
+                hello@soyirilabs.com
+              </a>
+              <a
+                href="tel:+233507478237"
+                className="flex items-center gap-3 text-[15px] text-on-dark-muted transition-colors duration-200 hover:text-white"
+              >
+                <Phone size={16} className="shrink-0 text-action-sky" />
+                +233 050 747 8237
+              </a>
+              <div className="flex items-start gap-3 text-[15px] text-on-dark-muted">
+                <MapPin size={16} className="mt-1 shrink-0 text-action-sky" />
+                <span>Kumasi - Ashanti Region (Ghana)</span>
               </div>
             </div>
 
-            <div className="glass rounded-xl p-6 space-y-4 overflow-hidden min-w-0">
-              <h4 className="text-sm font-semibold text-text">
-                Stay Updated
-              </h4>
-              <p className="text-xs text-text-secondary">
+            <div className="space-y-4 rounded-2xl border border-white/10 bg-tile-2 p-6 min-w-0">
+              <h4 className="text-caption-strong text-white">Stay Updated</h4>
+              <p className="text-[13px] text-on-dark-muted">
                 Get the latest insights and news delivered to your inbox.
               </p>
               <form
@@ -127,11 +145,11 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 min-w-0 px-4 py-2.5 text-sm rounded-lg bg-white/[0.04] border border-border text-text placeholder-text-muted focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-colors duration-300"
+                  className="h-11 min-w-0 flex-1 rounded-full border border-white/15 bg-tile-1 px-4 text-[14px] text-white placeholder:text-on-dark-muted transition-colors duration-200 focus:outline-none focus:border-action-sky focus:ring-[3px] focus:ring-action-sky/20"
                 />
                 <button
                   type="submit"
-                  className="flex items-center justify-center p-2.5 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors duration-300 shrink-0"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-action text-white transition-colors duration-200 hover:bg-action-focus"
                   aria-label="Subscribe"
                 >
                   <ArrowRight size={16} />
@@ -141,22 +159,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-border-light/60 to-transparent my-8" />
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-text-muted">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 md:flex-row">
+          <p className="text-fine text-on-dark-muted">
             &copy; {new Date().getFullYear()} Soyiri Labs. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               to="/privacy"
-              className="text-xs text-text-muted hover:text-text transition-colors duration-300"
+              className="text-fine text-on-dark-muted transition-colors duration-200 hover:text-white"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms"
-              className="text-xs text-text-muted hover:text-text transition-colors duration-300"
+              className="text-fine text-on-dark-muted transition-colors duration-200 hover:text-white"
             >
               Terms of Service
             </Link>

@@ -6,8 +6,9 @@ import { Search, ArrowUpRight, Filter, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Skeleton } from '@/components/ui/Skeleton'
+import { Chip } from '@/components/ui/Chip'
+import { SearchInput } from '@/components/ui/Input'
 import Reveal from '@/components/animations/Reveal'
-import ParallaxTilt from '@/components/animations/ParallaxTilt'
 import { projectsApi } from '@/lib/api'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/types'
@@ -121,15 +122,6 @@ const industries = ['All', 'Restaurant / E-Commerce', 'IoT / Smart Water Managem
 const technologies = ['All', 'React', 'Express.js', 'Node.js', 'MongoDB', 'Tailwind CSS', 'ESP32', 'Firebase', 'MQTT', 'WebSockets', 'Docker', 'TypeScript', 'PostgreSQL', 'Redis', 'Recharts', 'Framer Motion', 'Vite']
 const years = ['All', '2025', '2026']
 
-const thumbnailGradients = [
-  'from-[#2a2347] via-[#211c3c] to-[#14101f]',
-  'from-[#26304a] via-[#1d2438] to-[#11141f]',
-  'from-[#2a2a38] via-[#202030] to-[#131319]',
-  'from-[#332b1f] via-[#262019] to-[#17130e]',
-  'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
-  'from-[#2f2330] via-[#241b26] to-[#141114]',
-]
-
 interface FilterState {
   industry: string
   technology: string
@@ -185,31 +177,46 @@ export default function Portfolio() {
         <meta name="description" content="Explore our portfolio of innovative projects spanning fintech, healthcare, e-commerce, and more." />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-20">
-        <div className="container-premium px-4">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[480px] w-[480px] blob-magenta opacity-50" />
+        <div className="relative container-site px-4 pb-24 pt-16 md:pb-32 md:pt-24">
           <SectionHeading
             label="Our Work"
-            title="Our Portfolio"
+            title={
+              <>
+                Work that <span className="text-serif-accent text-action">speaks for itself</span>
+              </>
+            }
             description="Showcasing innovative solutions we've built for clients across industries. Each project represents a unique challenge and a tailored solution."
           />
+          <Reveal delay={0.4}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+              <Button href="/contact" size="lg">
+                Start a Project
+                <ArrowUpRight className="h-5 w-5 shrink-0" />
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-1 left-1/2 hidden -translate-x-1/2 select-none whitespace-nowrap text-[10rem] font-bold uppercase leading-none tracking-tighter text-outline lg:block">
+          Work
         </div>
       </section>
 
-      <section className="section-padding pt-0">
-        <div className="container-premium">
-          <div className="glass rounded-2xl p-4 md:p-6 mb-10">
+      <section className="tile-parchment tile">
+        <div className="container-site px-4">
+          <div className="mb-10 rounded-2xl border-2 border-ink bg-canvas p-4 shadow-hard-sm md:p-6">
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
-                <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
-                  <input
-                    type="text"
-                    placeholder="Search projects by name, description, or technology..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="w-full h-12 pl-11 pr-4 glass rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors"
-                  />
-                </div>
+                <SearchInput
+                  className="flex-1"
+                  placeholder="Search projects by name, description, or technology..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
                 <Button
                   variant="secondary"
                   size="md"
@@ -230,61 +237,46 @@ export default function Portfolio() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 pt-4 border-t border-border">
-                      <div className="w-full md:w-auto">
-                        <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Industry</span>
+                    <div className="flex flex-col gap-5 border-t border-hairline pt-5">
+                      <div>
+                        <span className="mb-2.5 block text-caption-strong uppercase tracking-wider text-ink-48">Industry</span>
                         <div className="flex flex-wrap gap-2">
                           {industries.map((i) => (
-                            <button
+                            <Chip
                               key={i}
+                              selected={filters.industry === i}
                               onClick={() => setFilters((f) => ({ ...f, industry: i }))}
-                              className={cn(
-                                'px-3 py-1.5 rounded-lg text-sm transition-all duration-200',
-                                filters.industry === i
-                                  ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                                  : 'glass text-text-secondary hover:text-text hover:bg-glass-light',
-                              )}
                             >
                               {i}
-                            </button>
+                            </Chip>
                           ))}
                         </div>
                       </div>
-                      <div className="w-full md:w-auto">
-                        <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Technology</span>
+                      <div>
+                        <span className="mb-2.5 block text-caption-strong uppercase tracking-wider text-ink-48">Technology</span>
                         <div className="flex flex-wrap gap-2">
                           {technologies.map((t) => (
-                            <button
+                            <Chip
                               key={t}
+                              selected={filters.technology === t}
                               onClick={() => setFilters((f) => ({ ...f, technology: t }))}
-                              className={cn(
-                                'px-3 py-1.5 rounded-lg text-sm transition-all duration-200',
-                                filters.technology === t
-                                  ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                                  : 'glass text-text-secondary hover:text-text hover:bg-glass-light',
-                              )}
                             >
                               {t}
-                            </button>
+                            </Chip>
                           ))}
                         </div>
                       </div>
-                      <div className="w-full md:w-auto">
-                        <span className="block text-xs text-text-muted mb-2 font-medium uppercase tracking-wider">Year</span>
+                      <div>
+                        <span className="mb-2.5 block text-caption-strong uppercase tracking-wider text-ink-48">Year</span>
                         <div className="flex flex-wrap gap-2">
                           {years.map((y) => (
-                            <button
+                            <Chip
                               key={y}
+                              selected={filters.year === y}
                               onClick={() => setFilters((f) => ({ ...f, year: y }))}
-                              className={cn(
-                                'px-3 py-1.5 rounded-lg text-sm transition-all duration-200',
-                                filters.year === y
-                                  ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                                  : 'glass text-text-secondary hover:text-text hover:bg-glass-light',
-                              )}
                             >
                               {y}
-                            </button>
+                            </Chip>
                           ))}
                         </div>
                       </div>
@@ -294,9 +286,9 @@ export default function Portfolio() {
               </AnimatePresence>
 
               {hasActiveFilters && (
-                <div className="flex items-center gap-2 text-sm text-text-muted">
+                <div className="flex items-center gap-2 text-sm text-ink-48">
                   <span>{filtered.length} project{filtered.length !== 1 ? 's' : ''} found</span>
-                  <button onClick={clearFilters} className="flex items-center gap-1 text-accent hover:text-accent-light transition-colors">
+                  <button onClick={clearFilters} className="flex items-center gap-1 text-action transition-colors hover:text-action-focus">
                     <X className="h-3 w-3" />
                     Clear filters
                   </button>
@@ -308,9 +300,9 @@ export default function Portfolio() {
           {loading ? (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="glass rounded-2xl overflow-hidden">
+                <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-tile-2">
                   <Skeleton className="h-48 rounded-none" />
-                  <div className="p-6 space-y-3">
+                  <div className="space-y-3 p-6">
                     <Skeleton className="h-5 w-3/4" />
                     <Skeleton className="h-4 w-full" />
                     <Skeleton className="h-4 w-2/3" />
@@ -324,19 +316,19 @@ export default function Portfolio() {
               ))}
             </div>
           ) : error ? (
-            <div className="text-center py-20">
-              <p className="text-text-secondary text-lg mb-4">{error}</p>
+            <div className="py-20 text-center">
+              <p className="mb-4 text-lg text-ink-80">{error}</p>
               <Button variant="primary" onClick={() => window.location.reload()}>
                 Try Again
               </Button>
             </div>
           ) : filtered.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full glass flex items-center justify-center">
-                <Search className="h-8 w-8 text-text-muted" />
+            <div className="py-20 text-center">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-canvas shadow-hard-sm">
+                <Search className="h-8 w-8 text-ink-48" />
               </div>
-              <h3 className="text-xl font-semibold text-text mb-2">No projects found</h3>
-              <p className="text-text-secondary mb-6">Try adjusting your search or filters to find what you're looking for.</p>
+              <h3 className="mb-2 text-xl font-semibold text-ink">No projects found</h3>
+              <p className="mb-6 text-ink-80">Try adjusting your search or filters to find what you're looking for.</p>
               <Button variant="primary" onClick={clearFilters}>Clear All Filters</Button>
             </div>
           ) : (
@@ -352,70 +344,67 @@ export default function Portfolio() {
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                   >
                     <Reveal delay={index * 0.05}>
-                      <ParallaxTilt intensity={10}>
-                        <Link to={`/portfolio/${project.slug}`} className="block group">
-                          <div className="glass rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-accent/10 hover:border-accent/30 group">
-                            <div className={cn(
-                              'relative h-48 overflow-hidden',
-                              project.thumbnail ? '' : 'bg-gradient-to-br flex items-center justify-center',
-                              !project.thumbnail && thumbnailGradients[index % thumbnailGradients.length],
-                            )}>
-                              {project.thumbnail ? (
-                                <img
-                                  src={project.thumbnail}
-                                  alt={project.title}
-                                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                />
-                              ) : (
-                                <span className="text-white/30 text-6xl font-black tracking-tight select-none">
-                                  {project.title.charAt(0)}
+                      <Link to={`/portfolio/${project.slug}`} className="group block">
+                        <div className="h-full overflow-hidden rounded-2xl border border-white/10 bg-tile-2 transition-colors duration-300 group-hover:border-white/25">
+                          <div
+                            className="relative flex h-48 items-center justify-center"
+                            style={{ backgroundColor: `${project.colorTheme || '#4f46e5'}2e` }}
+                          >
+                            {project.thumbnail ? (
+                              <img
+                                src={project.thumbnail}
+                                alt={project.title}
+                                className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                              />
+                            ) : (
+                              <span className="select-none text-6xl font-semibold tracking-tight text-white/25">
+                                {project.title.charAt(0)}
+                              </span>
+                            )}
+                            <span className="absolute left-4 top-4 select-none font-display text-5xl font-bold text-white/10">
+                              {String(index + 1).padStart(2, '0')}
+                            </span>
+                            {project.featured && (
+                              <div className="absolute right-4 top-4">
+                                <span className="rounded-full bg-action px-2.5 py-1 text-xs font-semibold text-white">
+                                  Featured
+                                </span>
+                              </div>
+                            )}
+                            <span className="absolute bottom-4 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-action text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                              <ArrowUpRight className="h-5 w-5" />
+                            </span>
+                          </div>
+                          <div className="p-6">
+                            <div className="mb-2 flex items-center gap-2 text-caption text-on-dark-muted">
+                              <span>{project.completionYear}</span>
+                              <span>·</span>
+                              <span className="truncate">{project.industry}</span>
+                            </div>
+                            <h3 className="mb-2 text-lg font-semibold text-on-dark transition-colors group-hover:text-action-sky">
+                              {project.title}
+                            </h3>
+                            <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed text-on-dark-muted">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {project.technologies.slice(0, 4).map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="rounded-lg border border-white/12 bg-white/10 px-2.5 py-1 text-xs text-on-dark-muted"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                              {project.technologies.length > 4 && (
+                                <span className="rounded-lg border border-white/12 bg-white/10 px-2.5 py-1 text-xs text-on-dark-muted">
+                                  +{project.technologies.length - 4}
                                 </span>
                               )}
-                              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                                <div className="glass-light rounded-full p-2">
-                                  <ArrowUpRight className="h-4 w-4 text-accent" />
-                                </div>
-                              </div>
-                              {project.featured && (
-                                <div className="absolute top-4 left-4">
-                                  <span className="glass text-xs font-medium text-accent-light px-2.5 py-1 rounded-full">
-                                    Featured
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="p-6">
-                              <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs text-text-muted font-mono">{project.completionYear}</span>
-                                <span className="text-text-muted">·</span>
-                                <span className="text-xs text-text-muted">{project.industry}</span>
-                              </div>
-                              <h3 className="text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors">
-                                {project.title}
-                              </h3>
-                              <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-2">
-                                {project.description}
-                              </p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {project.technologies.slice(0, 4).map((tech) => (
-                                  <span
-                                    key={tech}
-                                    className="text-xs px-2.5 py-1 rounded-full glass text-text-muted"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                                {project.technologies.length > 4 && (
-                                  <span className="text-xs px-2.5 py-1 rounded-full glass text-text-muted">
-                                    +{project.technologies.length - 4}
-                                  </span>
-                                )}
-                              </div>
                             </div>
                           </div>
-                        </Link>
-                      </ParallaxTilt>
+                        </div>
+                      </Link>
                     </Reveal>
                   </motion.div>
                 ))}

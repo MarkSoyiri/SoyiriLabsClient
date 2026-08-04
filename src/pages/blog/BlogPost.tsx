@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, Calendar, Clock, User, Share2, MessageCircle, Link as LinkIcon, Check } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import { Skeleton } from '@/components/ui/Skeleton'
 import Reveal from '@/components/animations/Reveal'
 import { blogApi } from '@/lib/api'
@@ -233,15 +231,17 @@ const categoryGradients: Record<string, string> = {
 
 function BlogPostSkeleton() {
   return (
-    <div className="container-premium section-padding">
-      <Skeleton className="h-6 w-32 mb-8" />
-      <Skeleton className="h-56 w-full rounded-2xl mb-8" />
-      <div className="max-w-3xl mx-auto space-y-4">
-        <Skeleton className="h-4 w-40" />
-        <Skeleton className="h-10 w-3/4" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-2/3" />
+    <div className="tile-light">
+      <div className="container-site px-4 py-16">
+        <Skeleton className="mb-8 h-6 w-32" />
+        <Skeleton className="mb-8 h-56 w-full rounded-[18px]" />
+        <div className="mx-auto max-w-3xl space-y-4">
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="h-10 w-3/4" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+        </div>
       </div>
     </div>
   )
@@ -251,7 +251,7 @@ function ShareButton({ onClick, icon: Icon, label }: { onClick: () => void; icon
   return (
     <button
       onClick={onClick}
-      className="glass w-10 h-10 rounded-xl flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all"
+      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-canvas text-ink transition-colors hover:bg-ink hover:text-white"
       aria-label={label}
     >
       <Icon className="h-4 w-4" />
@@ -312,16 +312,18 @@ export default function BlogPost() {
 
   if (error || !post) {
     return (
-      <div className="container-premium section-padding text-center">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full glass flex items-center justify-center">
-          <span className="text-3xl">📄</span>
+      <div className="tile-light text-center">
+        <div className="container-site px-4 py-24">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-canvas shadow-hard-sm">
+            <span className="text-3xl">📄</span>
+          </div>
+          <h2 className="mb-2 text-2xl font-bold text-ink">Post Not Found</h2>
+          <p className="mb-6 text-ink-80">{error || 'The article you\'re looking for doesn\'t exist.'}</p>
+          <Button variant="primary" href="/blog">
+            <ArrowLeft className="h-4 w-4 shrink-0" />
+            Back to Blog
+          </Button>
         </div>
-        <h2 className="text-2xl font-bold text-text mb-2">Post Not Found</h2>
-        <p className="text-text-secondary mb-6">{error || 'The article you\'re looking for doesn\'t exist.'}</p>
-        <Button variant="primary" href="/blog">
-          <ArrowLeft className="h-4 w-4 shrink-0" />
-          Back to Blog
-        </Button>
       </div>
     )
   }
@@ -340,32 +342,35 @@ export default function BlogPost() {
         <meta property="article:author" content={post.author} />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-14 pb-16 md:pt-24 md:pb-20">
-        <div className={cn('absolute inset-0 bg-gradient-to-br opacity-5 pointer-events-none', gradient)} />
-        <div className="container-premium px-4">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-24 right-[-10%] h-[460px] w-[460px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-18%] left-[-10%] h-[420px] w-[420px] blob-violet" />
+        <div className={cn('pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-gradient-to-br opacity-5', gradient)} />
+        <div className="relative container-site px-4 py-14 md:py-20">
           <Reveal>
-            <Link to="/blog" className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-colors mb-8">
+            <Link to="/blog" className="mb-8 inline-flex items-center gap-2 text-ink-48 transition-colors hover:text-action">
               <ArrowLeft className="h-4 w-4 shrink-0" />
-              <span className="text-sm font-medium">Back to Blog</span>
+              <span className="text-[15px] font-medium">Back to Blog</span>
             </Link>
           </Reveal>
 
           <div className={cn(
-            'relative h-56 md:h-72 lg:h-80 rounded-2xl bg-gradient-to-br flex items-center justify-center mb-10 overflow-hidden',
+            'relative mb-10 flex h-56 items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br shadow-hard-sm md:h-72 lg:h-80',
             gradient,
           )}>
-            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-black/20" />
             <div className="relative text-center">
-              <span className="block text-white/10 text-8xl font-black tracking-tight select-none">{post.category}</span>
+              <span className="block select-none font-display text-8xl font-bold tracking-tight text-white/10">{post.category}</span>
             </div>
-            <div className="absolute bottom-4 left-4 glass rounded-lg px-3 py-1.5">
-              <span className="text-sm text-text">{post.category}</span>
+            <div className="absolute bottom-4 left-4 rounded-lg bg-tile-1/70 px-3 py-1.5 backdrop-blur">
+              <span className="text-sm text-on-dark">{post.category}</span>
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="mx-auto max-w-3xl">
             <Reveal delay={0.1}>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted mb-6">
+              <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-ink-48">
                 <span className="flex items-center gap-1.5">
                   <User className="h-4 w-4" />
                   {post.author}
@@ -378,62 +383,62 @@ export default function BlogPost() {
                   <Clock className="h-4 w-4" />
                   {post.readingTime} min read
                 </span>
-                <span className="glass px-2.5 py-0.5 rounded-full text-xs font-medium text-accent-light">
+                <span className="rounded-full bg-action/10 px-2.5 py-0.5 text-xs font-semibold text-action">
                   {post.category}
                 </span>
               </div>
             </Reveal>
 
             <Reveal delay={0.15}>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-text mb-6">
+              <h1 className="mb-6 text-3xl font-bold tracking-tight text-ink md:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <p className="text-lg text-text-secondary leading-relaxed mb-8">{post.excerpt}</p>
+              <p className="mb-8 text-lg leading-relaxed text-ink-80">{post.excerpt}</p>
             </Reveal>
 
             <Reveal delay={0.25}>
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="mb-8 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full glass text-xs text-text-muted border border-accent/10">
+                  <span key={tag} className="rounded-full border border-hairline bg-canvas px-3 py-1 text-xs text-ink-48">
                     #{tag}
                   </span>
                 ))}
               </div>
             </Reveal>
 
-            <GlassDivider />
+            <div className="mb-10 h-px bg-ink/15" />
           </div>
         </div>
       </section>
 
-      <section className="section-padding pt-10">
-        <div className="container-premium">
-          <div className="max-w-3xl mx-auto">
+      <section className="tile-parchment tile">
+        <div className="container-site px-4">
+          <div className="mx-auto max-w-3xl">
             <Reveal>
               <div
-                className="prose prose-invert prose-lg max-w-none"
+                className="prose-article"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </Reveal>
 
-            <GlassDivider className="my-10" />
+            <div className="my-10 h-px bg-ink/15" />
 
             <Reveal>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-3">
-                  <div className={cn('w-12 h-12 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-bold', gradient)}>
+                  <div className={cn('flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br font-bold text-on-dark', gradient)}>
                     {post.author.split(' ').map((n) => n[0]).join('')}
                   </div>
                   <div>
-                    <span className="block text-sm font-medium text-text">{post.author}</span>
-                    <span className="text-xs text-text-muted">Author</span>
+                    <span className="block text-[15px] font-medium text-ink">{post.author}</span>
+                    <span className="text-xs text-ink-48">Author</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-text-muted mr-1">Share:</span>
+                  <span className="mr-1 text-sm text-ink-48">Share:</span>
                   <ShareButton onClick={shareTwitter} icon={MessageCircle} label="Share on Twitter" />
                   <ShareButton onClick={shareLinkedin} icon={Share2} label="Share on LinkedIn" />
                   <ShareButton
@@ -445,7 +450,7 @@ export default function BlogPost() {
               </div>
             </Reveal>
 
-            <GlassDivider className="my-10" />
+            <div className="my-10 h-px bg-ink/15" />
 
             <Reveal>
               <div className="text-center">
@@ -456,34 +461,36 @@ export default function BlogPost() {
               </div>
             </Reveal>
 
-            <GlassDivider className="my-10" />
+            <div className="my-10 h-px bg-ink/15" />
           </div>
 
           {related.length > 0 && (
             <div className="mt-16">
               <Reveal>
-                <h2 className="text-2xl font-bold text-text text-center mb-8">Related Articles</h2>
+                <h2 className="mb-8 text-center text-display-md text-ink">
+                  Related <span className="text-serif-accent text-action">articles</span>
+                </h2>
               </Reveal>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid gap-6 md:grid-cols-3">
                 {related.map((r, i) => (
                   <Reveal key={r._id} delay={i * 0.05}>
-                    <Link to={`/blog/${r.slug}`} className="block group">
-                      <div className="glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30">
+                    <Link to={`/blog/${r.slug}`} className="group block">
+                      <div className="overflow-hidden rounded-2xl border border-hairline bg-canvas transition-all duration-300 hover:-translate-y-1 hover:border-ink/30 hover:shadow-product">
                         <div className={cn(
-                          'h-36 bg-gradient-to-br flex items-center justify-center',
+                          'flex h-36 items-center justify-center bg-gradient-to-br',
                           categoryGradients[r.category] || 'from-[#2a2347] via-[#211c3c] to-[#14101f]',
                         )}>
-                          <span className="text-white/20 text-3xl font-black select-none">{r.category}</span>
+                          <span className="select-none font-display text-3xl font-bold text-white/20">{r.category}</span>
                         </div>
                         <div className="p-5">
-                          <div className="flex items-center gap-2 text-xs text-text-muted mb-2">
+                          <div className="mb-2 flex items-center gap-2 text-xs text-ink-48">
                             <Calendar className="h-3 w-3" />
                             {formatDate(r.publishedAt)}
                           </div>
-                          <h3 className="text-base font-semibold text-text mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                          <h3 className="mb-1 line-clamp-2 text-base font-semibold text-ink transition-colors group-hover:text-action">
                             {r.title}
                           </h3>
-                          <p className="text-sm text-text-secondary line-clamp-2">{r.excerpt}</p>
+                          <p className="line-clamp-2 text-sm text-ink-80">{r.excerpt}</p>
                         </div>
                       </div>
                     </Link>

@@ -18,9 +18,9 @@ import {
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import Reveal from '@/components/animations/Reveal'
 import TextReveal from '@/components/animations/TextReveal'
+import { cn } from '@/lib/utils'
 
 const services = [
   {
@@ -35,6 +35,7 @@ const services = [
       'Wireframing & prototyping',
       'Modern, accessible design systems',
     ],
+    color: 'bg-violet/10 text-violet',
   },
   {
     icon: Code,
@@ -48,6 +49,7 @@ const services = [
       'Custom functionality & features',
       'Performance optimization',
     ],
+    color: 'bg-action/10 text-action',
   },
   {
     icon: AppWindow,
@@ -61,6 +63,7 @@ const services = [
       'Third-party API integrations',
       'Scalable cloud architecture',
     ],
+    color: 'bg-cyan/10 text-cyan',
   },
   {
     icon: PenTool,
@@ -74,6 +77,7 @@ const services = [
       'Usability testing & iteration',
       'Design system creation',
     ],
+    color: 'bg-magenta/10 text-magenta',
   },
   {
     icon: Wrench,
@@ -87,6 +91,7 @@ const services = [
       'Performance monitoring',
       'Backup & disaster recovery',
     ],
+    color: 'bg-lime/10 text-lime',
   },
   {
     icon: Zap,
@@ -100,6 +105,7 @@ const services = [
       'Code splitting & lazy loading',
       'Server & database tuning',
     ],
+    color: 'bg-action-sky/10 text-action-sky',
   },
   {
     icon: RefreshCw,
@@ -113,6 +119,7 @@ const services = [
       'Information architecture overhaul',
       'Conversion rate optimization',
     ],
+    color: 'bg-violet/10 text-violet',
   },
   {
     icon: Search,
@@ -126,6 +133,7 @@ const services = [
       'Keyword research & strategy',
       'Analytics & performance reporting',
     ],
+    color: 'bg-cyan/10 text-cyan',
   },
   {
     icon: Cloud,
@@ -139,6 +147,7 @@ const services = [
       'SSL & security configuration',
       '99.9% uptime guarantee',
     ],
+    color: 'bg-action/10 text-action',
   },
 ]
 
@@ -151,7 +160,7 @@ const staggerContainer = {
 }
 
 const staggerItem = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
@@ -171,38 +180,57 @@ export default function Services() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pb-20 pt-24 md:pb-32 md:pt-40">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
-          <div className="absolute left-0 top-1/3 h-[300px] w-[300px] rounded-full bg-gold/8 blur-[100px]" />
-        </div>
-        <div className="container-premium px-4 text-center">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[480px] w-[480px] blob-cyan opacity-60" />
+        <div className="pointer-events-none absolute bottom-[25%] right-[20%] h-[280px] w-[280px] blob-magenta opacity-40" />
+
+        <div className="relative container-site px-4 pb-24 pt-16 text-center md:pb-32 md:pt-24">
           <Reveal>
-            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-sm text-accent-light">
-              <Layers className="h-4 w-4" />
+            <span className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas/80 px-4 py-2 text-caption-strong text-ink shadow-hard-sm">
+              <Layers className="h-4 w-4 text-action" />
               Our Services
             </span>
           </Reveal>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-text md:text-5xl lg:text-7xl">
-            <TextReveal text="What We Deliver" />
+          <h1 className="mb-6 text-hero-display text-ink">
+            <TextReveal text="What we" as="span" />
+            <span className="text-serif-accent block text-action">deliver</span>
           </h1>
           <Reveal delay={0.3}>
-            <p className="mx-auto max-w-2xl text-lg text-text-secondary md:text-xl">
+            <p className="mx-auto max-w-2xl text-lead-airy text-ink-80">
               From concept to launch and beyond, we offer end-to-end digital services that help
               businesses thrive in the modern online landscape.
             </p>
           </Reveal>
+          <Reveal delay={0.45}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+              <Button href="/contact" size="lg">
+                Start a Project
+                <ArrowRight className="h-5 w-5 shrink-0" />
+              </Button>
+              <Button href="/portfolio" variant="secondary" size="lg">
+                See Our Work
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-1 left-1/2 hidden -translate-x-1/2 select-none whitespace-nowrap text-[10rem] font-bold uppercase leading-none tracking-tighter text-outline lg:block">
+          Services
         </div>
       </section>
 
-      <GlassDivider />
-
       {/* Services Grid */}
-      <section className="section-padding">
-        <div className="container-premium px-4">
+      <section className="tile-parchment tile">
+        <div className="container-site px-4">
           <SectionHeading
             label="What We Do"
-            title="Complete Digital Solutions"
+            title={
+              <>
+                Nine ways to <span className="text-serif-accent text-action">grow your business</span>
+              </>
+            }
             description="Every service is designed to deliver measurable impact and exceptional quality."
           />
           <motion.div
@@ -210,28 +238,33 @@ export default function Services() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {services.map((service) => (
+            {services.map((service, i) => (
               <motion.div key={service.slug} variants={staggerItem}>
                 <Link to={`/services/${service.slug}`} className="group block h-full">
-                  <Card hover glow className="flex h-full flex-col p-8">
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 transition-colors duration-300 group-hover:bg-accent/20">
-                      <service.icon className="h-6 w-6 text-accent-light" />
+                  <Card hover className="flex h-full flex-col p-8">
+                    <div className="mb-5 flex items-center justify-between">
+                      <div className={cn('inline-flex rounded-xl p-3 transition-transform duration-300 group-hover:-rotate-6', service.color)}>
+                        <service.icon className="h-6 w-6" />
+                      </div>
+                      <span className="select-none font-display text-3xl font-bold tracking-tight text-outline">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
                     </div>
-                    <h3 className="mb-3 text-xl font-semibold text-text">{service.title}</h3>
-                    <p className="mb-5 flex-1 text-text-secondary leading-relaxed">
+                    <h3 className="mb-3 text-tagline text-ink">{service.title}</h3>
+                    <p className="mb-5 flex-1 leading-relaxed text-ink-80">
                       {service.description}
                     </p>
                     <ul className="mb-6 space-y-2">
                       {service.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-2 text-sm text-text-muted">
-                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" />
+                        <li key={feature} className="flex items-start gap-2 text-[15px] text-ink-48">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-action" />
                           <span className="min-w-0">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-accent-light transition-all duration-300 group-hover:gap-3">
+                    <span className="inline-flex items-center gap-2 text-[15px] font-semibold text-action">
                       Learn More
                       <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
@@ -243,31 +276,41 @@ export default function Services() {
         </div>
       </section>
 
-      <GlassDivider />
-
       {/* CTA */}
-      <section className="section-padding">
-        <div className="container-premium px-4">
-          <Card glow border className="relative overflow-hidden p-10 text-center md:p-16">
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[80px]" />
-            </div>
-            <SectionHeading
-              title="Need a Custom Solution?"
-              description="Every business is unique. Tell us about your project and we will tailor a solution that fits your specific needs and goals."
-            />
-            <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Button href="/contact" size="lg">
-                  Get a Free Consultation
-                  <ArrowRight className="h-5 w-5 shrink-0" />
-                </Button>
-                <Button href="/portfolio" variant="secondary" size="lg">
-                  View Our Work
-                </Button>
+      <section className="tile-electric tile relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+        <div className="pointer-events-none absolute -left-24 top-1/2 h-[380px] w-[380px] -translate-y-1/2 blob-violet" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-[320px] w-[320px] blob-cyan" />
+        <div className="relative">
+          <div className="container-site px-4">
+            <Reveal>
+              <div className="text-center">
+                <h2 className="text-display-lg text-white text-balance">
+                  Need a custom <span className="text-serif-accent">solution?</span>
+                </h2>
+                <p className="mx-auto mt-5 max-w-xl text-lead-airy text-white/80">
+                  Every business is unique. Tell us about your project and we will tailor a solution that fits your specific needs and goals.
+                </p>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+                  <Button
+                    href="/contact"
+                    size="lg"
+                    variant="white"
+                  >
+                    Get a Free Consultation
+                    <ArrowRight className="h-5 w-5 shrink-0" />
+                  </Button>
+                  <Button
+                    href="/portfolio"
+                    variant="outline-light"
+                    size="lg"
+                  >
+                    View Our Work
+                  </Button>
+                </div>
               </div>
             </Reveal>
-          </Card>
+          </div>
         </div>
       </section>
     </>

@@ -1,15 +1,10 @@
 import { cn } from '@/lib/utils'
 
-interface SkeletonProps {
-  className?: string
-}
-
-export function Skeleton({ className }: SkeletonProps) {
+export function Skeleton({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-lg bg-white/[0.05]',
-        'before:absolute before:inset-0 before:animate-[shimmer_1.8s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/[0.07] before:to-transparent before:bg-[length:200%_100%]',
+        'relative overflow-hidden rounded-lg bg-ink/[0.05] before:absolute before:inset-0 before:animate-[shimmer_1.8s_infinite] before:bg-gradient-to-r before:from-transparent before:via-ink/[0.06] before:to-transparent before:bg-[length:200%_100%]',
         className,
       )}
     />

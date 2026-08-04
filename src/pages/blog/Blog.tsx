@@ -6,6 +6,8 @@ import { Search, Calendar, Clock, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Skeleton } from '@/components/ui/Skeleton'
+import { Chip } from '@/components/ui/Chip'
+import { SearchInput } from '@/components/ui/Input'
 import Reveal from '@/components/animations/Reveal'
 import { blogApi } from '@/lib/api'
 import { cn, formatDate } from '@/lib/utils'
@@ -173,50 +175,51 @@ export default function Blog() {
         <meta name="description" content="Insights, tutorials, and updates from the Soyiri Labs team on web development, design, AI, and technology." />
       </Helmet>
 
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-20">
-        <div className="container-premium px-4">
+      <section className="tile-light relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
+        <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[480px] w-[480px] blob-lime opacity-40" />
+        <div className="relative container-site px-4 pb-24 pt-16 md:pb-32 md:pt-24">
           <SectionHeading
             label="Our Blog"
-            title="Insights &amp; Articles"
+            title={
+              <>
+                Insights &amp; <span className="text-serif-accent text-action">articles</span>
+              </>
+            }
             description="Thoughts on technology, design, and building digital products that make a difference."
           />
         </div>
+
+        <div className="pointer-events-none absolute bottom-1 left-1/2 hidden -translate-x-1/2 select-none whitespace-nowrap text-[10rem] font-bold uppercase leading-none tracking-tighter text-outline lg:block">
+          Journal
+        </div>
       </section>
 
-      <section className="section-padding pt-0">
-        <div className="container-premium">
-          <div className="glass rounded-2xl p-4 md:p-6 mb-10">
+      <section className="tile-parchment tile">
+        <div className="container-site px-4">
+          <div className="mb-10 rounded-2xl border-2 border-ink bg-canvas p-4 shadow-hard-sm md:p-6">
             <div className="flex flex-col gap-4">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
-                <input
-                  type="text"
-                  placeholder="Search articles by title, content, or tags..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full h-12 pl-11 pr-4 glass rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors"
-                />
-              </div>
+              <SearchInput
+                placeholder="Search articles by title, content, or tags..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
 
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
-                  <button
+                  <Chip
                     key={cat}
+                    selected={category === cat}
                     onClick={() => setCategory(cat)}
-                    className={cn(
-                      'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-                      category === cat
-                        ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                        : 'glass text-text-secondary hover:text-text hover:bg-glass-light',
-                    )}
                   >
                     {cat}
-                  </button>
+                  </Chip>
                 ))}
               </div>
 
               {!loading && (
-                <div className="text-sm text-text-muted">
+                <div className="text-sm text-ink-48">
                   {filtered.length} article{filtered.length !== 1 ? 's' : ''} found
                 </div>
               )}
@@ -226,9 +229,9 @@ export default function Blog() {
           {loading ? (
             <div className="grid gap-6 md:grid-cols-2">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="glass rounded-2xl overflow-hidden">
+                <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-tile-2">
                   <Skeleton className="h-48 rounded-none" />
-                  <div className="p-6 space-y-3">
+                  <div className="space-y-3 p-6">
                     <Skeleton className="h-4 w-20" />
                     <Skeleton className="h-5 w-3/4" />
                     <Skeleton className="h-4 w-full" />
@@ -242,19 +245,19 @@ export default function Blog() {
               ))}
             </div>
           ) : error ? (
-            <div className="text-center py-20">
-              <p className="text-text-secondary text-lg mb-4">{error}</p>
+            <div className="py-20 text-center">
+              <p className="mb-4 text-lg text-ink-80">{error}</p>
               <Button variant="primary" onClick={() => window.location.reload()}>
                 Try Again
               </Button>
             </div>
           ) : filtered.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full glass flex items-center justify-center">
-                <Search className="h-8 w-8 text-text-muted" />
+            <div className="py-20 text-center">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-canvas shadow-hard-sm">
+                <Search className="h-8 w-8 text-ink-48" />
               </div>
-              <h3 className="text-xl font-semibold text-text mb-2">No articles found</h3>
-              <p className="text-text-secondary mb-6">Try a different search term or category.</p>
+              <h3 className="mb-2 text-xl font-semibold text-ink">No articles found</h3>
+              <p className="mb-6 text-ink-80">Try a different search term or category.</p>
               <Button variant="primary" onClick={() => { setSearch(''); setCategory('All') }}>
                 Reset Filters
               </Button>
@@ -275,25 +278,25 @@ export default function Blog() {
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                       >
                         <Reveal delay={index * 0.05}>
-                          <Link to={`/blog/${post.slug}`} className="block group">
-                            <div className="glass rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-accent/10 hover:border-accent/30">
+                          <Link to={`/blog/${post.slug}`} className="group block">
+                            <div className="overflow-hidden rounded-2xl border border-hairline bg-canvas transition-all duration-300 hover:-translate-y-1 hover:border-ink/30 hover:shadow-product">
                               <div className={cn(
-                                'relative h-48 bg-gradient-to-br flex items-center justify-center overflow-hidden',
+                                'relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br',
                                 gradient,
                               )}>
-                                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-                                <span className="relative text-white/20 text-5xl font-black tracking-tight select-none">
+                                <div className="pointer-events-none absolute inset-0 bg-black/20" />
+                                <span className="relative select-none font-display text-5xl font-bold tracking-tight text-white/20">
                                   {post.category}
                                 </span>
-                                <div className="absolute top-4 left-4">
-                                  <span className="glass text-xs font-medium text-text px-3 py-1 rounded-full">
+                                <div className="absolute left-4 top-4">
+                                  <span className="rounded-lg bg-tile-1/70 px-3 py-1 text-xs font-medium text-on-dark backdrop-blur">
                                     {post.category}
                                   </span>
                                 </div>
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                               </div>
                               <div className="p-6">
-                                <div className="flex items-center gap-4 text-xs text-text-muted mb-3">
+                                <div className="mb-3 flex items-center gap-4 text-xs text-ink-48">
                                   <span className="flex items-center gap-1.5">
                                     <Calendar className="h-3 w-3" />
                                     {formatDate(post.publishedAt)}
@@ -303,20 +306,20 @@ export default function Blog() {
                                     {post.readingTime} min read
                                   </span>
                                 </div>
-                                <h3 className="text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors">
+                                <h3 className="mb-2 text-lg font-semibold text-ink transition-colors group-hover:text-action">
                                   {post.title}
                                 </h3>
-                                <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-3">
+                                <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-ink-80">
                                   {post.excerpt}
                                 </p>
-                                <div className="flex flex-wrap gap-1.5 mb-4">
+                                <div className="mb-4 flex flex-wrap gap-1.5">
                                   {post.tags.slice(0, 3).map((tag) => (
-                                    <span key={tag} className="text-xs px-2.5 py-1 rounded-full glass text-text-muted">
+                                    <span key={tag} className="rounded-full border border-hairline bg-parchment px-2.5 py-1 text-xs text-ink-48">
                                       {tag}
                                     </span>
                                   ))}
                                 </div>
-                                <div className="flex items-center gap-2 text-accent text-sm font-medium">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-action">
                                   <span>Read Article</span>
                                   <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
                                 </div>
@@ -331,7 +334,7 @@ export default function Blog() {
               </div>
 
               {hasMore && (
-                <div className="flex justify-center mt-10">
+                <div className="mt-10 flex justify-center">
                   <Button variant="secondary" size="lg" onClick={handleLoadMore}>
                     Load More Articles
                   </Button>

@@ -13,23 +13,18 @@ import {
   Users,
   Target,
   ArrowUp,
-  ChevronDown,
   Star,
-  Quote,
   CheckCircle2,
   ArrowRight,
   ExternalLink,
+  ArrowUpRight,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import { Skeleton } from '@/components/ui/Skeleton'
 import Reveal from '@/components/animations/Reveal'
-import ParallaxTilt from '@/components/animations/ParallaxTilt'
-import GlowCard from '@/components/animations/GlowCard'
-import FloatingElements from '@/components/animations/FloatingElements'
 import { projectsApi } from '@/lib/api'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/types'
@@ -38,52 +33,65 @@ const services = [
   {
     icon: Palette,
     title: 'Website Design',
+    slug: 'website-design',
     description: 'Stunning, conversion-focused designs that captivate your audience and elevate your brand identity.',
+    color: 'violet',
   },
   {
     icon: Code2,
     title: 'Website Development',
+    slug: 'website-development',
     description: 'Blazing-fast, responsive websites built with modern frameworks and clean, maintainable code.',
+    color: 'action',
   },
   {
     icon: Globe,
     title: 'Web Applications',
+    slug: 'web-applications',
     description: 'Full-stack web applications with real-time features, APIs, and scalable cloud infrastructure.',
+    color: 'cyan',
   },
   {
     icon: Smartphone,
     title: 'UI/UX Design',
+    slug: 'ui-ux-design',
     description: 'Intuitive user interfaces backed by research-driven UX strategy and meticulous prototyping.',
+    color: 'magenta',
   },
   {
     icon: TrendingUp,
     title: 'SEO Optimization',
+    slug: 'seo-optimization',
     description: 'Data-driven SEO strategies that boost visibility, drive traffic, and maximize organic growth.',
+    color: 'lime',
   },
   {
     icon: Server,
     title: 'Hosting & Deployment',
+    slug: 'hosting-deployment',
     description: 'Enterprise-grade hosting, CI/CD pipelines, and 24/7 monitoring for peak performance.',
+    color: 'action-sky',
   },
 ] as const
-
-
 
 const whyValues = [
   {
     icon: Zap,
     title: 'Cutting-Edge Technology',
     description: 'We leverage the latest frameworks, tools, and cloud infrastructure to build future-proof solutions that scale.',
+    color: 'bg-action/10 text-action',
   },
   {
     icon: Users,
     title: 'User-Centric Design',
     description: 'Every pixel is crafted with your users in mind, ensuring intuitive experiences that drive engagement and retention.',
+    color: 'bg-violet/10 text-violet',
   },
   {
     icon: Target,
     title: 'Results-Driven Approach',
     description: 'We measure success by the impact we deliver, focusing on KPIs that grow your business and bottom line.',
+    color: 'bg-cyan/10 text-cyan',
   },
 ] as const
 
@@ -162,103 +170,118 @@ const testimonials = [
 ] as const
 
 const stats = [
-  { label: 'Projects Completed', value: 50, suffix: '+' },
-  { label: 'Happy Clients', value: 30, suffix: '+' },
-  { label: 'Years Experience', value: 5, suffix: '+' },
-  { label: 'Websites Maintained', value: 80, suffix: '+' },
+  { label: 'Projects Completed', value: 50, suffix: '+', color: 'text-action' },
+  { label: 'Happy Clients', value: 30, suffix: '+', color: 'text-violet' },
+  { label: 'Years Experience', value: 5, suffix: '+', color: 'text-cyan' },
+  { label: 'Websites Maintained', value: 80, suffix: '+', color: 'text-lime' },
 ] as const
 
-function BackgroundGradient() {
-  return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute -left-[20%] -top-[20%] h-[60%] w-[60%] rounded-full bg-accent/10 blur-[60px] md:blur-[120px]" />
-      <div className="absolute -right-[20%] top-[10%] h-[50%] w-[50%] rounded-full bg-gold/6 blur-[50px] md:blur-[100px]" />
-      <div className="absolute -bottom-[20%] left-[30%] h-[50%] w-[50%] rounded-full bg-accent-light/5 blur-[50px] md:blur-[100px]" />
-    </div>
-  )
-}
+const heroStats = [
+  { label: 'Projects', value: '50+' },
+  { label: 'Clients', value: '30+' },
+  { label: 'Years', value: '5+' },
+  { label: 'Satisfaction', value: '98%' },
+] as const
 
-function ScrollIndicator() {
+const marqueeItems = [
+  'Web Design',
+  'Web Development',
+  'UI/UX',
+  'Web Apps',
+  'SEO',
+  'Hosting & Deployment',
+]
+
+function Marquee({ items, reverse = false, className }: { items: readonly string[]; reverse?: boolean; className?: string }) {
+  const content = (
+    <>
+      {items.map((item) => (
+        <span key={item} className="mx-6 flex items-center gap-6 whitespace-nowrap font-display text-2xl font-semibold tracking-tight md:text-4xl">
+          {item}
+          <span className="text-cyan">✦</span>
+        </span>
+      ))}
+    </>
+  )
   return (
-    <motion.div
-      className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 2.5, duration: 1 }}
-    >
-      <motion.div
-        className="flex flex-col items-center gap-2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <span className="text-xs font-medium tracking-widest text-text-muted uppercase">Scroll</span>
-        <ChevronDown className="h-4 w-4 text-text-muted" />
-      </motion.div>
-    </motion.div>
+    <div className={cn('marquee', reverse && 'marquee-reverse', className)}>
+      <div className="marquee-track">{content}{content}</div>
+    </div>
   )
 }
 
 function HeroSection() {
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
-  const y = useTransform(scrollY, [0, 500], [0, 100])
+  const y = useTransform(scrollY, [0, 500], [0, 80])
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <FloatingElements count={10} />
-      <BackgroundGradient />
+    <section className="tile-light relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 grid-bg" />
+      <div className="pointer-events-none absolute -top-32 right-[-10%] h-[560px] w-[560px] blob-electric" />
+      <div className="pointer-events-none absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] blob-violet" />
+      <div className="pointer-events-none absolute bottom-[30%] left-[30%] h-[320px] w-[320px] blob-cyan opacity-60" />
 
-      <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pt-20 md:pt-[90px]">
-        <div className="container-premium">
+      <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pb-16 pt-24 md:pb-24 md:pt-28">
+        <div className="container-site">
           <div className="flex flex-col items-center text-center">
             <Reveal delay={0.1}>
-              <div className="glass mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm">
-                <span className="h-2 w-2 rounded-full bg-gradient-to-r from-accent to-gold" />
-                <span className="text-text-muted">Welcome to Soyiri Labs</span>
+              <div className="mb-9 inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas/80 px-4 py-2 shadow-hard-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                </span>
+                <span className="text-caption-strong text-ink">Available for new projects</span>
               </div>
             </Reveal>
 
-            <div className="mb-6 max-w-5xl">
-              <h1 className="flex flex-wrap justify-center text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl">
+            <div className="mb-7 max-w-5xl">
+              <h1 className="text-hero-display flex flex-wrap justify-center text-ink">
                 {['We', 'Build'].map((word, i) => (
                   <motion.span
                     key={word}
-                    className="text-text"
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 32 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + i * 0.08, ease: [0.25, 0.4, 0.25, 1] }}
+                    transition={{ duration: 0.55, delay: 0.15 + i * 0.08, ease: [0.25, 0.4, 0.25, 1] }}
                   >
                     {word}{'\u00A0'}
                   </motion.span>
                 ))}
                 <motion.span
-                  className="gradient-text"
-                  initial={{ opacity: 0, y: 40 }}
+                  className="bg-gradient-to-r from-action via-violet to-cyan bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.36, ease: [0.25, 0.4, 0.25, 1] }}
+                  transition={{ duration: 0.55, delay: 0.31, ease: [0.25, 0.4, 0.25, 1] }}
                 >
                   Digital{'\u00A0'}Products{'\u00A0'}
                 </motion.span>
                 <motion.span
-                  className="text-text"
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.52, ease: [0.25, 0.4, 0.25, 1] }}
+                  transition={{ duration: 0.55, delay: 0.47, ease: [0.25, 0.4, 0.25, 1] }}
                 >
-                  That{'\u00A0'}Matter
+                  That{'\u00A0'}
+                </motion.span>
+                <motion.span
+                  className="text-serif-accent text-action"
+                  initial={{ opacity: 0, y: 32 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+                >
+                  Matter.
                 </motion.span>
               </h1>
             </div>
 
-            <Reveal delay={0.4} className="mb-10 max-w-2xl">
-              <p className="text-base leading-relaxed text-text-secondary md:text-lg lg:text-xl">
+            <Reveal delay={0.35} className="mb-10 max-w-2xl">
+              <p className="text-lead-airy text-ink-80">
                 We craft premium web experiences that blend stunning design with
                 cutting-edge technology. From concept to launch, we build digital
                 products that drive real business growth.
               </p>
             </Reveal>
 
-            <Reveal delay={0.6} className="flex flex-wrap items-center justify-center gap-4">
+            <Reveal delay={0.5} className="flex flex-wrap items-center justify-center gap-3.5">
               <Button href="/portfolio" size="lg">
                 View Our Work
                 <ArrowRight className="h-5 w-5 shrink-0" />
@@ -268,17 +291,29 @@ function HeroSection() {
               </Button>
             </Reveal>
 
-            <Reveal delay={0.8} className="mt-20 w-full">
-              <div className="glass inline-grid w-full max-w-3xl grid-cols-2 divide-x divide-border overflow-hidden rounded-2xl md:grid-cols-4">
-                {[
-                  { label: 'Projects', value: '50+', sub: 'Completed' },
-                  { label: 'Clients', value: '30+', sub: 'Worldwide' },
-                  { label: 'Years', value: '5+', sub: 'Experience' },
-                  { label: 'Satisfaction', value: '98%', sub: 'Rate' },
-                ].map((stat, i) => (
-                  <div key={i} className="flex flex-col items-center px-4 py-6 md:py-8">
-                    <span className="gradient-text text-2xl font-bold md:text-3xl">{stat.value}</span>
-                    <span className="mt-1 text-xs text-text-muted">{stat.label}</span>
+            <Reveal delay={0.6} className="mt-10 flex flex-wrap items-center justify-center gap-2">
+              {['Web Design', 'Development', 'SEO', 'UI/UX'].map((chip, i) => (
+                <span
+                  key={chip}
+                  className={cn(
+                    'cursor-default rounded-full border px-4 py-1.5 text-caption-strong transition-colors duration-200 hover:-translate-y-0.5',
+                    i === 0 && 'border-violet/40 bg-violet/10 text-violet',
+                    i === 1 && 'border-action/40 bg-action/10 text-action',
+                    i === 2 && 'border-lime/50 bg-lime/10 text-lime',
+                    i === 3 && 'border-magenta/40 bg-magenta/10 text-magenta',
+                  )}
+                >
+                  {chip}
+                </span>
+              ))}
+            </Reveal>
+
+            <Reveal delay={0.7} className="mt-14 w-full">
+              <div className="mx-auto grid w-full max-w-3xl grid-cols-2 divide-x divide-hairline rounded-2xl border-2 border-ink bg-canvas shadow-hard md:grid-cols-4">
+                {heroStats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col items-center px-4 py-7">
+                    <span className="font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">{stat.value}</span>
+                    <span className="mt-1.5 text-fine uppercase tracking-widest text-ink-48">{stat.label}</span>
                   </div>
                 ))}
               </div>
@@ -287,40 +322,44 @@ function HeroSection() {
         </div>
       </motion.div>
 
-      <ScrollIndicator />
+      <div className="pointer-events-none absolute bottom-2 left-1/2 hidden -translate-x-1/2 select-none whitespace-nowrap text-[11rem] font-bold uppercase leading-none tracking-tighter text-outline lg:block">
+        Digital
+      </div>
     </section>
   )
 }
 
 function ServicesSection() {
   return (
-    <section id="services" className="section-padding relative">
-      <div className="container-premium">
+    <section id="services" className="tile-parchment tile">
+      <div className="container-site">
         <Reveal>
           <SectionHeading
             label="What We Do"
-            title="Premium Web Development Services"
+            title={
+              <>
+                Services that <span className="text-serif-accent text-action">move the needle</span>
+              </>
+            }
             description="We offer end-to-end web development services tailored to your business needs, from concept to launch and beyond."
           />
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
-            <Reveal key={service.title} delay={i * 0.1}>
-              <ParallaxTilt intensity={10}>
-                <GlowCard>
-                  <Card hover glow className="group h-full">
-                    <div className="glass-light mb-5 inline-flex rounded-xl p-3">
-                      <service.icon className="h-6 w-6 text-accent" />
-                    </div>
-                    <h3 className="mb-3 text-lg font-semibold text-text">{service.title}</h3>
-                    <p className="text-sm leading-relaxed text-text-secondary">{service.description}</p>
-                    <div className="mt-5 flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      Learn more <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
-                  </Card>
-                </GlowCard>
-              </ParallaxTilt>
+            <Reveal key={service.title} delay={i * 0.08}>
+              <Link to={`/services/${service.slug ?? ''}`} className="group block h-full">
+                <Card hover className="h-full">
+                  <div className="mb-5 inline-flex rounded-xl bg-action/10 p-3 transition-transform duration-300 group-hover:-rotate-6">
+                    <service.icon className={cn('h-6 w-6', `text-${service.color}`)} />
+                  </div>
+                  <h3 className="mb-3 text-tagline text-ink">{service.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-ink-80">{service.description}</p>
+                  <div className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-action">
+                    Learn more <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </Card>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -335,15 +374,6 @@ function ServicesSection() {
     </section>
   )
 }
-
-const gradients = [
-  'from-[#2a2347] via-[#211c3c] to-[#14101f]',
-  'from-[#26304a] via-[#1d2438] to-[#11141f]',
-  'from-[#2a2a38] via-[#202030] to-[#131319]',
-  'from-[#332b1f] via-[#262019] to-[#17130e]',
-  'from-[#1f2e3f] via-[#182230] to-[#0f151d]',
-  'from-[#2f2330] via-[#241b26] to-[#141114]',
-] as const
 
 function FeaturedProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([])
@@ -364,79 +394,89 @@ function FeaturedProjectsSection() {
   }, [])
 
   return (
-    <section id="work" className="section-padding relative">
-      <div className="container-premium">
-        <Reveal>
-          <SectionHeading
-            label="Our Work"
-            title="Featured Projects"
-            description="Explore our latest projects showcasing premium design and engineering excellence."
-          />
-        </Reveal>
+    <section id="work" className="tile-dark tile relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+      <div className="relative">
+        <div className="container-site">
+          <Reveal>
+            <SectionHeading
+              label="Our Work"
+              title={
+                <>
+                  Selected <span className="text-serif-accent text-action-sky">work</span>, zero filler
+                </>
+              }
+              description="Explore our latest projects showcasing premium design and engineering excellence."
+              onDark
+            />
+          </Reveal>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {loading ? (
-            Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="glass rounded-2xl overflow-hidden">
-                <Skeleton className="h-52 rounded-none" />
-                <div className="p-6 space-y-3">
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-2/3" />
-                  <div className="flex gap-2 pt-2">
-                    <Skeleton className="h-6 w-16 rounded-full" />
-                    <Skeleton className="h-6 w-20 rounded-full" />
-                    <Skeleton className="h-6 w-14 rounded-full" />
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {loading ? (
+              Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-tile-2">
+                  <Skeleton className="h-48 rounded-none" />
+                  <div className="space-y-3 p-6">
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-2/3" />
                   </div>
                 </div>
-              </div>
-            ))
-          ) : projects.length === 0 ? null : (
-            projects.map((project, i) => (
-              <Reveal key={project._id} delay={i * 0.15}>
-                <Link to={`/portfolio/${project.slug}`} className="block group">
-                  <GlowCard>
-                    <Card hover className="h-full overflow-hidden p-0">
-                      <div className={cn('flex h-52 items-center justify-center bg-gradient-to-br', gradients[i % gradients.length])}>
-                        <span className="text-6xl font-black tracking-tight text-white/30 select-none">
+              ))
+            ) : projects.length === 0 ? null : (
+              projects.map((project, i) => (
+                <Reveal key={project._id} delay={i * 0.1}>
+                  <Link to={`/portfolio/${project.slug}`} className="group block">
+                    <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-tile-2 transition-colors duration-300 group-hover:border-white/25">
+                      <div
+                        className="relative flex h-48 items-center justify-center"
+                        style={{ backgroundColor: `${project.colorTheme || '#4f46e5'}2e` }}
+                      >
+                        <span className="select-none text-6xl font-semibold tracking-tight text-white/25">
                           {project.title.charAt(0)}
+                        </span>
+                        <span className="absolute left-4 top-4 font-display text-5xl font-bold text-white/10">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-action text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                          <ArrowUpRight className="h-5 w-5" />
                         </span>
                       </div>
                       <div className="p-6">
-                        <h3 className="mb-2 text-xl font-semibold text-text group-hover:text-accent transition-colors">
+                        <h3 className="mb-2 text-[21px] font-semibold text-on-dark transition-colors duration-200 group-hover:text-action-sky">
                           {project.title}
                         </h3>
-                        <p className="mb-4 text-sm leading-relaxed text-text-secondary line-clamp-2">
+                        <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed text-on-dark-muted">
                           {project.description}
                         </p>
                         <div className="mb-5 flex flex-wrap gap-2">
                           {project.technologies.slice(0, 4).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-lg bg-glass-light px-2.5 py-1 text-xs font-medium text-text-secondary"
+                              className="rounded-lg border border-white/12 bg-white/10 px-2.5 py-1 text-xs font-medium text-on-dark-muted"
                             >
                               {tag}
                             </span>
                           ))}
                         </div>
-                        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-300 group-hover:text-accent-light">
+                        <span className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-action-sky">
                           View Project <ExternalLink className="h-3.5 w-3.5 shrink-0" />
                         </span>
                       </div>
-                    </Card>
-                  </GlowCard>
-                </Link>
-              </Reveal>
-            ))
-          )}
-        </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))
+            )}
+          </div>
 
-        <Reveal className="mt-12 text-center">
-          <Button href="/portfolio">
-            View All Projects
-            <ArrowRight className="h-4 w-4 shrink-0" />
-          </Button>
-        </Reveal>
+          <Reveal className="mt-12 text-center">
+            <Button href="/portfolio" variant="pearl" size="lg">
+              View All Projects
+              <ArrowRight className="h-4 w-4 shrink-0" />
+            </Button>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
@@ -444,44 +484,46 @@ function FeaturedProjectsSection() {
 
 function WhySoyiriLabsSection() {
   return (
-    <section className="section-padding relative">
-      <div className="container-premium">
+    <section className="tile-light tile">
+      <div className="container-site">
         <Reveal>
           <SectionHeading
             label="Why Choose Us"
-            title="Why Soyiri Labs?"
+            title={
+              <>
+                The studio <span className="text-serif-accent text-violet">difference</span>
+              </>
+            }
             description="We combine technical excellence with strategic thinking to deliver exceptional results."
           />
         </Reveal>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
           {whyValues.map((value, i) => (
-            <Reveal key={value.title} delay={i * 0.15}>
-              <GlowCard>
-                <Card className="h-full text-center">
-                  <div className="glass-light mx-auto mb-6 inline-flex rounded-2xl p-4">
-                    <value.icon className="h-7 w-7 text-accent" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-semibold text-text">{value.title}</h3>
-                  <p className="text-sm leading-relaxed text-text-secondary">{value.description}</p>
-                </Card>
-              </GlowCard>
+            <Reveal key={value.title} delay={i * 0.12}>
+              <Card hover className="h-full text-center">
+                <div className={cn('mx-auto mb-6 inline-flex rounded-full p-4', value.color)}>
+                  <value.icon className="h-7 w-7" />
+                </div>
+                <h3 className="mb-3 text-tagline text-ink">{value.title}</h3>
+                <p className="text-[15px] leading-relaxed text-ink-80">{value.description}</p>
+              </Card>
             </Reveal>
           ))}
         </div>
 
-        <Reveal className="mt-16">
-          <div className="glass mx-auto max-w-4xl rounded-3xl p-8 md:p-12">
+        <Reveal className="mt-14">
+          <div className="mx-auto max-w-4xl rounded-2xl border border-hairline bg-canvas p-8 shadow-hard-sm md:p-12">
             <div className="grid gap-8 sm:grid-cols-3">
               {[
-                { icon: Zap, label: 'Lightning Fast', desc: 'Optimized for speed' },
-                { icon: CheckCircle2, label: '99.9% Uptime', desc: 'Enterprise reliability' },
-                { icon: Users, label: 'Dedicated Support', desc: '24/7 expert assistance' },
+                { icon: Zap, label: 'Lightning Fast', desc: 'Optimized for speed', color: 'text-action' },
+                { icon: CheckCircle2, label: '99.9% Uptime', desc: 'Enterprise reliability', color: 'text-success' },
+                { icon: Users, label: 'Dedicated Support', desc: '24/7 expert assistance', color: 'text-cyan' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center text-center">
-                  <item.icon className="mb-3 h-6 w-6 text-accent" />
-                  <span className="mb-1 text-sm font-semibold text-text">{item.label}</span>
-                  <span className="text-xs text-text-muted">{item.desc}</span>
+                  <item.icon className={cn('mb-3 h-6 w-6', item.color)} />
+                  <span className="mb-1 text-caption-strong text-ink">{item.label}</span>
+                  <span className="text-fine text-ink-48">{item.desc}</span>
                 </div>
               ))}
             </div>
@@ -494,71 +536,55 @@ function WhySoyiriLabsSection() {
 
 function TechnologiesSection() {
   return (
-    <section className="section-padding relative">
-      <GlassDivider className="mb-0" />
-      <div className="container-premium pt-16">
-        <Reveal>
-          <SectionHeading
-            label="Tech Stack"
-            title="Technologies We Use"
-            description="Modern tools and frameworks powering our premium web solutions."
-          />
-        </Reveal>
-
-        <div className="mt-16 flex flex-wrap justify-center gap-4">
-          {technologies.map((tech, i) => (
-            <Reveal key={tech} delay={i * 0.05} direction="up">
-              <motion.div
-                className="glass rounded-full px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors duration-300 hover:border-accent/30 hover:text-text"
-                whileHover={{ y: -4, scale: 1.05 }}
-              >
-                {tech}
-              </motion.div>
-            </Reveal>
+    <section className="border-y border-hairline bg-canvas py-10">
+      <div className="marquee">
+        <div className="marquee-track">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex shrink-0 items-center">
+              {technologies.map((tech) => (
+                <span key={`${copy}-${tech}`} className="mx-3 flex items-center gap-6 whitespace-nowrap font-display text-lg font-semibold text-ink-48 transition-colors hover:text-action">
+                  {tech}
+                  <span className="text-violet">✦</span>
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>
-      <GlassDivider className="mt-0" />
     </section>
   )
 }
 
 function ProcessSection() {
   return (
-    <section className="section-padding relative">
-      <div className="container-premium">
-        <Reveal>
-          <SectionHeading
-            label="How We Work"
-            title="Our Process"
-            description="A proven methodology that ensures every project is delivered on time, on budget, and beyond expectations."
-          />
-        </Reveal>
+    <section className="tile-dark tile relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+      <div className="relative">
+        <div className="container-site">
+          <Reveal>
+            <SectionHeading
+              label="How We Work"
+              title={
+                <>
+                  Seven steps to <span className="text-serif-accent text-action-sky">ship it</span>
+                </>
+              }
+              description="A proven methodology that ensures every project is delivered on time, on budget, and beyond expectations."
+              onDark
+            />
+          </Reveal>
 
-        <div className="relative mt-20">
-          <div className="absolute bottom-0 left-6 top-0 hidden w-px bg-gradient-to-b from-accent via-gold/40 to-transparent md:block" />
-
-          <div className="space-y-12 md:space-y-16">
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {processSteps.map((step, i) => (
-              <Reveal key={step.step} delay={i * 0.1}>
-                <div className="group relative md:flex md:items-start md:gap-8">
-                  <div className="mb-4 hidden md:block md:w-14 md:shrink-0">
-                    <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary ring-2 ring-accent/30 transition-all duration-300 group-hover:ring-accent/60">
-                      <span className="text-sm font-bold text-accent">{String(step.step).padStart(2, '0')}</span>
-                    </div>
+              <Reveal key={step.step} delay={i * 0.06}>
+                <div className="group relative h-full rounded-2xl border border-white/10 bg-tile-2 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-action-sky/40">
+                  <span className="pointer-events-none absolute right-5 top-4 select-none font-display text-6xl font-bold text-outline-light">
+                    {String(step.step).padStart(2, '0')}
+                  </span>
+                  <div className="relative">
+                    <h3 className="mb-2 text-tagline text-on-dark group-hover:text-action-sky">{step.title}</h3>
+                    <p className="text-[15px] leading-relaxed text-on-dark-muted">{step.description}</p>
                   </div>
-
-                  <GlowCard>
-                    <Card className="relative md:ml-0">
-                      <div className="mb-3 flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 md:hidden">
-                          <span className="text-xs font-bold text-accent">{step.step}</span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-text">{step.title}</h3>
-                      </div>
-                      <p className="text-sm leading-relaxed text-text-secondary">{step.description}</p>
-                    </Card>
-                  </GlowCard>
                 </div>
               </Reveal>
             ))}
@@ -571,38 +597,39 @@ function ProcessSection() {
 
 function TestimonialsSection() {
   return (
-    <section className="section-padding relative overflow-hidden">
-      <div className="container-premium">
+    <section className="tile-parchment tile">
+      <div className="container-site">
         <Reveal>
           <SectionHeading
             label="Testimonials"
-            title="What Our Clients Say"
+            title={
+              <>
+                Kind words from <span className="text-serif-accent text-magenta">happy clients</span>
+              </>
+            }
             description="Don't just take our word for it. Here's what our clients have to say."
           />
         </Reveal>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
           {testimonials.map((testimonial, i) => (
-            <Reveal key={testimonial.name} delay={i * 0.1}>
-              <GlowCard>
-                <Card className="group h-full">
-                  <Quote className="mb-4 h-8 w-8 text-accent/30" />
-                  <p className="mb-6 text-sm leading-relaxed text-text-secondary italic line-clamp-4">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <div className="mb-4 flex gap-1">
-                    {Array.from({ length: testimonial.rating }).map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <div className="border-t border-border pt-4">
-                    <span className="block text-sm font-semibold text-text">{testimonial.name}</span>
-                    <span className="text-xs text-text-muted">
-                      {testimonial.position}, {testimonial.company}
-                    </span>
-                  </div>
-                </Card>
-              </GlowCard>
+            <Reveal key={testimonial.name} delay={i * 0.08}>
+              <Card hover className="group h-full">
+                <div className="mb-4 flex gap-1">
+                  {Array.from({ length: testimonial.rating }).map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-warning text-warning" />
+                  ))}
+                </div>
+                <p className="mb-6 line-clamp-4 font-serif text-[19px] italic leading-relaxed text-ink-80">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <div className="border-t border-hairline pt-4">
+                  <span className="block text-caption-strong text-ink">{testimonial.name}</span>
+                  <span className="text-fine text-ink-48">
+                    {testimonial.position}, {testimonial.company}
+                  </span>
+                </div>
+              </Card>
             </Reveal>
           ))}
         </div>
@@ -613,61 +640,82 @@ function TestimonialsSection() {
 
 function StatisticsSection() {
   return (
-    <section className="section-padding relative">
-      <GlassDivider className="mb-0" />
-      <div className="container-premium pt-16">
+    <section className="tile-light tile">
+      <div className="container-site">
         <Reveal>
           <SectionHeading
             label="By the Numbers"
-            title="Our Impact in Numbers"
+            title={
+              <>
+                Our impact in <span className="text-serif-accent text-cyan">numbers</span>
+              </>
+            }
             description="Hard work, happy clients, and measurable results."
           />
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 0.1}>
-              <Card glow className="text-center">
-                <div className="gradient-text text-4xl font-bold md:text-5xl">
+            <Reveal key={stat.label} delay={i * 0.08}>
+              <Card hover className="text-center">
+                <div className={cn('font-display text-5xl font-bold tracking-tight md:text-6xl', stat.color)}>
                   <AnimatedCounter to={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="mt-3 text-sm text-text-secondary">{stat.label}</p>
+                <p className="mt-3 text-[15px] text-ink-80">{stat.label}</p>
               </Card>
             </Reveal>
           ))}
         </div>
       </div>
-      <GlassDivider className="mt-0" />
     </section>
   )
 }
 
 function CTASection() {
   return (
-    <section className="section-padding relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
-      </div>
-
-      <div className="container-premium relative z-10">
-        <Reveal>
-          <Card className="relative overflow-hidden text-center">
-            <div className="pointer-events-none absolute -inset-px bg-gradient-to-br from-accent/10 via-gold/5 to-transparent opacity-50" />
-            <div className="relative z-10 py-8 md:py-12">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight text-text md:text-4xl lg:text-5xl">
-                Ready to Build Something Amazing?
+    <section className="tile-electric tile relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
+      <div className="pointer-events-none absolute -left-24 top-1/2 h-[420px] w-[420px] -translate-y-1/2 blob-violet" />
+      <div className="pointer-events-none absolute -right-24 top-0 h-[360px] w-[360px] blob-cyan" />
+      <div className="relative">
+        <div className="container-site">
+          <Reveal>
+            <div className="text-center">
+              <p className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-white/70">
+                Got a project in mind?
+              </p>
+              <h2 className="text-display-lg text-white text-balance">
+                Ready to build something
+                <br />
+                <span className="text-serif-accent">amazing?</span>
               </h2>
-              <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-text-secondary">
+              <p className="mx-auto mt-5 max-w-xl text-lead-airy text-white/80">
                 Let's turn your vision into a premium digital product. Get in touch
                 and we'll make it happen.
               </p>
-              <Button href="/contact" size="lg">
-                Start Your Project
-                <ArrowRight className="h-5 w-5 shrink-0" />
-              </Button>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+                <Button
+                  href="/contact"
+                  size="lg"
+                  variant="white"
+                >
+                  Start Your Project
+                  <ArrowRight className="h-5 w-5 shrink-0" />
+                </Button>
+                  <Button
+                    href="/services"
+                    variant="outline-light"
+                    size="lg"
+                  >
+                    Explore Services
+                  </Button>
+              </div>
             </div>
-          </Card>
-        </Reveal>
+          </Reveal>
+        </div>
+        <div className="mt-16 border-t border-white/15 pt-6">
+          <Marquee items={marqueeItems} />
+        </div>
       </div>
     </section>
   )
@@ -686,14 +734,14 @@ function BackToTop() {
     <motion.button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       className={cn(
-        'fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-glass backdrop-blur-xl transition-colors duration-300 hover:border-accent/50 hover:bg-glass-hover',
+        'fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white shadow-hard-sm transition-colors duration-200 hover:bg-action',
         visible ? 'pointer-events-auto' : 'pointer-events-none',
       )}
       animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
       transition={{ duration: 0.2 }}
       aria-label="Back to top"
     >
-      <ArrowUp className="h-5 w-5 text-text-secondary" />
+      <ArrowUp className="h-5 w-5" />
     </motion.button>
   )
 }

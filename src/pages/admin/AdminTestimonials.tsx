@@ -140,8 +140,8 @@ export default function AdminTestimonials() {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text">Testimonials</h1>
-          <p className="text-sm text-text-secondary mt-1">Manage client testimonials</p>
+          <h1 className="text-2xl font-bold text-ink">Testimonials</h1>
+          <p className="text-sm text-ink-80 mt-1">Manage client testimonials</p>
         </div>
         <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Testimonial</Button>
       </div>
@@ -152,7 +152,7 @@ export default function AdminTestimonials() {
         </div>
       ) : testimonials.length === 0 ? (
         <Card className="text-center py-12">
-          <p className="text-text-muted mb-4">No testimonials yet</p>
+          <p className="text-ink-48 mb-4">No testimonials yet</p>
           <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Testimonial</Button>
         </Card>
       ) : (
@@ -164,38 +164,38 @@ export default function AdminTestimonials() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.03 }}
             >
-              <Card className={cn('h-full', t.featured && 'border-accent/30')}>
+              <Card className={cn('h-full', t.featured && 'border-action/40')}>
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-glass-light flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-pearl flex items-center justify-center">
                     {t.photo ? (
                       <img src={getImageUrl(t.photo)} alt="" className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-xs font-bold text-text-muted">{t.name.charAt(0)}</span>
+                      <span className="text-xs font-bold text-ink-48">{t.name.charAt(0)}</span>
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm font-medium text-text block truncate">{t.name}</span>
-                    <span className="text-xs text-text-muted block truncate">{t.position}{t.company ? `, ${t.company}` : ''}</span>
+                    <span className="text-sm font-medium text-ink block truncate">{t.name}</span>
+                    <span className="text-xs text-ink-48 block truncate">{t.position}{t.company ? `, ${t.company}` : ''}</span>
                   </div>
                 </div>
                 <div className="flex gap-0.5 mb-2">
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className={cn('h-3.5 w-3.5', j < t.rating ? 'fill-gold text-gold' : 'text-text-muted')} />
+                    <Star key={j} className={cn('h-3.5 w-3.5', j < t.rating ? 'fill-warning text-warning' : 'text-ink-48')} />
                   ))}
                 </div>
-                <p className="text-xs text-text-secondary line-clamp-3 mb-3 leading-relaxed">&ldquo;{t.review}&rdquo;</p>
-                <div className="flex items-center justify-between pt-2 border-t border-border">
+                <p className="text-xs text-ink-80 line-clamp-3 mb-3 leading-relaxed">&ldquo;{t.review}&rdquo;</p>
+                <div className="flex items-center justify-between pt-2 border-t border-hairline">
                   <button
                     onClick={() => toggleFeatured(t)}
-                    className={cn('text-xs font-medium px-2.5 py-1 rounded-full border transition-colors', t.featured ? 'text-accent border-accent/30 bg-accent/5' : 'text-text-muted border-border hover:border-accent/30')}
+                    className={cn('text-xs font-medium px-2.5 py-1 rounded-full border transition-colors', t.featured ? 'text-action border-action/40 bg-action/5' : 'text-ink-48 border-hairline hover:border-action/40')}
                   >
                     {t.featured ? 'Featured' : 'Set Featured'}
                   </button>
                   <div className="flex items-center gap-1">
-                    <button onClick={() => openEdit(t)} className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">
+                    <button onClick={() => openEdit(t)} className="p-1.5 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all">
                       <Edit3 className="h-3.5 w-3.5" />
                     </button>
-                    <button onClick={() => handleDelete(t._id)} disabled={deleting === t._id} className="p-1.5 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
+                    <button onClick={() => handleDelete(t._id)} disabled={deleting === t._id} className="p-1.5 rounded-lg text-ink-48 hover:text-error hover:bg-error/10 transition-all">
                       <Trash2 className={cn('h-3.5 w-3.5', deleting === t._id && 'animate-spin')} />
                     </button>
                   </div>
@@ -216,47 +216,47 @@ export default function AdminTestimonials() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-x-3 top-3 bottom-3 z-50 overflow-y-auto overscroll-contain rounded-2xl md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-xl md:max-h-[calc(100dvh-80px)]"
             >
-              <Card solid className="p-6 md:p-8">
+              <Card className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-text">{editing ? 'Edit Testimonial' : 'Add Testimonial'}</h2>
-                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">
+                  <h2 className="text-lg font-semibold text-ink">{editing ? 'Edit Testimonial' : 'Add Testimonial'}</h2>
+                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all">
                     <X className="h-5 w-5" />
                   </button>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 min-w-0">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Name *</label>
-                    <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Name *</label>
+                    <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Company</label>
-                    <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Company</label>
+                    <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Position</label>
-                    <input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Position</label>
+                    <input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Rating</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Rating</label>
                     <div className="flex items-center gap-2 h-10">
                       {[1, 2, 3, 4, 5].map((n) => (
                         <button key={n} type="button" onClick={() => setForm({ ...form, rating: n })}>
-                          <Star className={cn('h-6 w-6 transition-colors', n <= form.rating ? 'fill-gold text-gold' : 'text-text-muted')} />
+                          <Star className={cn('h-6 w-6 transition-colors', n <= form.rating ? 'fill-warning text-warning' : 'text-ink-48')} />
                         </button>
                       ))}
                     </div>
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Review *</label>
-                    <textarea value={form.review} onChange={(e) => setForm({ ...form, review: e.target.value })} rows={4} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Review *</label>
+                    <textarea value={form.review} onChange={(e) => setForm({ ...form, review: e.target.value })} rows={4} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Photo</label>
-                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Photo</label>
+                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                       <div className="flex flex-col items-center gap-1">
-                        <ImagePlus className="h-5 w-5 text-text-muted" />
-                        <span className="text-xs text-text-muted">Click to upload</span>
+                        <ImagePlus className="h-5 w-5 text-ink-48" />
+                        <span className="text-xs text-ink-48">Click to upload</span>
                       </div>
                       <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setPhoto(f); setLocalPreview(URL.createObjectURL(f)) } }} className="hidden" />
                     </label>
@@ -267,13 +267,13 @@ export default function AdminTestimonials() {
                   <div className="md:col-span-2 flex items-center gap-3">
                     <label className="relative inline-flex cursor-pointer items-center">
                       <input type="checkbox" checked={form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} className="sr-only peer" />
-                      <div className="w-10 h-5 bg-glass-light rounded-full peer peer-checked:bg-accent after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
+                      <div className="w-10 h-5 bg-pearl rounded-full peer peer-checked:bg-action after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
                     </label>
-                    <span className="text-sm text-text-secondary">Featured</span>
+                    <span className="text-sm text-ink-80">Featured</span>
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-border">
+                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-hairline">
                   <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
                   <Button onClick={handleSave} loading={saving}>{editing ? 'Update' : 'Create'} Testimonial</Button>
                 </div>

@@ -34,7 +34,7 @@ export default function Layout() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col bg-primary text-text">
+    <div className="min-h-screen flex flex-col bg-canvas text-ink">
       <ScrollProgress />
       <Header />
       <main className="flex-1">

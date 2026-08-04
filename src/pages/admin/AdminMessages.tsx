@@ -79,21 +79,21 @@ export default function AdminMessages() {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text">Messages</h1>
-          <p className="text-sm text-text-secondary mt-1">
+          <h1 className="text-2xl font-bold text-ink">Messages</h1>
+          <p className="text-sm text-ink-80 mt-1">
             {unreadCount > 0
               ? `${unreadCount} unread message${unreadCount !== 1 ? 's' : ''}`
               : 'All messages are read'}
           </p>
         </div>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-48" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search messages..."
-            className="w-56 h-10 pl-9 pr-3 rounded-xl bg-glass-light border border-border text-text text-sm placeholder:text-text-muted focus:outline-none focus:border-accent/50"
+            className="w-56 h-10 pl-9 pr-3 rounded-xl bg-pearl border border-hairline text-ink text-sm placeholder:text-ink-48 focus:outline-none focus:border-action/50"
           />
         </div>
       </div>
@@ -104,7 +104,7 @@ export default function AdminMessages() {
         </div>
       ) : filtered.length === 0 ? (
         <Card className="text-center py-12">
-          <p className="text-text-muted">{search ? 'No messages match your search' : 'No messages yet'}</p>
+          <p className="text-ink-48">{search ? 'No messages match your search' : 'No messages yet'}</p>
         </Card>
       ) : (
         <div className="space-y-2">
@@ -123,30 +123,30 @@ export default function AdminMessages() {
               <Card
                 className={cn(
                   'p-4 cursor-pointer transition-all duration-300',
-                  !msg.read && 'border-accent/20 bg-accent/[0.02]',
-                  expanded === msg._id && 'ring-1 ring-accent/30',
+                  !msg.read && 'border-action/20 bg-action/[0.02]',
+                  expanded === msg._id && 'ring-1 ring-action/30',
                 )}
                 onClick={() => setExpanded(expanded === msg._id ? null : msg._id)}
               >
                 <div className="flex items-start gap-4">
                   <div className={cn(
                     'w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors',
-                    msg.read ? 'bg-glass-light text-text-muted' : 'bg-accent/10 text-accent',
+                    msg.read ? 'bg-pearl text-ink-48' : 'bg-action/10 text-action',
                   )}>
                     <User className="h-4 w-4" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className={cn('text-sm truncate', msg.read ? 'text-text' : 'text-text font-semibold')}>
+                      <span className={cn('text-sm truncate', msg.read ? 'text-ink' : 'text-ink font-semibold')}>
                         {msg.name}
                       </span>
-                      {!msg.read && <span className="w-2 h-2 rounded-full bg-accent shrink-0" />}
-                      <span className="text-xs text-text-muted ml-auto flex items-center gap-1 shrink-0">
+                      {!msg.read && <span className="w-2 h-2 rounded-full bg-action shrink-0" />}
+                      <span className="text-xs text-ink-48 ml-auto flex items-center gap-1 shrink-0">
                         <Calendar className="h-3 w-3" />
                         {formatDate(msg.createdAt)}
                       </span>
                     </div>
-                    <p className="text-xs text-text-muted mt-0.5">{msg.email}</p>
+                    <p className="text-xs text-ink-48 mt-0.5">{msg.email}</p>
                     <p className={cn('text-sm mt-2 leading-relaxed', expanded !== msg._id && 'line-clamp-2')}>
                       {msg.message}
                     </p>
@@ -160,20 +160,20 @@ export default function AdminMessages() {
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-border max-h-[40vh] overflow-y-auto pr-1">
+                          <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-hairline max-h-[40vh] overflow-y-auto pr-1">
                             {msg.company && (
-                              <span className="text-xs text-text-muted flex items-center gap-1">
+                              <span className="text-xs text-ink-48 flex items-center gap-1">
                                 <Building2 className="h-3.5 w-3.5" />
                                 {msg.company}
                               </span>
                             )}
                             {msg.budget && (
-                              <span className="text-xs text-text-muted flex items-center gap-1">
+                              <span className="text-xs text-ink-48 flex items-center gap-1">
                                 <DollarSign className="h-3.5 w-3.5" />
                                 {msg.budget}
                               </span>
                             )}
-                            <span className="text-xs text-text-muted flex items-center gap-1">
+                            <span className="text-xs text-ink-48 flex items-center gap-1">
                               <Mail className="h-3.5 w-3.5" />
                               {msg.email}
                             </span>
@@ -204,7 +204,7 @@ export default function AdminMessages() {
                       )}
                     </AnimatePresence>
                   </div>
-                  <div className="shrink-0 text-text-muted">
+                  <div className="shrink-0 text-ink-48">
                     {expanded === msg._id ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                   </div>
                 </div>

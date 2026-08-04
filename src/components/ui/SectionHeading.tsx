@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   title: string | ReactNode
   description?: string | ReactNode
   align?: 'left' | 'center'
+  onDark?: boolean
   className?: string
 }
 
@@ -14,16 +15,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12 },
+    transition: { staggerChildren: 0.1 },
   },
 } as const
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.55, ease: [0.25, 0.4, 0.25, 1] as const },
   },
 } as const
 
@@ -32,6 +33,7 @@ export function SectionHeading({
   title,
   description,
   align = 'center',
+  onDark = false,
   className,
 }: SectionHeadingProps) {
   const isCenter = align === 'center'
@@ -43,40 +45,43 @@ export function SectionHeading({
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       className={cn(
-        'max-w-2xl',
+        'max-w-3xl',
         isCenter && 'mx-auto text-center',
         className,
       )}
     >
       {label && (
-        <motion.div
+        <motion.p
           variants={itemVariants}
           className={cn(
-            'eyebrow mb-4 flex items-center gap-2.5 text-accent',
-            isCenter && 'justify-center',
+            'mb-4 inline-flex items-center gap-2 text-caption-strong uppercase tracking-[0.14em]',
+            onDark ? 'text-on-dark-muted' : 'text-ink-48',
           )}
         >
-          <span className="inline-block h-px w-6 bg-accent/50" />
-          <span className="text-text-muted">{label}</span>
-          {isCenter && <span className="inline-block h-px w-6 bg-accent/50" />}
-        </motion.div>
+          <span className="inline-block h-2 w-2 rounded-full bg-action" />
+          {label}
+        </motion.p>
       )}
       <motion.h2
         variants={itemVariants}
-        className="text-3xl font-semibold tracking-[-0.02em] text-text text-balance md:text-4xl lg:text-[2.75rem] lg:leading-[1.08]"
+        className={cn(
+          'text-display-lg text-balance',
+          onDark ? 'text-on-dark' : 'text-ink',
+        )}
       >
         {title}
       </motion.h2>
       {description && (
-        <motion.div
+        <motion.p
           variants={itemVariants}
           className={cn(
-            'mt-5 text-base leading-relaxed text-text-secondary md:text-lg',
+            'mt-5 text-lead-airy',
+            onDark ? 'text-on-dark-muted' : 'text-ink-80',
             isCenter && 'mx-auto',
           )}
         >
           {description}
-        </motion.div>
+        </motion.p>
       )}
     </motion.div>
   )

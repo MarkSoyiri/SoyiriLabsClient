@@ -2,9 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { ScrollText } from 'lucide-react'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { GlassDivider } from '@/components/ui/GlassDivider'
 import Reveal from '@/components/animations/Reveal'
-import FloatingElements from '@/components/animations/FloatingElements'
 
 const sections = [
   {
@@ -89,32 +87,39 @@ export default function Terms() {
         <meta name="description" content="Soyiri Labs Terms of Service — the terms governing the use of our website and services." />
       </Helmet>
 
-      <FloatingElements count={4} />
-
-      <section className="section-padding relative">
-        <div className="container-premium">
+      <section className="tile-light tile relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg" />
+        <div className="pointer-events-none absolute -top-24 right-[-8%] h-[420px] w-[420px] blob-violet" />
+        <div className="pointer-events-none absolute bottom-[-16%] left-[-8%] h-[380px] w-[380px] blob-cyan opacity-60" />
+        <div className="relative container-site px-4">
           <Reveal>
             <SectionHeading
               label="Legal"
-              title="Terms of Service"
+              title={
+                <>
+                  Terms of <span className="text-serif-accent text-action">service</span>
+                </>
+              }
               description="Last updated: January 1, 2026"
             />
           </Reveal>
 
-          <div className="mx-auto mt-16 max-w-3xl">
-            <div className="glass rounded-3xl border border-border p-8 md:p-12">
-              <div className="mb-8 flex items-center gap-3 text-accent">
-                <ScrollText className="h-6 w-6" />
-                <span className="text-sm font-medium uppercase tracking-wider">Terms Overview</span>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <div className="rounded-2xl border-2 border-ink bg-parchment p-8 shadow-hard md:p-12">
+              <div className="mb-8 flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet/10 text-violet">
+                  <ScrollText className="h-5 w-5" />
+                </span>
+                <span className="text-caption-strong uppercase tracking-[0.14em] text-ink">Terms Overview</span>
               </div>
 
-              <p className="mb-10 leading-relaxed text-text-secondary">
+              <p className="mb-10 leading-relaxed text-ink-80">
                 Welcome to Soyiri Labs. These Terms of Service govern your use of our website and the services
                 we provide. By accessing our website or engaging our services, you agree to comply with and be
                 bound by these terms. Please read them carefully before using our services.
               </p>
 
-              <GlassDivider className="mb-10" />
+              <div className="mb-10 h-px bg-ink/15" />
 
               <motion.div
                 variants={containerVariants}
@@ -123,10 +128,15 @@ export default function Terms() {
                 viewport={{ once: true, margin: '-50px' }}
                 className="space-y-10"
               >
-                {sections.map((section) => (
-                  <motion.div key={section.title} variants={itemVariants}>
-                    <h2 className="mb-3 text-xl font-semibold text-text">{section.title}</h2>
-                    <p className="leading-relaxed text-text-secondary">{section.content}</p>
+                {sections.map((section, i) => (
+                  <motion.div key={section.title} variants={itemVariants} className="flex gap-5">
+                    <span className="hidden select-none font-display text-4xl font-bold tracking-tight text-outline sm:block">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div className="min-w-0">
+                      <h2 className="mb-3 text-[21px] font-semibold tracking-tight text-ink">{section.title}</h2>
+                      <p className="leading-relaxed text-ink-80">{section.content}</p>
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>

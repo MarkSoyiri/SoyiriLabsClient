@@ -1,76 +1,52 @@
 import { type ReactNode } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { CheckCircle, AlertCircle, AlertTriangle, Info, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type ToastVariant = 'success' | 'error' | 'warning' | 'info'
-
 interface ToastProps {
-  variant?: ToastVariant
+  variant?: 'success' | 'error' | 'warning' | 'info'
   message: string
   onClose?: () => void
   className?: string
   children?: ReactNode
 }
 
-const variantStyles: Record<ToastVariant, { icon: ReactNode; iconColor: string; accent: string }> = {
-  success: {
-    icon: <CheckCircle className="h-5 w-5" />,
-    iconColor: 'text-success',
-    accent: 'bg-success',
-  },
-  error: {
-    icon: <AlertCircle className="h-5 w-5" />,
-    iconColor: 'text-error',
-    accent: 'bg-error',
-  },
-  warning: {
-    icon: <AlertTriangle className="h-5 w-5" />,
-    iconColor: 'text-warning',
-    accent: 'bg-warning',
-  },
-  info: {
-    icon: <Info className="h-5 w-5" />,
-    iconColor: 'text-accent',
-    accent: 'bg-accent',
-  },
-}
+const config = {
+  success: { icon: CheckCircle, bar: 'bg-success', iconColor: 'text-success' },
+  error: { icon: AlertCircle, bar: 'bg-error', iconColor: 'text-error' },
+  warning: { icon: AlertTriangle, bar: 'bg-warning', iconColor: 'text-warning' },
+  info: { icon: Info, bar: 'bg-action', iconColor: 'text-action' },
+} as const
 
-export function Toast({
-  variant = 'info',
-  message,
-  onClose,
-  className,
-  children,
-}: ToastProps) {
-  const { icon, iconColor, accent } = variantStyles[variant]
+export function Toast({ variant = 'info', message, onClose, className, children }: ToastProps) {
+  const { icon: Icon, bar, iconColor } = config[variant]
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: -12, scale: 0.97 }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className={cn(
-          'relative overflow-hidden rounded-2xl bg-secondary/90 border border-border backdrop-blur-xl shadow-float flex items-start gap-3 p-4 pr-12',
-          className,
-        )}
-        role="alert"
-      >
-        <span className={cn('absolute left-0 top-0 h-full w-[3px]', accent)} />
-        <span className={cn('mt-0.5 shrink-0', iconColor)}>{icon}</span>
-        <div className="flex-1 text-sm text-text">{message}{children}</div>
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="absolute right-3 top-3 rounded-lg p-1 text-text-muted transition-colors hover:bg-white/[0.06] hover:text-text"
-            aria-label="Close"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        )}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0, y: 16, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -12, scale: 0.98 }}
+      transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
+      className={cn(
+        'relative overflow-hidden rounded-[11px] frosted border border-hairline flex items-start gap-3 p-4 pr-11',
+        className,
+      )}
+    >
+      <span className={cn('absolute left-0 top-0 h-full w-[3px]', bar)} />
+      <Icon className={cn('mt-0.5 h-5 w-5 shrink-0', iconColor)} />
+      <div className="flex-1 text-[15px] leading-relaxed text-ink min-w-0">
+        {message}
+        {children}
+      </div>
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="absolute right-2.5 top-2.5 rounded-[8px] p-1 text-ink-48 transition-colors hover:bg-ink/5 hover:text-ink"
+          aria-label="Dismiss"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      )}
+    </motion.div>
   )
 }

@@ -158,11 +158,11 @@ export default function AdminSettings() {
       )}
 
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-text">Settings</h1>
-        <p className="text-sm text-text-secondary mt-1">Manage your site content and company information</p>
+        <h1 className="text-2xl font-bold text-ink">Settings</h1>
+        <p className="text-sm text-ink-80 mt-1">Manage your site content and company information</p>
       </div>
 
-      <div className="flex gap-2 flex-wrap mb-6 border-b border-border pb-4">
+      <div className="flex gap-2 flex-wrap mb-6 border-b border-hairline pb-4">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -170,8 +170,8 @@ export default function AdminSettings() {
             className={cn(
               'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300',
               activeTab === tab.id
-                ? 'bg-accent/10 text-accent border border-accent/20'
-                : 'text-text-secondary hover:text-text hover:bg-glass-light border border-transparent',
+                ? 'bg-action/10 text-action border border-action/20'
+                : 'text-ink-80 hover:text-ink hover:bg-pearl border border-transparent',
             )}
           >
             <tab.icon className="h-4 w-4 shrink-0" />
@@ -182,27 +182,27 @@ export default function AdminSettings() {
 
       {activeTab === 'homepage' && homepage && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-          <Card solid>
-            <h2 className="text-lg font-semibold text-text mb-6">Hero Section</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-ink mb-6">Hero Section</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="md:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Hero Title</label>
-                <input value={homepage.heroTitle || ''} onChange={(e) => setHomepage({ ...homepage, heroTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Hero Title</label>
+                <input value={homepage.heroTitle || ''} onChange={(e) => setHomepage({ ...homepage, heroTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div className="md:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Hero Subtitle</label>
-                <input value={homepage.heroSubtitle || ''} onChange={(e) => setHomepage({ ...homepage, heroSubtitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Hero Subtitle</label>
+                <input value={homepage.heroSubtitle || ''} onChange={(e) => setHomepage({ ...homepage, heroSubtitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div className="md:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Hero Description</label>
-                <textarea value={homepage.heroDescription || ''} onChange={(e) => setHomepage({ ...homepage, heroDescription: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Hero Description</label>
+                <textarea value={homepage.heroDescription || ''} onChange={(e) => setHomepage({ ...homepage, heroDescription: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
             </div>
           </Card>
 
-          <Card solid>
+          <Card>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-text">Stats</h2>
+              <h2 className="text-lg font-semibold text-ink">Stats</h2>
               <Button variant="secondary" size="sm" onClick={addStat}>
                 <Plus className="h-4 w-4 shrink-0" /> Add Stat
               </Button>
@@ -210,10 +210,10 @@ export default function AdminSettings() {
             <div className="space-y-4">
               {homepage.stats?.map((stat, i) => (
                 <div key={i} className="flex items-center gap-3 flex-wrap">
-                  <input value={stat.label} onChange={(e) => updateStat(i, 'label', e.target.value)} placeholder="Label" className="flex-1 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[120px]" />
-                  <input type="number" value={stat.value} onChange={(e) => updateStat(i, 'value', Number(e.target.value))} placeholder="Value" className="w-24 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                  <input value={stat.suffix || ''} onChange={(e) => updateStat(i, 'suffix', e.target.value)} placeholder="suffix" className="w-20 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                  <button onClick={() => removeStat(i)} className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
+                  <input value={stat.label} onChange={(e) => updateStat(i, 'label', e.target.value)} placeholder="Label" className="flex-1 h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 min-w-[120px]" />
+                  <input type="number" value={stat.value} onChange={(e) => updateStat(i, 'value', Number(e.target.value))} placeholder="Value" className="w-24 h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
+                  <input value={stat.suffix || ''} onChange={(e) => updateStat(i, 'suffix', e.target.value)} placeholder="suffix" className="w-20 h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
+                  <button onClick={() => removeStat(i)} className="p-2 rounded-lg text-ink-48 hover:text-error hover:bg-error/10 transition-all">
                     <X className="h-4 w-4" />
                   </button>
                 </div>
@@ -221,20 +221,20 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card solid>
-            <h2 className="text-lg font-semibold text-text mb-6">About & CTA</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-ink mb-6">About & CTA</h2>
             <div className="grid gap-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">About Text</label>
-                <textarea value={homepage.aboutText || ''} onChange={(e) => setHomepage({ ...homepage, aboutText: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">About Text</label>
+                <textarea value={homepage.aboutText || ''} onChange={(e) => setHomepage({ ...homepage, aboutText: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">CTA Title</label>
-                <input value={homepage.ctaTitle || ''} onChange={(e) => setHomepage({ ...homepage, ctaTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">CTA Title</label>
+                <input value={homepage.ctaTitle || ''} onChange={(e) => setHomepage({ ...homepage, ctaTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">CTA Description</label>
-                <textarea value={homepage.ctaDescription || ''} onChange={(e) => setHomepage({ ...homepage, ctaDescription: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">CTA Description</label>
+                <textarea value={homepage.ctaDescription || ''} onChange={(e) => setHomepage({ ...homepage, ctaDescription: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
             </div>
           </Card>
@@ -249,95 +249,95 @@ export default function AdminSettings() {
 
       {activeTab === 'company' && company && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-          <Card solid>
-            <h2 className="text-lg font-semibold text-text mb-6">Branding</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-ink mb-6">Branding</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Company Name</label>
-                <input value={company.name || ''} onChange={(e) => setCompany({ ...company, name: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Company Name</label>
+                <input value={company.name || ''} onChange={(e) => setCompany({ ...company, name: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Tagline</label>
-                <input value={company.tagline || ''} onChange={(e) => setCompany({ ...company, tagline: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Tagline</label>
+                <input value={company.tagline || ''} onChange={(e) => setCompany({ ...company, tagline: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div className="md:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Description</label>
-                <textarea value={company.description || ''} onChange={(e) => setCompany({ ...company, description: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Description</label>
+                <textarea value={company.description || ''} onChange={(e) => setCompany({ ...company, description: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2 mt-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Logo</label>
-                <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Logo</label>
+                <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                   <div className="flex flex-col items-center gap-1">
-                    <ImagePlus className="h-5 w-5 text-text-muted" />
-                    <span className="text-xs text-text-muted">Upload logo</span>
+                    <ImagePlus className="h-5 w-5 text-ink-48" />
+                    <span className="text-xs text-ink-48">Upload logo</span>
                   </div>
                   <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setLogoFile(f); setLogoPreview(URL.createObjectURL(f)) } }} className="hidden" />
                 </label>
                 {(logoPreview || company.logo) && (
-                  <img src={logoPreview || getImageUrl(company.logo)} alt="Logo" className="mt-2 h-16 max-w-full object-contain rounded-xl bg-glass-light p-2" />
+                  <img src={logoPreview || getImageUrl(company.logo)} alt="Logo" className="mt-2 h-16 max-w-full object-contain rounded-xl bg-pearl p-2" />
                 )}
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Favicon</label>
-                <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Favicon</label>
+                <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                   <div className="flex flex-col items-center gap-1">
-                    <ImagePlus className="h-5 w-5 text-text-muted" />
-                    <span className="text-xs text-text-muted">Upload favicon</span>
+                    <ImagePlus className="h-5 w-5 text-ink-48" />
+                    <span className="text-xs text-ink-48">Upload favicon</span>
                   </div>
                   <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setFaviconFile(f); setFaviconPreview(URL.createObjectURL(f)) } }} className="hidden" />
                 </label>
                 {(faviconPreview || company.favicon) && (
-                  <img src={faviconPreview || getImageUrl(company.favicon)} alt="Favicon" className="mt-2 h-12 w-12 object-contain rounded-xl bg-glass-light p-1" />
+                  <img src={faviconPreview || getImageUrl(company.favicon)} alt="Favicon" className="mt-2 h-12 w-12 object-contain rounded-xl bg-pearl p-1" />
                 )}
               </div>
             </div>
           </Card>
 
-          <Card solid>
-            <h2 className="text-lg font-semibold text-text mb-6">Mission & Vision</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-ink mb-6">Mission & Vision</h2>
             <div className="grid gap-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Mission</label>
-                <textarea value={company.mission || ''} onChange={(e) => setCompany({ ...company, mission: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Mission</label>
+                <textarea value={company.mission || ''} onChange={(e) => setCompany({ ...company, mission: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Vision</label>
-                <textarea value={company.vision || ''} onChange={(e) => setCompany({ ...company, vision: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Vision</label>
+                <textarea value={company.vision || ''} onChange={(e) => setCompany({ ...company, vision: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
               </div>
             </div>
           </Card>
 
-          <Card solid>
+          <Card>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-text">Values</h2>
+              <h2 className="text-lg font-semibold text-ink">Values</h2>
               <Button variant="secondary" size="sm" onClick={addValue}>
                 <Plus className="h-4 w-4 shrink-0" /> Add Value
               </Button>
             </div>
             <div className="space-y-4">
               {company.values?.map((value, i) => (
-                <div key={i} className="p-4 rounded-xl bg-glass-light border border-border">
+                <div key={i} className="p-4 rounded-xl bg-pearl border border-hairline">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-text">Value #{i + 1}</span>
-                    <button onClick={() => removeValue(i)} className="p-1 rounded-lg text-text-muted hover:text-error transition-all">
+                    <span className="text-sm font-medium text-ink">Value #{i + 1}</span>
+                    <button onClick={() => removeValue(i)} className="p-1 rounded-lg text-ink-48 hover:text-error transition-all">
                       <X className="h-4 w-4" />
                     </button>
                   </div>
                   <div className="grid gap-3 md:grid-cols-3">
-                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <input value={value.title} onChange={(e) => updateValue(i, 'title', e.target.value)} placeholder="Title" className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
+                    <input value={value.description} onChange={(e) => updateValue(i, 'description', e.target.value)} placeholder="Description" className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
+                    <input value={value.icon} onChange={(e) => updateValue(i, 'icon', e.target.value)} placeholder="Icon name" className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                 </div>
               ))}
             </div>
           </Card>
 
-          <Card solid>
+          <Card>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-text">Social Links</h2>
+              <h2 className="text-lg font-semibold text-ink">Social Links</h2>
               <Button variant="secondary" size="sm" onClick={addSocial}>
                 <Plus className="h-4 w-4 shrink-0" /> Add Link
               </Button>
@@ -345,11 +345,11 @@ export default function AdminSettings() {
             <div className="space-y-4">
               {company.socialLinks?.map((link, i) => (
                 <div key={i} className="flex items-center gap-3 flex-wrap">
-                  <Link2 className="h-4 w-4 text-text-muted shrink-0" />
-                  <input value={link.platform} onChange={(e) => updateSocial(i, 'platform', e.target.value)} placeholder="Platform (e.g. Twitter)" className="flex-[2] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[120px]" />
-                  <input value={link.url} onChange={(e) => updateSocial(i, 'url', e.target.value)} placeholder="URL" className="flex-[3] h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 min-w-[160px]" />
-                  <input value={link.icon} onChange={(e) => updateSocial(i, 'icon', e.target.value)} placeholder="Icon" className="w-20 h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
-                  <button onClick={() => removeSocial(i)} className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
+                  <Link2 className="h-4 w-4 text-ink-48 shrink-0" />
+                  <input value={link.platform} onChange={(e) => updateSocial(i, 'platform', e.target.value)} placeholder="Platform (e.g. Twitter)" className="flex-[2] h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 min-w-[120px]" />
+                  <input value={link.url} onChange={(e) => updateSocial(i, 'url', e.target.value)} placeholder="URL" className="flex-[3] h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 min-w-[160px]" />
+                  <input value={link.icon} onChange={(e) => updateSocial(i, 'icon', e.target.value)} placeholder="Icon" className="w-20 h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
+                  <button onClick={() => removeSocial(i)} className="p-2 rounded-lg text-ink-48 hover:text-error hover:bg-error/10 transition-all">
                     <X className="h-4 w-4" />
                   </button>
                 </div>
@@ -357,20 +357,20 @@ export default function AdminSettings() {
             </div>
           </Card>
 
-          <Card solid>
-            <h2 className="text-lg font-semibold text-text mb-6">Contact Information</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-ink mb-6">Contact Information</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Email</label>
-                <input value={company.email || ''} onChange={(e) => setCompany({ ...company, email: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Email</label>
+                <input value={company.email || ''} onChange={(e) => setCompany({ ...company, email: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Phone</label>
-                <input value={company.phone || ''} onChange={(e) => setCompany({ ...company, phone: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Phone</label>
+                <input value={company.phone || ''} onChange={(e) => setCompany({ ...company, phone: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-text-secondary">Address</label>
-                <input value={company.address || ''} onChange={(e) => setCompany({ ...company, address: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                <label className="mb-1.5 block text-sm font-medium text-ink-80">Address</label>
+                <input value={company.address || ''} onChange={(e) => setCompany({ ...company, address: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
               </div>
             </div>
           </Card>

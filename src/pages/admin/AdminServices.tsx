@@ -158,8 +158,8 @@ export default function AdminServices() {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text">Services</h1>
-          <p className="text-sm text-text-secondary mt-1">Manage your service offerings</p>
+          <h1 className="text-2xl font-bold text-ink">Services</h1>
+          <p className="text-sm text-ink-80 mt-1">Manage your service offerings</p>
         </div>
         <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Service</Button>
       </div>
@@ -170,7 +170,7 @@ export default function AdminServices() {
         </div>
       ) : services.length === 0 ? (
         <Card className="text-center py-12">
-          <p className="text-text-muted mb-4">No services yet</p>
+          <p className="text-ink-48 mb-4">No services yet</p>
           <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Service</Button>
         </Card>
       ) : (
@@ -184,26 +184,26 @@ export default function AdminServices() {
             >
               <Card className="flex items-center gap-4 p-4">
                 <div className="flex flex-col gap-0.5 shrink-0">
-                  <button onClick={() => moveItem(index, -1)} className="p-0.5 text-text-muted hover:text-text transition-colors">
+                  <button onClick={() => moveItem(index, -1)} className="p-0.5 text-ink-48 hover:text-ink transition-colors">
                     <GripVertical className="h-3.5 w-3.5 rotate-90" />
                   </button>
                 </div>
-                <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-glass-light flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-pearl flex items-center justify-center">
                   {service.image ? (
                     <img src={getImageUrl(service.image)} alt="" className="w-full h-full object-cover" />
                   ) : (
-                    <span className="text-lg text-text-muted">{service.icon?.charAt(0) || 'S'}</span>
+                    <span className="text-lg text-ink-48">{service.icon?.charAt(0) || 'S'}</span>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="text-sm font-medium text-text truncate block">{service.title}</span>
-                  <span className="text-xs text-text-muted block truncate mt-0.5">{service.description}</span>
+                  <span className="text-sm font-medium text-ink truncate block">{service.title}</span>
+                  <span className="text-xs text-ink-48 block truncate mt-0.5">{service.description}</span>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
-                  <button onClick={() => openEdit(service)} className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">
+                  <button onClick={() => openEdit(service)} className="p-2 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all">
                     <Edit3 className="h-4 w-4" />
                   </button>
-                  <button onClick={() => handleDelete(service._id)} disabled={deleting === service._id} className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all">
+                  <button onClick={() => handleDelete(service._id)} disabled={deleting === service._id} className="p-2 rounded-lg text-ink-48 hover:text-error hover:bg-error/10 transition-all">
                     <Trash2 className={cn('h-4 w-4', deleting === service._id && 'animate-spin')} />
                   </button>
                 </div>
@@ -223,53 +223,53 @@ export default function AdminServices() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-x-3 top-3 bottom-3 z-50 overflow-y-auto overscroll-contain rounded-2xl md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-2xl md:max-h-[calc(100dvh-80px)]"
             >
-              <Card solid className="p-6 md:p-8">
+              <Card className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-text">{editing ? 'Edit Service' : 'Add Service'}</h2>
-                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">
+                  <h2 className="text-lg font-semibold text-ink">{editing ? 'Edit Service' : 'Add Service'}</h2>
+                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all">
                     <X className="h-5 w-5" />
                   </button>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 min-w-0">
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Title *</label>
-                    <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Title *</label>
+                    <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Description *</label>
-                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Description *</label>
+                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Long Description</label>
-                    <textarea value={form.longDescription} onChange={(e) => setForm({ ...form, longDescription: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Long Description</label>
+                    <textarea value={form.longDescription} onChange={(e) => setForm({ ...form, longDescription: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Icon Name</label>
-                    <input value={form.icon} onChange={(e) => setForm({ ...form, icon: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Icon Name</label>
+                    <input value={form.icon} onChange={(e) => setForm({ ...form, icon: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Price</label>
-                    <input value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Price</label>
+                    <input value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Order</label>
-                    <input type="number" value={form.order} onChange={(e) => setForm({ ...form, order: Number(e.target.value) })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Order</label>
+                    <input type="number" value={form.order} onChange={(e) => setForm({ ...form, order: Number(e.target.value) })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Features (comma separated)</label>
-                    <input value={form.features} onChange={(e) => setForm({ ...form, features: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Features (comma separated)</label>
+                    <input value={form.features} onChange={(e) => setForm({ ...form, features: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Process (JSON array of {`{title, description, duration?}`})</label>
-                    <textarea value={form.process} onChange={(e) => setForm({ ...form, process: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none font-mono text-xs" />
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Process (JSON array of {`{title, description, duration?}`})</label>
+                    <textarea value={form.process} onChange={(e) => setForm({ ...form, process: e.target.value })} rows={3} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50 resize-none font-mono text-xs" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Image</label>
-                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Image</label>
+                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                       <div className="flex flex-col items-center gap-1">
-                        <ImagePlus className="h-5 w-5 text-text-muted" />
-                        <span className="text-xs text-text-muted">Click to upload</span>
+                        <ImagePlus className="h-5 w-5 text-ink-48" />
+                        <span className="text-xs text-ink-48">Click to upload</span>
                       </div>
                       <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setImage(f); setLocalPreview(URL.createObjectURL(f)) } }} className="hidden" />
                     </label>
@@ -279,22 +279,22 @@ export default function AdminServices() {
                   </div>
                   <div className="md:col-span-2">
                     <details className="group">
-                      <summary className="text-sm font-medium text-text-secondary cursor-pointer hover:text-text transition-colors">SEO Settings</summary>
+                      <summary className="text-sm font-medium text-ink-80 cursor-pointer hover:text-ink transition-colors">SEO Settings</summary>
                       <div className="mt-3 grid gap-4 md:grid-cols-2">
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">SEO Title</label>
-                          <input value={form.seoTitle} onChange={(e) => setForm({ ...form, seoTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">SEO Title</label>
+                          <input value={form.seoTitle} onChange={(e) => setForm({ ...form, seoTitle: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                         </div>
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">SEO Description</label>
-                          <input value={form.seoDescription} onChange={(e) => setForm({ ...form, seoDescription: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50" />
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">SEO Description</label>
+                          <input value={form.seoDescription} onChange={(e) => setForm({ ...form, seoDescription: e.target.value })} className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action/50" />
                         </div>
                       </div>
                     </details>
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-border">
+                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-hairline">
                   <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
                   <Button onClick={handleSave} loading={saving}>{editing ? 'Update' : 'Create'} Service</Button>
                 </div>

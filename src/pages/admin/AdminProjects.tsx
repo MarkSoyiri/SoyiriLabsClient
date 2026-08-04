@@ -16,7 +16,7 @@ import type { Project } from '@/types'
 const statusColors: Record<string, string> = {
   completed: 'text-success bg-success/10 border-success/20',
   'in-progress': 'text-warning bg-warning/10 border-warning/20',
-  maintenance: 'text-accent-light bg-accent/10 border-accent/20',
+  maintenance: 'text-action bg-action/10 border-action/20',
 }
 
 interface FormData {
@@ -194,18 +194,18 @@ export default function AdminProjects() {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text">Projects</h1>
-          <p className="text-sm text-text-secondary mt-1">Manage your portfolio projects</p>
+          <h1 className="text-2xl font-bold text-ink">Projects</h1>
+          <p className="text-sm text-ink-80 mt-1">Manage your portfolio projects</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-48" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="w-48 h-10 pl-9 pr-3 rounded-xl bg-glass-light border border-border text-text text-sm placeholder:text-text-muted focus:outline-none focus:border-accent/50"
+              className="w-48 h-10 pl-9 pr-3 rounded-xl bg-pearl border border-hairline text-ink text-sm placeholder:text-ink-48 focus:outline-none focus:border-action-focus"
             />
           </div>
           <Button onClick={openCreate}>
@@ -222,12 +222,12 @@ export default function AdminProjects() {
         </div>
       ) : error ? (
         <Card className="text-center py-12">
-          <p className="text-text-secondary mb-4">{error}</p>
+          <p className="text-ink-80 mb-4">{error}</p>
           <Button variant="secondary" onClick={fetchProjects}>Retry</Button>
         </Card>
       ) : filtered.length === 0 ? (
         <Card className="text-center py-12">
-          <p className="text-text-muted mb-4">{search ? 'No projects match your search' : 'No projects yet'}</p>
+          <p className="text-ink-48 mb-4">{search ? 'No projects match your search' : 'No projects yet'}</p>
           {!search && <Button onClick={openCreate}><Plus className="h-4 w-4 shrink-0" /> Add Project</Button>}
         </Card>
       ) : (
@@ -240,36 +240,36 @@ export default function AdminProjects() {
               transition={{ delay: i * 0.03 }}
             >
               <Card className="flex items-center gap-4 p-4">
-                <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-glass-light">
+                <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-pearl">
                   {project.thumbnail ? (
                     <img src={getImageUrl(project.thumbnail)} alt="" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-text-muted text-xs">No img</div>
+                    <div className="w-full h-full flex items-center justify-center text-ink-48 text-xs">No img</div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm font-medium text-text truncate">{project.title}</span>
-                    {project.featured && <Check className="h-3.5 w-3.5 text-accent shrink-0" />}
+                    <span className="text-sm font-medium text-ink truncate">{project.title}</span>
+                    {project.featured && <Check className="h-3.5 w-3.5 text-action shrink-0" />}
                   </div>
                   <div className="flex items-center gap-2 mt-1">
                     <span className={cn('text-[11px] font-medium px-2 py-0.5 rounded-full border', statusColors[project.status])}>
                       {project.status}
                     </span>
-                    <span className="text-xs text-text-muted">{project.clientName}</span>
+                    <span className="text-xs text-ink-48">{project.clientName}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     onClick={() => openEdit(project)}
-                    className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all"
+                    className="p-2 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all"
                   >
                     <Edit3 className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(project._id)}
                     disabled={deleting === project._id}
-                    className="p-2 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-all"
+                    className="p-2 rounded-lg text-ink-48 hover:text-error hover:bg-error/10 transition-all"
                   >
                     <Trash2 className={cn('h-4 w-4', deleting === project._id && 'animate-spin')} />
                   </button>
@@ -296,95 +296,95 @@ export default function AdminProjects() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-x-3 top-3 bottom-3 z-50 overflow-y-auto overscroll-contain rounded-2xl md:inset-auto md:top-10 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl md:max-h-[calc(100dvh-80px)]"
             >
-              <Card solid className="p-6 md:p-8">
+              <Card className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-text">{editing ? 'Edit Project' : 'Add Project'}</h2>
-                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-glass-light transition-all">
+                  <h2 className="text-lg font-semibold text-ink">{editing ? 'Edit Project' : 'Add Project'}</h2>
+                  <button onClick={() => setModalOpen(false)} className="p-2 rounded-lg text-ink-48 hover:text-ink hover:bg-pearl transition-all">
                     <X className="h-5 w-5" />
                   </button>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 min-w-0">
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Title *</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Title *</label>
                     <input
                       value={form.title}
                       onChange={(e) => setForm({ ...form, title: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Description *</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Description *</label>
                     <textarea
                       value={form.description}
                       onChange={(e) => setForm({ ...form, description: e.target.value })}
                       rows={3}
-                      className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none"
+                      className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus resize-none"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Client Name</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Client Name</label>
                     <input
                       value={form.clientName}
                       onChange={(e) => setForm({ ...form, clientName: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Industry</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Industry</label>
                     <input
                       value={form.industry}
                       onChange={(e) => setForm({ ...form, industry: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Technologies (comma separated)</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Technologies (comma separated)</label>
                     <input
                       value={form.technologies}
                       onChange={(e) => setForm({ ...form, technologies: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Services Provided</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Services Provided</label>
                     <input
                       value={form.servicesProvided}
                       onChange={(e) => setForm({ ...form, servicesProvided: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Live URL</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Live URL</label>
                     <input
                       value={form.liveUrl}
                       onChange={(e) => setForm({ ...form, liveUrl: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">GitHub URL</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">GitHub URL</label>
                     <input
                       value={form.githubUrl}
                       onChange={(e) => setForm({ ...form, githubUrl: e.target.value })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Completion Year</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Completion Year</label>
                     <input
                       type="number"
                       value={form.completionYear}
                       onChange={(e) => setForm({ ...form, completionYear: Number(e.target.value) })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Status</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Status</label>
                     <select
                       value={form.status}
                       onChange={(e) => setForm({ ...form, status: e.target.value as any })}
-                      className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                      className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                     >
                       <option value="completed">Completed</option>
                       <option value="in-progress">In Progress</option>
@@ -392,15 +392,15 @@ export default function AdminProjects() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Color Theme</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Color Theme</label>
                     <div className="flex items-center gap-3">
                       <input
                         type="color"
                         value={form.colorTheme}
                         onChange={(e) => setForm({ ...form, colorTheme: e.target.value })}
-                        className="w-10 h-10 rounded-xl border border-border bg-transparent cursor-pointer"
+                        className="w-10 h-10 rounded-xl border border-hairline bg-transparent cursor-pointer"
                       />
-                      <span className="text-xs text-text-muted">{form.colorTheme}</span>
+                      <span className="text-xs text-ink-48">{form.colorTheme}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -411,17 +411,17 @@ export default function AdminProjects() {
                         onChange={(e) => setForm({ ...form, featured: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-10 h-5 bg-glass-light rounded-full peer peer-checked:bg-accent after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
+                      <div className="w-10 h-5 bg-pearl rounded-full peer peer-checked:bg-action after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
                     </label>
-                    <span className="text-sm text-text-secondary">Featured</span>
+                    <span className="text-sm text-ink-80">Featured</span>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Thumbnail</label>
-                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Thumbnail</label>
+                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                       <div className="flex flex-col items-center gap-1">
-                        <ImagePlus className="h-5 w-5 text-text-muted" />
-                        <span className="text-xs text-text-muted">Click to upload</span>
+                        <ImagePlus className="h-5 w-5 text-ink-48" />
+                        <span className="text-xs text-ink-48">Click to upload</span>
                       </div>
                       <input
                         type="file"
@@ -438,11 +438,11 @@ export default function AdminProjects() {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-text-secondary">Gallery Images</label>
-                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-border bg-glass-light cursor-pointer hover:border-accent/50 transition-colors">
+                    <label className="mb-1.5 block text-sm font-medium text-ink-80">Gallery Images</label>
+                    <label className="flex items-center justify-center w-full h-20 rounded-xl border-2 border-dashed border-hairline bg-pearl cursor-pointer hover:border-action/50 transition-colors">
                       <div className="flex flex-col items-center gap-1">
-                        <ImagePlus className="h-5 w-5 text-text-muted" />
-                        <span className="text-xs text-text-muted">{gallery.length > 0 ? `${gallery.length} selected` : 'Click to upload'}</span>
+                        <ImagePlus className="h-5 w-5 text-ink-48" />
+                        <span className="text-xs text-ink-48">{gallery.length > 0 ? `${gallery.length} selected` : 'Click to upload'}</span>
                       </div>
                       <input
                         type="file"
@@ -456,22 +456,22 @@ export default function AdminProjects() {
 
                   <div className="md:col-span-2">
                     <details className="group">
-                      <summary className="text-sm font-medium text-text-secondary cursor-pointer hover:text-text transition-colors">SEO Settings</summary>
+                      <summary className="text-sm font-medium text-ink-80 cursor-pointer hover:text-ink transition-colors">SEO Settings</summary>
                       <div className="mt-3 grid gap-4 md:grid-cols-2">
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">SEO Title</label>
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">SEO Title</label>
                           <input
                             value={form.seoTitle}
                             onChange={(e) => setForm({ ...form, seoTitle: e.target.value })}
-                            className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                            className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                           />
                         </div>
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">SEO Description</label>
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">SEO Description</label>
                           <input
                             value={form.seoDescription}
                             onChange={(e) => setForm({ ...form, seoDescription: e.target.value })}
-                            className="w-full h-10 px-3 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50"
+                            className="w-full h-10 px-3 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus"
                           />
                         </div>
                       </div>
@@ -480,26 +480,26 @@ export default function AdminProjects() {
 
                   <div className="md:col-span-2">
                     <details className="group">
-                      <summary className="text-sm font-medium text-text-secondary cursor-pointer hover:text-text transition-colors">Case Study Details</summary>
+                      <summary className="text-sm font-medium text-ink-80 cursor-pointer hover:text-ink transition-colors">Case Study Details</summary>
                       <div className="mt-3 grid gap-4">
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">Challenges</label>
-                          <textarea value={form.challenges} onChange={(e) => setForm({ ...form, challenges: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">Challenges</label>
+                          <textarea value={form.challenges} onChange={(e) => setForm({ ...form, challenges: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus resize-none" />
                         </div>
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">Solution</label>
-                          <textarea value={form.solution} onChange={(e) => setForm({ ...form, solution: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">Solution</label>
+                          <textarea value={form.solution} onChange={(e) => setForm({ ...form, solution: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus resize-none" />
                         </div>
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-text-secondary">Results</label>
-                          <textarea value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-glass-light border border-border text-text text-sm focus:outline-none focus:border-accent/50 resize-none" />
+                          <label className="mb-1.5 block text-sm font-medium text-ink-80">Results</label>
+                          <textarea value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} rows={2} className="w-full px-3 py-2 rounded-xl bg-pearl border border-hairline text-ink text-sm focus:outline-none focus:border-action-focus resize-none" />
                         </div>
                       </div>
                     </details>
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-border">
+                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-hairline">
                   <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
                   <Button onClick={handleSave} loading={saving}>
                     {editing ? 'Update' : 'Create'} Project
