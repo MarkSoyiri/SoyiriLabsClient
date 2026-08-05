@@ -22,10 +22,12 @@ import AdminBlog from '@/pages/admin/AdminBlog'
 import AdminMessages from '@/pages/admin/AdminMessages'
 import AdminSettings from '@/pages/admin/AdminSettings'
 import NotFound from '@/pages/NotFound'
+import UpdatePrompt from '@/components/ui/UpdatePrompt'
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
@@ -51,6 +53,8 @@ export default function App() {
         <Route path="settings" element={<AdminSettings />} />
       </Route>
       <Route path="*" element={<NotFound />} />
-    </Routes>
+      </Routes>
+      <UpdatePrompt />
+    </>
   )
 }
