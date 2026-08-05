@@ -1,3 +1,4 @@
+const APP_VERSION = '__BUILD_VERSION__'
 const HTML_CACHE = 'soyiri-labs-html'
 
 self.addEventListener('install', () => {
