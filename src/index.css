@@ -391,6 +391,18 @@
     animation-direction: reverse;
   }
 
+  /* ── Hero ambient drift (background blobs) ─────────────────── */
+  .blob-drift {
+    animation: blob-drift 24s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* ── Hero gradient pan (accent text) ───────────────────────── */
+  .gradient-pan {
+    background-size: 200% 200%;
+    animation: gradient-pan 6s ease-in-out infinite;
+  }
+
   /* ── Dashed squiggle underline (SVG-free) ───────────────────── */
   .underline-squiggle {
     text-decoration: underline;
@@ -540,6 +552,31 @@
   }
   to {
     transform: translateX(-100%);
+  }
+}
+
+/* Hero ambient blob drift */
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(28px, -22px, 0) scale(1.07);
+  }
+  66% {
+    transform: translate3d(-22px, 18px, 0) scale(0.96);
+  }
+}
+
+/* Hero gradient pan on accent text */
+@keyframes gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 

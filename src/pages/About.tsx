@@ -374,7 +374,7 @@ export default function About() {
             align="center"
           />
           <div className="relative mx-auto mt-16 max-w-3xl">
-            <div className="absolute left-[22px] top-0 h-full w-px bg-hairline md:left-[120px]" />
+            <div className="absolute left-[7px] top-0 h-full w-px bg-hairline md:left-[118px]" />
             {timeline.map((item, i) => (
               <Reveal key={item.year} delay={i * 0.1}>
                 <div className="relative mb-12 pl-[16px] last:mb-0 md:grid md:grid-cols-[120px_1fr] md:gap-8 md:pl-0">

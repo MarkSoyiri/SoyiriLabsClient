@@ -218,9 +218,9 @@ function HeroSection() {
   return (
     <section className="tile-light relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-bg" />
-      <div className="pointer-events-none absolute -top-32 right-[-10%] h-[560px] w-[560px] blob-electric" />
-      <div className="pointer-events-none absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] blob-violet" />
-      <div className="pointer-events-none absolute bottom-[30%] left-[30%] h-[320px] w-[320px] blob-cyan opacity-60" />
+      <div className="pointer-events-none absolute -top-32 right-[-10%] h-[560px] w-[560px] blob-electric blob-drift" style={{ animationDuration: '26s' }} />
+      <div className="pointer-events-none absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] blob-violet blob-drift" style={{ animationDuration: '32s', animationDelay: '-8s' }} />
+      <div className="pointer-events-none absolute bottom-[30%] left-[30%] h-[320px] w-[320px] blob-cyan opacity-60 blob-drift" style={{ animationDuration: '22s', animationDelay: '-14s' }} />
 
       <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pb-16 pt-24 md:pb-24 md:pt-28">
         <div className="container-site">
@@ -248,7 +248,7 @@ function HeroSection() {
                   </motion.span>
                 ))}
                 <motion.span
-                  className="bg-gradient-to-r from-action via-violet to-cyan bg-clip-text text-transparent"
+                  className="gradient-pan bg-gradient-to-r from-action via-violet to-cyan bg-clip-text text-transparent"
                   initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.31, ease: [0.25, 0.4, 0.25, 1] }}
@@ -309,7 +309,7 @@ function HeroSection() {
             </Reveal>
 
             <Reveal delay={0.7} className="mt-14 w-full">
-              <div className="mx-auto grid w-full max-w-3xl grid-cols-2 divide-x divide-hairline rounded-2xl border-2 border-ink bg-canvas shadow-hard md:grid-cols-4">
+              <div className="mx-auto grid w-full max-w-3xl grid-cols-2 rounded-2xl border-2 border-ink bg-canvas shadow-hard md:grid-cols-4 md:divide-x md:divide-hairline max-md:[&>*:nth-child(odd)]:border-r max-md:[&>*:nth-child(n+3)]:border-t max-md:[&>*]:border-hairline">
                 {heroStats.map((stat) => (
                   <div key={stat.label} className="flex flex-col items-center px-4 py-7">
                     <span className="font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">{stat.value}</span>
@@ -332,7 +332,7 @@ function HeroSection() {
 function ServicesSection() {
   return (
     <section id="services" className="tile-parchment tile">
-      <div className="container-site">
+      <div className="container-site px-4 md:px-6">
         <Reveal>
           <SectionHeading
             label="What We Do"
@@ -397,7 +397,7 @@ function FeaturedProjectsSection() {
     <section id="work" className="tile-dark tile relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
       <div className="relative">
-        <div className="container-site">
+        <div className="container-site px-4 md:px-6">
           <Reveal>
             <SectionHeading
               label="Our Work"
@@ -485,7 +485,7 @@ function FeaturedProjectsSection() {
 function WhySoyiriLabsSection() {
   return (
     <section className="tile-light tile">
-      <div className="container-site">
+      <div className="container-site px-4 md:px-6">
         <Reveal>
           <SectionHeading
             label="Why Choose Us"
@@ -560,7 +560,7 @@ function ProcessSection() {
     <section className="tile-dark tile relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-bg-dark" />
       <div className="relative">
-        <div className="container-site">
+        <div className="container-site px-4 md:px-6">
           <Reveal>
             <SectionHeading
               label="How We Work"
@@ -598,7 +598,7 @@ function ProcessSection() {
 function TestimonialsSection() {
   return (
     <section className="tile-parchment tile">
-      <div className="container-site">
+      <div className="container-site px-4 md:px-6">
         <Reveal>
           <SectionHeading
             label="Testimonials"
@@ -641,7 +641,7 @@ function TestimonialsSection() {
 function StatisticsSection() {
   return (
     <section className="tile-light tile">
-      <div className="container-site">
+      <div className="container-site px-4 md:px-6">
         <Reveal>
           <SectionHeading
             label="By the Numbers"
@@ -678,7 +678,7 @@ function CTASection() {
       <div className="pointer-events-none absolute -left-24 top-1/2 h-[420px] w-[420px] -translate-y-1/2 blob-violet" />
       <div className="pointer-events-none absolute -right-24 top-0 h-[360px] w-[360px] blob-cyan" />
       <div className="relative">
-        <div className="container-site">
+        <div className="container-site px-4 md:px-6">
           <Reveal>
             <div className="text-center">
               <p className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-white/70">
