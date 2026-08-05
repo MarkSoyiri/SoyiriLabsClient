@@ -609,6 +609,17 @@
   }
 }
 
+/* Pill shimmer sweep */
+@keyframes shimmer-sweep {
+  0%,
+  55% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
 /* Hero glitch slice tears (two out-of-phase layers) */
 @keyframes glitch-slices-a {
   0%, 80%, 100% {

@@ -225,7 +225,20 @@ function HeroSection() {
       <motion.div style={{ opacity, y }} className="relative z-10 w-full px-4 pb-16 pt-24 md:pb-24 md:pt-28">
         <div className="container-site">
           <div className="flex flex-col items-center text-center">
-            <div className="mb-5 max-w-5xl">
+            <Reveal delay={0.1}>
+              <div className="relative mb-9 overflow-hidden rounded-full border border-hairline bg-gradient-to-r from-action/10 via-violet/10 to-cyan/10 px-4 py-2 shadow-hard-sm backdrop-blur-md">
+                <span className="pointer-events-none absolute inset-y-0 w-1/3 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/80 to-transparent animate-[shimmer-sweep_5s_ease-in-out_infinite]" />
+                <span className="relative inline-flex items-center gap-2.5">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                  </span>
+                  <span className="text-caption-strong text-ink">Open for new projects</span>
+                </span>
+              </div>
+            </Reveal>
+
+            <div className="mb-7 max-w-5xl">
               <h1 className="text-hero-display flex flex-wrap justify-center text-ink">
                 {['We', 'Build'].map((word, i) => (
                   <motion.span
@@ -263,16 +276,6 @@ function HeroSection() {
                 </motion.span>
               </h1>
             </div>
-
-            <Reveal delay={0.25}>
-              <p className="mb-7 inline-flex items-center gap-2.5 text-caption-strong text-ink-80">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
-                </span>
-                Available for <span className="text-serif-accent text-action">new projects</span>
-              </p>
-            </Reveal>
 
             <Reveal delay={0.35} className="mb-10 max-w-2xl">
               <p className="text-lead-airy text-ink-80">
