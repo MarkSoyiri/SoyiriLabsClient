@@ -145,7 +145,7 @@ export default function About() {
         <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[480px] w-[480px] blob-violet" />
         <div className="pointer-events-none absolute bottom-[24%] right-[22%] h-[280px] w-[280px] blob-cyan opacity-50" />
 
-        <div className="relative container-site px-4 pb-24 pt-16 text-center md:pb-32 md:pt-24">
+        <div className="relative container-site px-4 pb-24 pt-24 text-center md:pb-32 md:pt-28">
           <Reveal>
             <span className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas/80 px-4 py-2 text-caption-strong text-ink shadow-hard-sm">
               <Briefcase className="h-4 w-4 text-action" />

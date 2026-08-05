@@ -179,7 +179,7 @@ export default function Blog() {
         <div className="pointer-events-none absolute inset-0 grid-bg" />
         <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[480px] w-[480px] blob-lime opacity-40" />
-        <div className="relative container-site px-4 pb-24 pt-16 md:pb-32 md:pt-24">
+        <div className="relative container-site px-4 pb-24 pt-24 md:pb-32 md:pt-28">
           <SectionHeading
             label="Our Blog"
             title={
