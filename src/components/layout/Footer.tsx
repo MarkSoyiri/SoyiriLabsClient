@@ -110,7 +110,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-10">
+          <div className="min-w-0 space-y-10">
             <div className="space-y-3">
               <h3 className="mb-4 text-caption-strong uppercase tracking-[0.14em] text-on-dark-muted">Contact Us</h3>
               <a
@@ -139,7 +139,7 @@ export default function Footer() {
                 Get the latest insights and news delivered to your inbox.
               </p>
               <form
-                className="flex gap-2"
+                className="flex w-full min-w-0 gap-2"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <input
