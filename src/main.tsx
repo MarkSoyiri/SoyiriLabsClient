@@ -7,7 +7,11 @@ import './index.css'
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {})
+    const hadController = navigator.serviceWorker.controller !== null
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController) window.location.reload()
+    })
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(() => {})
   })
 }
 
