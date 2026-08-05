@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { LogIn, Eye, EyeOff, AlertCircle } from 'lucide-react'
@@ -53,7 +53,9 @@ export default function AdminLogin() {
         >
           <div className="rounded-2xl border-2 border-ink bg-canvas p-8 shadow-hard md:p-10">
             <div className="mb-6 text-center">
-              <img src={logo} alt="Soyiri Labs" className="mx-auto mb-3 h-14 w-auto object-contain" />
+              <Link to="/" className="block transition-opacity hover:opacity-80" aria-label="Go to homepage">
+                <img src={logo} alt="Soyiri Labs" className="mx-auto mb-3 h-14 w-auto object-contain" />
+              </Link>
               <h1 className="mb-1 text-2xl font-semibold tracking-tight text-ink">Admin Dashboard</h1>
               <p className="text-caption text-ink-48">Sign in to manage your site</p>
             </div>
