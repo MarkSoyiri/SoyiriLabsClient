@@ -248,7 +248,8 @@ function HeroSection() {
                   </motion.span>
                 ))}
                 <motion.span
-                  className="gradient-pan bg-gradient-to-r from-action via-violet to-cyan bg-clip-text text-transparent"
+                  className="glitch gradient-pan bg-gradient-to-r from-action via-violet to-cyan bg-clip-text text-transparent"
+                  data-text={'Digital\u00A0Products\u00A0'}
                   initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.31, ease: [0.25, 0.4, 0.25, 1] }}

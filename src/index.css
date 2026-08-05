@@ -403,6 +403,35 @@
     animation: gradient-pan 6s ease-in-out infinite;
   }
 
+  /* ── Hero glitch effect (accent text) ──────────────────────── */
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    pointer-events: none;
+    will-change: clip-path, transform;
+  }
+
+  .glitch::before {
+    animation: glitch-slices-a 3.8s steps(1, end) infinite 1.2s;
+  }
+
+  .glitch::after {
+    animation: glitch-slices-b 2.9s steps(1, end) infinite 2.3s;
+  }
+
   /* ── Dashed squiggle underline (SVG-free) ───────────────────── */
   .underline-squiggle {
     text-decoration: underline;
@@ -577,6 +606,83 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+/* Hero glitch slice tears (two out-of-phase layers) */
+@keyframes glitch-slices-a {
+  0%, 80%, 100% {
+    clip-path: inset(0 0 100% 0);
+    transform: translate3d(0, 0, 0) skewX(0deg);
+    opacity: 0;
+  }
+  81% {
+    clip-path: inset(2% 0 86% 0);
+    transform: translate3d(-4px, -1px, 0) skewX(-2deg);
+    opacity: 0.9;
+  }
+  84% {
+    clip-path: inset(54% 0 22% 0);
+    transform: translate3d(4px, 1px, 0) skewX(1.5deg);
+    opacity: 0.9;
+  }
+  87% {
+    clip-path: inset(76% 0 4% 0);
+    transform: translate3d(-2px, 2px, 0) skewX(-1deg);
+    opacity: 0.9;
+  }
+  90% {
+    clip-path: inset(16% 0 58% 0);
+    transform: translate3d(3px, -1px, 0) skewX(2deg);
+    opacity: 0.9;
+  }
+  93% {
+    clip-path: inset(38% 0 40% 0);
+    transform: translate3d(-4px, 0, 0) skewX(0deg);
+    opacity: 0.9;
+  }
+  96% {
+    clip-path: inset(66% 0 16% 0);
+    transform: translate3d(4px, 1px, 0) skewX(-1.5deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes glitch-slices-b {
+  0%, 78%, 100% {
+    clip-path: inset(0 0 100% 0);
+    transform: translate3d(0, 0, 0) skewX(0deg);
+    opacity: 0;
+  }
+  79% {
+    clip-path: inset(72% 0 6% 0);
+    transform: translate3d(5px, 0, 0) skewX(1deg);
+    opacity: 0.85;
+  }
+  82% {
+    clip-path: inset(8% 0 76% 0);
+    transform: translate3d(-5px, 1px, 0) skewX(-2deg);
+    opacity: 0.85;
+  }
+  85% {
+    clip-path: inset(46% 0 32% 0);
+    transform: translate3d(3px, 2px, 0) skewX(1.5deg);
+    opacity: 0.85;
+  }
+  89% {
+    clip-path: inset(0% 0 94% 0);
+    transform: translate3d(-3px, -1px, 0) skewX(-1deg);
+    opacity: 0.85;
+  }
+  93% {
+    clip-path: inset(58% 0 20% 0);
+    transform: translate3d(3px, -2px, 0) skewX(1deg);
+    opacity: 0.85;
+  }
+  96% {
+    clip-path: inset(26% 0 58% 0);
+    transform: translate3d(-5px, 1px, 0) skewX(-1.5deg);
+    opacity: 0.85;
   }
 }
 
