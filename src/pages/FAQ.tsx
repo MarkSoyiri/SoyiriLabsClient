@@ -186,11 +186,11 @@ export default function FAQ() {
         />
       </Helmet>
 
-      <section className="tile-light tile relative overflow-hidden">
+      <section className="tile-light relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid-bg" />
         <div className="pointer-events-none absolute -top-24 right-[-8%] h-[440px] w-[440px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-18%] left-[-8%] h-[400px] w-[400px] blob-cyan opacity-60" />
-        <div className="relative container-site px-4">
+        <div className="relative container-site px-4 pb-24 pt-24 md:pb-32 md:pt-28">
           <Reveal>
             <SectionHeading
               label="FAQ"

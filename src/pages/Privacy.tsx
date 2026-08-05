@@ -88,11 +88,11 @@ export default function Privacy() {
         <meta name="description" content="Soyiri Labs Privacy Policy — how we collect, use, and protect your personal information." />
       </Helmet>
 
-      <section className="tile-light tile relative overflow-hidden">
+      <section className="tile-light relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid-bg" />
         <div className="pointer-events-none absolute -top-24 right-[-8%] h-[420px] w-[420px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-16%] left-[-8%] h-[380px] w-[380px] blob-violet" />
-        <div className="relative container-site px-4">
+        <div className="relative container-site px-4 pb-24 pt-24 md:pb-32 md:pt-28">
           <Reveal>
             <SectionHeading
               label="Legal"

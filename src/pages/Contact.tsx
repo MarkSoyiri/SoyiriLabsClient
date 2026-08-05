@@ -91,13 +91,13 @@ export default function Contact() {
         <meta name="description" content="Get in touch with Soyiri Labs. Let's discuss your next web development project." />
       </Helmet>
 
-      <section className="tile-light tile relative overflow-hidden">
+      <section className="tile-light relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid-bg" />
         <div className="pointer-events-none absolute -top-24 right-[-8%] h-[440px] w-[440px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-20%] left-[-8%] h-[400px] w-[400px] blob-violet" />
         <div className="pointer-events-none absolute bottom-[30%] right-[20%] h-[240px] w-[240px] blob-cyan opacity-50" />
 
-        <div className="relative container-site px-4">
+        <div className="relative container-site px-4 pb-24 pt-24 md:pb-32 md:pt-28">
           <Reveal>
             <SectionHeading
               label="Get in Touch"
