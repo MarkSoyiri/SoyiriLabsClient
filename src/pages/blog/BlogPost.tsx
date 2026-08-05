@@ -347,7 +347,7 @@ export default function BlogPost() {
         <div className="pointer-events-none absolute -top-24 right-[-10%] h-[460px] w-[460px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-18%] left-[-10%] h-[420px] w-[420px] blob-violet" />
         <div className={cn('pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-gradient-to-br opacity-5', gradient)} />
-        <div className="relative container-site px-4 py-14 md:py-20">
+        <div className="relative container-site px-4 pb-14 pt-24 md:py-20">
           <Reveal>
             <Link to="/blog" className="mb-8 inline-flex items-center gap-2 text-ink-48 transition-colors hover:text-action">
               <ArrowLeft className="h-4 w-4 shrink-0" />

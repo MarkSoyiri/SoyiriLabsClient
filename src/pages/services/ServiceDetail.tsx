@@ -459,7 +459,7 @@ export default function ServiceDetail() {
         <div className="pointer-events-none absolute inset-0 grid-bg" />
         <div className="pointer-events-none absolute -top-28 right-[-10%] h-[520px] w-[520px] blob-electric" />
         <div className="pointer-events-none absolute bottom-[-22%] left-[-10%] h-[440px] w-[440px] blob-violet" />
-        <div className="relative container-site px-4 pb-20 pt-14 md:pb-28 md:pt-24">
+        <div className="relative container-site px-4 pb-20 pt-24 md:pb-28 md:pt-24">
           <Reveal>
             <Link
               to="/services"
